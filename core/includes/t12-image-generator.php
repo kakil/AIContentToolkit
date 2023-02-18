@@ -21,8 +21,6 @@ $results = $wpdb->get_results($sql);
 $getApiToken = $results[0]->api_token;
 $getTemperature = intval($results[0]->temperature);
 $getMaxTokens = intval($results[0]->max_tokens);
-$getFrequencyPenalty = intval($results[0]->frequency_penalty);
-$getPresencePenalty = intval($results[0]->presence_penalty);
 $getLanguage = $results[0]->language;
 
 $languages = array("tr","en");

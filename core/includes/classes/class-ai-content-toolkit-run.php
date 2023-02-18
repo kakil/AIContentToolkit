@@ -409,8 +409,6 @@ class AI_Content_Toolkit_Run{
 		api_token tinytext NOT NULL,
 		temperature tinytext NOT NULL,
 		max_tokens tinytext NOT NULL,
-		frequency_penalty tinytext NOT NULL,
-		prescence_penalty tinytext NOT NULL,
 		language tinytext NOT NULL,
 		PRIMARY KEY  (id)
 		) $charset_collate;";

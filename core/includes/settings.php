@@ -10,9 +10,8 @@ $results = $wpdb->get_results($sql);
 $getApiToken = $results[0]->api_token;
 $getTemperature = $results[0]->temperature;
 $getMaxTokens = $results[0]->max_tokens;
-$getFrequencyPenalty = intval($results[0]->frequency_penalty);
-$getPresencePenalty = intval($results[0]->presence_penalty);
 $getLanguage = $results[0]->language;
+
 
 $languages = array("tr","en");
 if(in_array($getLanguage,$languages)) {
@@ -22,13 +21,11 @@ if(in_array($getLanguage,$languages)) {
 }
 
 if(isset($_POST["submit"])){
+
   $temperatureValue = $_POST["temperatureValue"];
   $apiToken = $_POST["apiToken"];
   $maxTokens = $_POST["maxTokens"];
-  $frequencyPenalty = $_POST["frequencyPenalty"];
-  $presencePenalty = $_POST["presencePenalty"];
   $selectLanguage = $_POST["selectLanguage"];
-
 
   if($results){ // UPDATE
     $id = $results[0]->id;
@@ -36,16 +33,17 @@ if(isset($_POST["submit"])){
       'api_token' => $apiToken, 
       'temperature' => $temperatureValue,
       'max_tokens' => $maxTokens,
-      'frequency_penalty' => $frequencyPenalty,
-      'presence_penalty' => $presencePenalty,
       'language' => $selectLanguage,
    ),
       array(
        'id'=>$id,
       ) 
     );
+
     echo "<script>location.reload();</script>";
+
   }
+
   if(!$results){ //INSERT
       $wpdb->insert( $tablename, array(
         'api_token' => $apiToken, 
@@ -55,10 +53,13 @@ if(isset($_POST["submit"])){
      ),
         array( '%s', '%s', '%s', '%s') 
      );
-     echo "<script>location.reload();</script>";
+
+    echo "<script>location.reload();</script>";
   }
 
+
 }
+
 ?>
 <div class="container-fluid w-50 m-3 bg-light border border-3 shadow p-3 rounded-4"> 
   <h1 class="display-2 mt-3 mb-3">AI Settings</h1>
@@ -68,18 +69,12 @@ if(isset($_POST["submit"])){
       <input type="text" id="apiToken" name="apiToken" class="form-control" value="<?php echo $getApiToken; ?>"/>
     </div>
     
-    <div class="mb-5">
-      <label class="form-label"><?php echo $lang["temperature"]; ?></label><output id="temperatureTextValue"><?php echo $getTemperature; ?></output><br>
-      <input type="range" class="form-range" min="0" max="1" step="0.1" id="temperatureValue" name="temperatureValue" value="<?php echo $getTemperature; ?>" oninput="temperatureTextValue.value = temperatureValue.value">
-      <small><?php echo $lang["temperatureText"]; ?></small>
-    </div>
+    <div class="mb-3">
+    <label class="form-label"><?php echo $lang["temperature"]; ?><b id="temperatureTextValue"><?php echo $getTemperature; ?></b></label><br>
+    <small><?php echo $lang["temperatureText"]; ?></small>
+    <input onchange="updateTemperature();" type="range" class="form-range" min="0" max="1" step="0.1" id="temperatureValue" name="temperatureValue" value="<?php echo $getTemperature; ?>">
+  </div>
 
-    <div class="mb-5">
-      <label class="form-label"><?php echo $lang["frequencyPenalty"]; ?><b id="frequencyPenaltyTextValue"><?php echo $getTemperature; ?></b></label><br>
-      <input onchange="updateTemperature();" type="range" class="form-range" min="0" max="1" step="0.1" id="frequencyPenaltyValue" name="frequencyPenaltyValue" value="<?php echo $getTemperature; ?>">
-      <small><?php echo $lang["frequencyPenaltyText"]; ?></small>
-    </div>
-    
     <div class="mb-5">
       <label class="form-label"><?php echo $lang["maxTokens"]; ?> (Maximum: 4000)</label>
       <input type="number" id="maxTokens" name="maxTokens" class="form-control" value="<?php echo $getMaxTokens; ?>"/>
@@ -90,10 +85,16 @@ if(isset($_POST["submit"])){
       <label class="form-label"><?php echo $lang["selectLanguage"]; ?></label>
       <select name="selectLanguage" id="selectLanguage" class="form-select">
         <option value="en">English</option>
-        <option value="tr">Türkçe</option>
+        <!-- <option value="tr">Türkçe</option> -->
       </select>
     </div>
     
     <button type="submit" name="submit" class="btn btn-primary mb-5"><?php echo $lang["saveSettings"]; ?></button>
   </form>
 </div>
+
+<script>
+function updateTemperature() {
+  document.getElementById("temperatureTextValue").innerText = document.getElementById("temperatureValue").value
+}
+</script>

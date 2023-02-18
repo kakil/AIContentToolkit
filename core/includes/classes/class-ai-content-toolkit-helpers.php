@@ -141,8 +141,6 @@ class AI_Content_Toolkit_Helpers{
 		$getApiToken = $results[0]->api_token;
 		$getTemperature = intval($results[0]->temperature);
 		$getMaxTokens = intval($results[0]->max_tokens);
-		$getFrequencyPenalty = intval($results[0]->frequency_penalty);
-		$getPresencePenalty = intval($results[0]->presence_penalty);
 		$getLanguage = $results[0]->language;
 		
 		$languages = array("en");
@@ -164,8 +162,6 @@ class AI_Content_Toolkit_Helpers{
 			  'model'					=> 'text-davinci-003',
 			  'temperature'				=> $getTemperature,
 			  'max_tokens' 				=> $getMaxTokens,
-			  'frequency_penalty' 		=> $getFrequencyPenalty,
-			  'presence_penalty' 		=> $getPresencePenalty,
 			  'number_of_completions'	=> 1,
 			));
 			$curl = curl_init('https://api.openai.com/v1/completions');
@@ -338,7 +334,8 @@ class AI_Content_Toolkit_Helpers{
 		return $attachment_id;
 	
 	}
-
+	  
+	  
 
 	 /**
 	  * HELPER COMMENT END

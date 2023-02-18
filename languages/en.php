@@ -39,7 +39,7 @@
     $lang["imageButton"] = "Generate Image";
     $lang["addToMediaLibrary"] = "Library ";
     $lang["downloadMedia"] = "Download";
-    $lang["frequencyPenalty"] = "Frequency Penalty";
+    $lang["frequencyPenalty"] = "Frequency Penalty: ";
     $lang["frequencyPenaltyText"] = "";
 
 ?>
