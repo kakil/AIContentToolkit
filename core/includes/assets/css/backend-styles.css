@@ -1,0 +1,45 @@
+/*----------------- 
+Backend related CSS
+-----------------*/
+
+  /* Overriding styles */
+
+  ::-webkit-input-placeholder {
+    font-style: italic !important;
+    color: lightgray;
+  }
+
+  :-moz-placeholder { /* Firefox 18- */
+    font-style: italic 13px!important;
+    color: lightgray;
+  }
+  ::-moz-placeholder {  /* Firefox 19+ */
+    font-style: italic 13px!important;
+    color: lightgray;
+  }
+
+  #spinner-div {
+    position: fixed;
+    display: none;
+    overflow: show;
+    width: 100px;
+    height: 100px;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.8);
+    z-index: 999;
+  }
+
+  #spinner {
+    visibility:hidden;
+  }
+
+  body.busy .spinner { 
+    visibility:visible !important; 
+  }
+
+
