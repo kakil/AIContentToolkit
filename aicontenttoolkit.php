@@ -1,26 +1,26 @@
 <?php
 /**
- * ChatGPT ToolKit
+ * AI Content ToolKit
  *
- * @package       CHATGPTTOO
+ * @package       AICONTENTT
  * @author        Kitwana Akil
  * @license       gplv3-or-later
- * @version       0.1.0
+ * @version       0.5.0
  *
  * @wordpress-plugin
- * Plugin Name:   ChatGPT ToolKit
- * Plugin URI:    https://toolkitsforsuccess.com/chatgpt-toolkit
+ * Plugin Name:   AI Content ToolKit
+ * Plugin URI:    https://toolkitsforsuccess.com/ai-content-toolkit
  * Description:   This WordPress plugin is a collection of tools that allows you to do a variety of different tasks using ChatGPT API.
- * Version:       0.1.0
+ * Version:       0.5.0
  * Author:        Kitwana Akil
  * Author URI:    https://toolkitsforsuccess.com
- * Text Domain:   chatgpt-toolkit
+ * Text Domain:   aicontent-toolkit
  * Domain Path:   /languages
  * License:       GPLv3 or later
  * License URI:   https://www.gnu.org/licenses/gpl-3.0.html
  *
  * You should have received a copy of the GNU General Public License
- * along with ChatGPT ToolKit. If not, see <https://www.gnu.org/licenses/gpl-3.0.html/>.
+ * along with AI Content ToolKit. If not, see <https://www.gnu.org/licenses/gpl-3.0.html/>.
  */
 
 // Exit if accessed directly.
@@ -36,7 +36,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * that are used by WordPress to differenciate the plugin and register it properly.
  * It also contains further PHPDocs parameter for a better documentation
  * 
- * The function CHATGPTTOO() is the main function that you will be able to 
+ * The function AICONTENTT() is the main function that you will be able to 
  * use throughout your plugin to extend the logic. Further information
  * about that is available within the sub classes.
  * 
@@ -44,27 +44,27 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  */
 
 // Plugin name
-define( 'CHATGPTTOO_NAME',			'ChatGPT ToolKit' );
+define( 'AICONTENTT_NAME',			'AI Content ToolKit' );
 
 // Plugin version
-define( 'CHATGPTTOO_VERSION',		'0.1.0' );
+define( 'AICONTENTT_VERSION',		'0.5.0' );
 
 // Plugin Root File
-define( 'CHATGPTTOO_PLUGIN_FILE',	__FILE__ );
+define( 'AICONTENTT_PLUGIN_FILE',	__FILE__ );
 
 // Plugin base
-define( 'CHATGPTTOO_PLUGIN_BASE',	plugin_basename( CHATGPTTOO_PLUGIN_FILE ) );
+define( 'AICONTENTT_PLUGIN_BASE',	plugin_basename( AICONTENTT_PLUGIN_FILE ) );
 
 // Plugin Folder Path
-define( 'CHATGPTTOO_PLUGIN_DIR',	plugin_dir_path( CHATGPTTOO_PLUGIN_FILE ) );
+define( 'AICONTENTT_PLUGIN_DIR',	plugin_dir_path( AICONTENTT_PLUGIN_FILE ) );
 
 // Plugin Folder URL
-define( 'CHATGPTTOO_PLUGIN_URL',	plugin_dir_url( CHATGPTTOO_PLUGIN_FILE ) );
+define( 'AICONTENTT_PLUGIN_URL',	plugin_dir_url( AICONTENTT_PLUGIN_FILE ) );
 
 /**
  * Load the main class for the core functionality
  */
-require_once CHATGPTTOO_PLUGIN_DIR . 'core/class-chatgpt-toolkit.php';
+require_once AICONTENTT_PLUGIN_DIR . 'core/class-aicontent-toolkit.php';
 
 /**
  * The main function to load the only instance
@@ -72,10 +72,10 @@ require_once CHATGPTTOO_PLUGIN_DIR . 'core/class-chatgpt-toolkit.php';
  *
  * @author  Kitwana Akil
  * @since   0.1.0
- * @return  object|Chatgpt_Toolkit
+ * @return  object|AI_Content_Toolkit
  */
-function CHATGPTTOO() {
-	return Chatgpt_Toolkit::instance();
+function AICONTENTT() {
+	return AI_Content_Toolkit::instance();
 }
 
-CHATGPTTOO();
+AICONTENTT();

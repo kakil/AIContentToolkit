@@ -5,17 +5,17 @@ include_once( ABSPATH . 'wp-admin/includes/admin.php' );
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
- * Class Chatgpt_Toolkit_Helpers
+ * Class AI_Content_Toolkit_Helpers
  *
  * This class contains repetitive functions that
  * are used globally within the plugin.
  *
- * @package		CHATGPTTOO
- * @subpackage	Classes/Chatgpt_Toolkit_Helpers
+ * @package		AICONTENTT
+ * @subpackage	Classes/AI_Content_Toolkit_Helpers
  * @author		Kitwana Akil
- * @since		0.1.0
+ * @since		0.5.0
  */
-class Chatgpt_Toolkit_Helpers{
+class AI_Content_Toolkit_Helpers{
 
 	/**
 	 * ######################
@@ -34,7 +34,7 @@ class Chatgpt_Toolkit_Helpers{
 	 * Down below you will find a demo function called output_text()
 	 * To access this function from any other class, you can call it as followed:
 	 * 
-	 * CHATGPTTOO()->helpers->output_text( 'my text' );
+	 * AICONTENTT()->helpers->output_text( 'my text' );
 	 * 
 	 */
 
@@ -45,7 +45,7 @@ class Chatgpt_Toolkit_Helpers{
 	 * Output some text
 	 *
 	 * @param	string	$text	The text to output
-	 * @since	0.1.0
+	 * @since	0.5.0
 	 *
 	 * @return	void
 	 */
@@ -55,7 +55,7 @@ class Chatgpt_Toolkit_Helpers{
 
 	 /**
 	  * @param 	string $prompt
-	  * @since 	0.1.0
+	  * @since 	0.5.0
 	  * 
 	  * @return string
 	  */
@@ -134,7 +134,7 @@ class Chatgpt_Toolkit_Helpers{
 
 		
 		global $wpdb;
-		$tableName = $wpdb->prefix.'chatgpt_content_tool';
+		$tableName = $wpdb->prefix.'ai_content_tool';
 		$sql = "SELECT * FROM $tableName";
 
 		$results = $wpdb->get_results($sql);
@@ -145,9 +145,9 @@ class Chatgpt_Toolkit_Helpers{
 		
 		$languages = array("en");
 		if(in_array($getLanguage,$languages)) {
-			include CHATGPTTOO_PLUGIN_DIR . "/languages/".$getLanguage.".php";
+			include AICONTENTT_PLUGIN_DIR . "/languages/".$getLanguage.".php";
 		} else {
-		  include CHATGPTTOO_PLUGIN_DIR . "/languages/en.php";
+		  include AICONTENTT_PLUGIN_DIR . "/languages/en.php";
 		}
 
 		if(isset($_POST['goTest'])){
@@ -158,13 +158,13 @@ class Chatgpt_Toolkit_Helpers{
 			  'Content-type: application/json; charset=utf-8',
 			);
 			$params = json_encode(array(
-			  'prompt'				=> $TEXT,
-			  'model'				=> 'text-davinci-003',
-			  'temperature'			=> $getTemperature,
-			  'max_tokens' 			=> $getMaxTokens,
-			  'frequency_penalty' 	=> 0.5,
-			  'presence_penalty' 	=> 0.5,
-			  'n'					=> 1,
+			  'prompt'					=> $TEXT,
+			  'model'					=> 'text-davinci-003',
+			  'temperature'				=> $getTemperature,
+			  'max_tokens' 				=> $getMaxTokens,
+			  'frequency_penalty' 		=> 0.5,
+			  'presence_penalty' 		=> 0.5,
+			  'number_of_completions'	=> 1,
 			));
 			$curl = curl_init('https://api.openai.com/v1/completions');
 			$options = array(
@@ -203,7 +203,7 @@ class Chatgpt_Toolkit_Helpers{
 
 		
 		global $wpdb;
-		$tableName = $wpdb->prefix.'chatgpt_content_tool';
+		$tableName = $wpdb->prefix.'ai_content_tool';
 		$sql = "SELECT * FROM $tableName";
 
 		$results = $wpdb->get_results($sql);

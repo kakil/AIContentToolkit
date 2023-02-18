@@ -13,6 +13,6 @@ error_reporting(0);
 
 <nav class="navbar navbar-expand-lg bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="?page=chatgpt-content-tool-dashboard">ChatGPT Content Tool</a>
+    <a class="navbar-brand" href="?page=ai-content-tool-dashboard">AI Content Toolkit</a>
   </div>
 </nav>

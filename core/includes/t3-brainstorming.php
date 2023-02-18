@@ -5,7 +5,7 @@ $postContent = NULL;
 $postTitle = NULL;
 
 global $wpdb;
-$tablename = $wpdb->prefix.'chatgpt_content_tool';
+$tablename = $wpdb->prefix.'ai_content_tool';
 $sql = "SELECT * FROM $tablename";
 
 $results = $wpdb->get_results($sql);
@@ -16,17 +16,17 @@ $getLanguage = $results[0]->language;
 
 $languages = array("tr","en");
 if(in_array($getLanguage,$languages)) {
-    include CHATGPTTOO_PLUGIN_DIR . "/languages/".$getLanguage.".php";
+    include AICONTENTT_PLUGIN_DIR . "/languages/".$getLanguage.".php";
 } else {
-  include CHATGPTTOO_PLUGIN_DIR . "/languages/en.php";
+  include AICONTENTT_PLUGIN_DIR . "/languages/en.php";
 }
 
 
 if(isset($_POST["chatGptText"])){
   
   $postTitle = $_POST['chatGptText'];   //adding prompt to Blog Title field
-  $prompt = CHATGPTTOO()->helpers->get_brainstorm_prompt( $postTitle );
-  $postContent = CHATGPTTOO()->helpers->get_chatgpt_response( $prompt, 'text-davinci-003', $getTemperature, $getMaxTokens);
+  $prompt = AICONTENTT()->helpers->get_brainstorm_prompt( $postTitle );
+  $postContent = AICONTENTT()->helpers->get_chatgpt_response( $prompt, 'text-davinci-003', $getTemperature, $getMaxTokens);
 
 }
 

@@ -30,5 +30,5 @@ This WordPress plugin is a collection of tools that allows you to do a variety o
 
 == Changelog ==
 
-= 0.1.0: February 2, 2023 =
-* Birthday of ChatGPT ToolKit
+= 0.5.0: February 2, 2023 =
+* Birthday of AI Content ToolKit

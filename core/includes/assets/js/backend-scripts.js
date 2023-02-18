@@ -8,9 +8,9 @@ Backend related javascript
  * This file contains all of the backend related javascript. 
  * With backend, it is meant the WordPress admin area.
  * 
- * You can add the localized variables in here as followed: chatgpttoo.plugin_name
+ * You can add the localized variables in here as followed: aicontentt.plugin_name
  * These variables are defined within the localization function in the following file:
- * core/includes/classes/class-chatgpt-toolkit-run.php
+ * core/includes/classes/class-aicontent-toolkit-run.php
  * 
  * HELPER COMMENT END
  */
@@ -137,4 +137,8 @@ jQuery(document).ready(function() {
 function insertTextIntoTitle( form, inputText) {
 
     form.postTitle.value = inputText;
+}
+
+function updateTemperature() {
+  document.getElementById("temperatureTextValue").innerText = document.getElementById("temperatureValue").value
 }

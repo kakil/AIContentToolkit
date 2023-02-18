@@ -3,7 +3,7 @@ error_reporting(0);
 include "header.php";
 
 global $wpdb;
-$tablename = $wpdb->prefix.'chatgpt_content_tool';
+$tablename = $wpdb->prefix.'ai_content_tool';
 
 $sql = "SELECT * FROM $tablename";
 $results = $wpdb->get_results($sql);
@@ -14,9 +14,9 @@ $getLanguage = $results[0]->language;
 
 $languages = array("tr","en");
 if(in_array($getLanguage,$languages)) {
-    include CHATGPTTOO_PLUGIN_DIR . "/languages/".$getLanguage.".php";
+    include AICONTENTT_PLUGIN_DIR . "/languages/".$getLanguage.".php";
 } else {
-  include CHATGPTTOO_PLUGIN_DIR . "/languages/en.php";
+  include AICONTENTT_PLUGIN_DIR . "/languages/en.php";
 }
 
 if(isset($_POST["submit"])){
@@ -54,35 +54,40 @@ if(isset($_POST["submit"])){
 
 }
 ?>
+<div class="container-fluid w-50 m-3 bg-light border border-3 shadow p-3 rounded-4"> 
+  <h1 class="display-2 mt-3 mb-3">AI Settings</h1>
+  <form method="post">
+    <div class="mb-5">
+      <label class="form-label"><b>ChatGPT API Token (sk-xxxxx):</label>
+      <input type="text" id="apiToken" name="apiToken" class="form-control" value="<?php echo $getApiToken; ?>"/>
+    </div>
+    
+    <div class="mb-5">
+      <label class="form-label"><?php echo $lang["temperature"]; ?><b id="temperatureTextValue"><?php echo $getTemperature; ?></b></label><br>
+      <input onchange="updateTemperature();" type="range" class="form-range" min="0" max="1" step="0.1" id="temperatureValue" name="temperatureValue" value="<?php echo $getTemperature; ?>">
+      <small><?php echo $lang["temperatureText"]; ?></small>
+    </div>
 
-<form method="post">
-  <br>
-  <div class="mb-3">
-    <label class="form-label">ChatGPT API Token (sk-xxxxx):</label>
-    <input type="text" id="apiToken" name="apiToken" class="form-control" value="<?php echo $getApiToken; ?>"/>
-  </div>
-  <div class="mb-3">
-    <label class="form-label"><?php echo $lang["temperature"]; ?><b id="temperatureTextValue"><?php echo $getTemperature; ?></b></label><br>
-    <small><?php echo $lang["temperatureText"]; ?></small>
-    <input onchange="updateTemperature();" type="range" class="form-range" min="0" max="1" step="0.1" id="temperatureValue" name="temperatureValue" value="<?php echo $getTemperature; ?>">
-  </div>
-  <div class="mb-3">
-    <label class="form-label"><?php echo $lang["maxTokens"]; ?> (Maximum: 4000)</label>
-    <input type="number" id="maxTokens" name="maxTokens" class="form-control" value="<?php echo $getMaxTokens; ?>"/>
-    <small><?php echo $lang["maxTokensText"]; ?></small>
-  </div>
-  <div class="mb-3">
-    <label class="form-label"><?php echo $lang["selectLanguage"]; ?></label>
-    <select name="selectLanguage" id="selectLanguage" class="form-select">
-      <option value="en">English</option>
-      <option value="tr">Türkçe</option>
-</select>
-  </div>
-  <button type="submit" name="submit" class="btn btn-primary"><?php echo $lang["saveSettings"]; ?></button>
-</form>
-
-<script>
-function updateTemperature() {
-  document.getElementById("temperatureTextValue").innerText = document.getElementById("temperatureValue").value
-}
-</script>
+    <div class="mb-5">
+      <label class="form-label"><?php echo $lang["frequencyPenalty"]; ?><b id="frequencyPenaltyTextValue"><?php echo $getTemperature; ?></b></label><br>
+      <input onchange="updateTemperature();" type="range" class="form-range" min="0" max="1" step="0.1" id="frequencyPenaltyValue" name="frequencyPenaltyValue" value="<?php echo $getTemperature; ?>">
+      <small><?php echo $lang["frequencyPenaltyText"]; ?></small>
+    </div>
+    
+    <div class="mb-5">
+      <label class="form-label"><?php echo $lang["maxTokens"]; ?> (Maximum: 4000)</label>
+      <input type="number" id="maxTokens" name="maxTokens" class="form-control" value="<?php echo $getMaxTokens; ?>"/>
+      <small><?php echo $lang["maxTokensText"]; ?></small>
+    </div>
+   
+    <div class="mb-5">
+      <label class="form-label"><?php echo $lang["selectLanguage"]; ?></label>
+      <select name="selectLanguage" id="selectLanguage" class="form-select">
+        <option value="en">English</option>
+        <option value="tr">Türkçe</option>
+      </select>
+    </div>
+    
+    <button type="submit" name="submit" class="btn btn-primary mb-5"><?php echo $lang["saveSettings"]; ?></button>
+  </form>
+</div>

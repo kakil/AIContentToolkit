@@ -15,9 +15,9 @@ $getLanguage = $results[0]->language;
 
 $languages = array("tr","en");
 if(in_array($getLanguage,$languages)) {
-    include CHATGPTTOO_PLUGIN_DIR . "/languages/".$getLanguage.".php";
+    include AICONTENTT_PLUGIN_DIR . "/languages/".$getLanguage.".php";
 } else {
-  include CHATGPTTOO_PLUGIN_DIR . "/languages/en.php";
+  include AICONTENTT_PLUGIN_DIR . "/languages/en.php";
 }
 
 /**
@@ -30,9 +30,9 @@ if(isset($_POST["chatGptText"])){
   $postTitle = 'How to ' . $_POST['chatGptText'];   //adding prompt to Blog Title field
   $postKeywords = $_POST['blogKeywordText'];  //adding prompt to Blog Keyword field
 
-  $prompt = CHATGPTTOO()->helpers->get_how_to_prompt( $_POST["chatGptText"], $_POST["blogNicheText"], $_POST["blogToneText"]);
+  $prompt = AICONTENTT()->helpers->get_how_to_prompt( $_POST["chatGptText"], $_POST["blogNicheText"], $_POST["blogToneText"]);
   //console_log($prompt);
-  $postContent = CHATGPTTOO()->helpers->get_chatgpt_response( $prompt,'text-davinci-003', $getTemperature, $getMaxTokens);
+  $postContent = AICONTENTT()->helpers->get_chatgpt_response( $prompt,'text-davinci-003', $getTemperature, $getMaxTokens);
   //console_log($postContent);
 }
 

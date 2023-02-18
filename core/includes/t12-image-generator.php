@@ -4,9 +4,9 @@ include "header.php";
 
 
 $imageData = NULL;
-$imageOne = CHATGPTTOO_PLUGIN_URL . 'core/includes/assets/images/image_placeholder.png';
-$imageTwo = CHATGPTTOO_PLUGIN_URL . 'core/includes/assets/images/image_placeholder.png';
-$imageThree = CHATGPTTOO_PLUGIN_URL . 'core/includes/assets/images/image_placeholder.png';
+$imageOne = AICONTENTT_PLUGIN_URL . 'core/includes/assets/images/image_placeholder.png';
+$imageTwo = AICONTENTT_PLUGIN_URL . 'core/includes/assets/images/image_placeholder.png';
+$imageThree = AICONTENTT_PLUGIN_URL . 'core/includes/assets/images/image_placeholder.png';
 $imageName1 = 'dalleImage1.png';
 $imageName2 = 'dalleImage2.png';
 $imageName3 = 'dalleImage3.png';
@@ -25,9 +25,9 @@ $getLanguage = $results[0]->language;
 
 $languages = array("tr","en");
 if(in_array($getLanguage,$languages)) {
-    include CHATGPTTOO_PLUGIN_DIR . "/languages/".$getLanguage.".php";
+    include AICONTENTT_PLUGIN_DIR . "/languages/".$getLanguage.".php";
 } else {
-  include CHATGPTTOO_PLUGIN_DIR . "/languages/en.php";
+  include AICONTENTT_PLUGIN_DIR . "/languages/en.php";
 }
 
 /**
@@ -41,7 +41,7 @@ if(isset($_POST["chatGptText"])){
   $postKeywords = $_POST['blogKeywordText'];  //adding prompt to Blog Keyword field
 
   $promptNumber = $_POST["starterPromtValue"];
-  $prompt = CHATGPTTOO()->helpers->get_images_prompt( $_POST["chatGptText"], $promptNumber);
+  $prompt = AICONTENTT()->helpers->get_images_prompt( $_POST["chatGptText"], $promptNumber);
   //console_log($_POST["numberOfImages"]);
 
   if(isset($_POST["numberOfImages"])) {
@@ -63,7 +63,7 @@ if(isset($_POST["chatGptText"])){
   }
 
   console_log('Number of Images: ' . $numberOfImages);
-  $imageData = CHATGPTTOO()->helpers->get_chatgpt_image_response( $prompt, $numberOfImages, $sizeOfImages);
+  $imageData = AICONTENTT()->helpers->get_chatgpt_image_response( $prompt, $numberOfImages, $sizeOfImages);
   console_log('Image Data: ' . $imageData[0]["url"]);
   
 
@@ -104,7 +104,7 @@ if(isset($_POST["addToLibrary"])) {
   $imageThree = $_POST["imageURL3"];
 
   //console_log($_POST["imageURL"]);
-  $attachment_id = CHATGPTTOO()->helpers->rudr_upload_file_by_url($_POST["imageURL"], $imageName1);
+  $attachment_id = AICONTENTT()->helpers->rudr_upload_file_by_url($_POST["imageURL"], $imageName1);
   
   $_POST[$imageOne];
   $_POST[$imageTwo];
@@ -118,7 +118,7 @@ if(isset($_POST["addToLibrary2"])) {
   $imageTwo = $_POST["imageURL2"];
   $imageThree = $_POST["imageURL3"];
 
-  $attachment_id2 = CHATGPTTOO()->helpers->rudr_upload_file_by_url($_POST["imageURL2"], $imageName2);
+  $attachment_id2 = AICONTENTT()->helpers->rudr_upload_file_by_url($_POST["imageURL2"], $imageName2);
 
   $_POST[$imageOne];
   $_POST[$imageTwo];
@@ -131,7 +131,7 @@ if(isset($_POST["addToLibrary3"])) {
   $imageTwo = $_POST["imageURL2"];
   $imageThree = $_POST["imageURL3"];
 
-  $attachment_id3 = CHATGPTTOO()->helpers->rudr_upload_file_by_url($_POST["imageURL3"], $imageName3);
+  $attachment_id3 = AICONTENTT()->helpers->rudr_upload_file_by_url($_POST["imageURL3"], $imageName3);
 
   $_POST[$imageOne];
   $_POST[$imageTwo];
