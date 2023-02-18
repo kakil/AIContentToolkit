@@ -87,10 +87,38 @@ jQuery(document).ready(function() {
         } else if (selValue == 2) {
           //console.log('selValue == 2');
           jQuery('#validationCustom1201').val('A beautiful young African-American dieselpunk policewoman | | fine-face, handsome face, realistic shaded Perfect face, fine details. Anime. realistic shaded lighting poster by Ilya Kuvshinov katsuhiro otomo ghost-in-the-shell, magali villeneuve, artgerm, Jeremy Lipkin and Michael Garmash and Rob Rey');
-        } else {
+        } else if (selValue == 3) {
           //console.log('selValue == 3');
           jQuery('#validationCustom1201').val('Mid-west USA, neighborhood, sleepy street, Thomas Kinkade oil painting, high resolution, 4k');
+        } else if (selValue == 4) {
+          jQuery('#validationCustom1201').val('Curving wing of modern hospital building in Californian redwood forest, architecture by Frank Gehry, wide-angle architectural photography from magazine');
+        } else if (selValue == 5) {
+          jQuery('#validationCustom1201').val('Stunning modern renovation of village church at dawn, huge shards of translucent coloured perspex, architectural photography');
+        } else if (selValue == 6) {
+          jQuery('#validationCustom1201').val('Refreshment kiosk in park, neo-Andean architectural style, editorial photograph at golden hour');
+        } else if (selValue == 7) {
+          jQuery('#validationCustom1201').val('Steampunk airport terminal architecture, exterior view, award-winning architectural photography from magazine.');
+        } else if (selValue == 8) {
+          jQuery('#validationCustom1201').val('Innovative interior design of a restaurant in rural Japan, neutral wooden materials, floor-to-ceiling windows with views of nature');
+        } else if (selValue == 9) {
+          jQuery('#validationCustom1201').val('Award-winning interior design of a modern hotel bar, playful furry furniture, warm lamp lighting');
+        } else if (selValue == 10) {
+          jQuery('#validationCustom1201').val('A super-minimal brutalist interior, plunge pool sunk into floor, huge windows with daylight streaming in, a single table, high-resolution photo from architecture website');
+        } else if (selValue == 11) {
+          jQuery('#validationCustom1201').val('Interior design photo of top floor maisonette in a Victorian terraced house, bold colourful furniture, dark blue walls.');
+        } else if (selValue == 12) {
+          jQuery('#validationCustom1201').val('Award-winning landscape design, a long thin Mediterranean garden with olive tree draped in fairy lights, high-quality photograph at twilight.');
+        } else if (selValue == 13) {
+          jQuery('#validationCustom1201').val('Artists impression of award-winning rooftop garden design, white marble benches amidst wildflower meadow, NYC skyline in background, photograph at golden hour. ');
+        } else if (selValue == 14) {
+          jQuery('#validationCustom1201').val('Beautiful pond surrounded by lavender and lilac, dappled sunbeams illuminating the scene, stunning photograph from lansdcaping magazine.');
+        } else if (selValue == 15) {
+          jQuery('#validationCustom1201').val('Aged bronze statue of a Buffalo Soldier on his horse, shiny patches on face, in a london park on a sunny day ');
+        } else if (selValue == 16) {
+          jQuery('#validationCustom1201').val('A marble Greek statue of Black Panther');
         }
+
+        
         //jQuery('#validationCustom1201').val(selValue);
       });
 

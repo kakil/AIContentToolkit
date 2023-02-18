@@ -36,12 +36,12 @@ if(in_array($getLanguage,$languages)) {
  */
 if(isset($_POST["chatGptText"])){
 
-  $TEXT = $_POST["chatGptText"];
-  $postTitle = $_POST['chatGptText'];   //adding prompt to Blog Title field
-  $postKeywords = $_POST['blogKeywordText'];  //adding prompt to Blog Keyword field
+  $prompt = $_POST["chatGptText"];
+  //$postTitle = $_POST['chatGptText'];   //adding prompt to Blog Title field
+  //$postKeywords = $_POST['blogKeywordText'];  //adding prompt to Blog Keyword field
 
   $promptNumber = $_POST["starterPromtValue"];
-  $prompt = AICONTENTT()->helpers->get_images_prompt( $_POST["chatGptText"], $promptNumber);
+  //$prompt = AICONTENTT()->helpers->get_images_prompt( $_POST["chatGptText"], $promptNumber);
   //console_log($_POST["numberOfImages"]);
 
   if(isset($_POST["numberOfImages"])) {
@@ -66,19 +66,22 @@ if(isset($_POST["chatGptText"])){
   $imageData = AICONTENTT()->helpers->get_chatgpt_image_response( $prompt, $numberOfImages, $sizeOfImages);
   console_log('Image Data: ' . $imageData[0]["url"]);
   
+  if(!empty($imageData[0]["url"])) {
+    $imageOne = $imageData[0]["url"];
+    //$imageOneUpload = $imageData[0]["url"];
+  }
 
-  $imageOne = $imageData[0]["url"];
-  $imageOneUpload = $imageData[0]["url"];
-  
   if(!empty($imageData[1]["url"])) {
     $imageTwo = $imageData[1]["url"];
-    $imageTwoUpload = $imageData[1]["url"];
+    //$imageTwoUpload = $imageData[1]["url"];
   } 
 
   if(!empty($imageData[2]["url"])) {
     $imageThree = $imageData[2]["url"];
-    $imageThreeUpload = $imageData[2]["url"];
+    //$imageThreeUpload = $imageData[2]["url"];
   } 
+
+  $_POST["chatGptText"];
  
 }
 
@@ -202,6 +205,19 @@ function console_log($output, $with_script_tags = true) {
         <option value="1">Cute Dog</option>
         <option value="2">Diesel Punk Female</option>
         <option value="3">Oil Painting</option>
+        <option value="4">Hospital Building</option>
+        <option value="5">Modern Church</option>
+        <option value="6">Kiosk in Park</option>
+        <option value="7">Steampunk Spaceport Terminal</option>
+        <option value="8">Restaurant Interior</option>
+        <option value="9">Modern Hotel Bar</option>
+        <option value="10">Minimalist Interior</option>
+        <option value="11">Interior Design Photo</option>
+        <option value="12">Mediterranean Garden</option>
+        <option value="13">Rooftop Garden</option>
+        <option value="14">Beautiful Pond</option>
+        <option value="15">Aged Bronze Statue</option>
+        <option value="16">Marble Greek Statue</option>
       </select>
       <div class="invalid-feedback">
         Please select a prompt or enter one below.
@@ -212,7 +228,7 @@ function console_log($output, $with_script_tags = true) {
     <!-- Prompt -->
     <div class="mb-3">
       <label for="validationCustom1201" class="form-label"><?php echo $lang["imagePrompt"]; ?></label>
-      <textarea class="form-control" id="validationCustom1201" name="chatGptText" placeholder="Make Money Online" rows="5" min="0" max="200"  value="" required></textarea>
+      <textarea class="form-control" id="validationCustom1201" name="chatGptText" placeholder="Cute cartoon cat" rows="5" min="0" max="200"  value="" required></textarea>
       <div class="invalid-feedback">
         Please describe your image or select a starter prompt above
       </div>

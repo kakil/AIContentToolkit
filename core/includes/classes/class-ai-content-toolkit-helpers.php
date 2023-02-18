@@ -120,12 +120,38 @@ class AI_Content_Toolkit_Helpers{
 			$imagePrompt = 'illustration of a puppy, modern design, cute, happy, 4k, high resolution, trending in deviantart';
 		} else if($promptNumber == 2) {
 			$imagePrompt = 'A beautiful young African-American dieselpunk policewoman | | fine-face, handsome face, realistic shaded Perfect face, fine details. Anime. realistic shaded lighting poster by Ilya Kuvshinov katsuhiro otomo ghost-in-the-shell, magali villeneuve, artgerm, Jeremy Lipkin and Michael Garmash and Rob Rey';
-		} else {
+		} else if($promptNumber == 3) {
 			$imagePrompt = 'Mid-west USA, neighborhood, sleepy street, Thomas Kinkade oil painting, high resolution, 4k';
+		} else if($promptNumber == 4) {
+			$imagePrompt = 'Curving wing of modern hospital building in Californian redwood forest, architecture by Frank Gehry, wide-angle architectural photography from magazine';
+		} else if($promptNumber == 5) {
+			$imagePrompt = 'Stunning modern renovation of village church at dawn, huge shards of translucent coloured perspex, architectural photography';
+		} else if($promptNumber == 6) {
+			$imagePrompt = 'Refreshment kiosk in park, neo-Andean architectural style, editorial photograph at golden hour';
+		} else if($promptNumber == 7) {
+			$imagePrompt = 'Steampunk airport terminal architecture, exterior view, award-winning architectural photography from magazine.';
+		} else if($promptNumber == 8) {
+			$imagePrompt = 'Innovative interior design of a restaurant in rural Japan, neutral wooden materials, floor-to-ceiling windows with views of nature';
+		} else if($promptNumber == 9) {
+			$imagePrompt = 'Award-winning interior design of a modern hotel bar, playful furry furniture, warm lamp lighting';
+		} else if($promptNumber == 10) {
+			$imagePrompt = 'A super-minimal brutalist interior, plunge pool sunk into floor, huge windows with daylight streaming in, a single table, high-resolution photo from architecture website';
+		} else if($promptNumber == 11) {
+			$imagePrompt = 'Interior design photo of top floor maisonette in a Victorian terraced house, bold colourful furniture, dark blue walls.';
+		} else if($promptNumber == 12) {
+			$imagePrompt = 'Award-winning landscape design, a long thin Mediterranean garden with olive tree draped in fairy lights, high-quality photograph at twilight. ';
+		} else if($promptNumber == 13) {
+			$imagePrompt = 'Artists impression of award-winning rooftop garden design, white marble benches amidst wildflower meadow, NYC skyline in background, photograph at golden hour. ';
+		} else if($promptNumber == 14) {
+			$imagePrompt = 'Beautiful pond surrounded by lavender and lilac, dappled sunbeams illuminating the scene, stunning photograph from lansdcaping magazine.';
+		} else if($promptNumber == 15) {
+			$imagePrompt = 'Aged bronze statue of a Buffalo Soldier on his horse, shiny patches on face, in a london park on a sunny day ';
+		} else if($promptNumber == 16) {
+			$imagePrompt = 'A marble Greek statue of Black Panther';
 		}
 		return $imagePrompt; 
 	}
-
+	
 	/**
 	 * end of prompts
 	 */
