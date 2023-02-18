@@ -12,6 +12,7 @@ $getApiToken = $results[0]->api_token;
 $getTemperature = intval($results[0]->temperature);
 $getMaxTokens = intval($results[0]->max_tokens);
 $getLanguage = $results[0]->language;
+$model = 'text-davinci-003';
 
 $languages = array("tr","en");
 if(in_array($getLanguage,$languages)) {
@@ -25,8 +26,10 @@ if(isset($_POST["chatGptText"])){
 
   $TEXT = $_POST["chatGptText"];
 
-  $postTitle = $_POST['chatGptText'];   //adding prompt to Blog Title field
-  $postContent = AICONTENTT()->helpers->get_chatgpt_response( $TEXT,'text-davinci-003', $getTemperature, $getMaxTokens);
+  $postTitle = $_POST['chatGptText'];   //adding prompt to Blog Title field;
+
+  $prompt = AICONTENTT()->helpers->get_blog_prompt($TEXT);
+  $postContent = AICONTENTT()->helpers->get_chatgpt_response($prompt, $model, $getTemperature, $getMaxTokens);
 
 }
 
@@ -51,7 +54,7 @@ if(isset($_POST["addBlog"])){
     <!-- Topic -->
     <div class="mb-3">
       <label for="validationCustom01" class="form-label"><?php echo $lang["blogTitle"]; ?></label>
-      <textarea class="form-control" id="validationCustom01" name="chatGptText" placeholder="Write an article with step by step instructions for becoming an affiliate marketer" rows="3" min="0" max="200" required></textarea>
+      <textarea class="form-control" id="validationCustom01" name="chatGptText" placeholder="Niche topic or keyword.  For  example: Affiliate Marketing, Traffic Generation, etc..." rows="3" min="0" max="200" value="<?php echo isset($_POST['chatGptText']) ? $_POST['chatGptText'] : '' ?>" required></textarea>
       <div class="invalid-feedback">
         Please provide a blog topic
       </div>

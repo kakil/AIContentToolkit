@@ -64,8 +64,8 @@ class AI_Content_Toolkit_Helpers{
 	 * Prompts
 	 */
 	
-	 public function get_blog_prompt($topic, $niche, $problem, $action, $tone, $keywords ) {
-		$prompt = 'I want you to act as a blogger and ' . $topic . ' expert.  You are writing a blog post for your ' . $niche . ' blog.  The topic of the post will be ' . $problem . '.  This post should be helpful for people ' . $action . '. The length of the blog post will be 400 to 600 words.  The tone will be ' . $tone . '.  You should be writing as an individual blogger with a personal approach so do not use plural first-person to refer to yourself.  Only use singular first-person.  Do not use passive voice. I want you to include these keywords: ' . $keywords . 'H2 tag for the title. H3 tags for the section titles.';
+	 public function get_blog_prompt($topic) {
+		$prompt = 'Please write a blog post in a press release style like an experienced news reporter in English for the Keyword ' . $topic . ' e. The article should include Creative Title (should be in H1 Heading), SEO meta description, Introduction, headings (Should be h2 heading), sub headings (h3, h4,h5,h6 headings), bullet points or Numbered list if needed, frequently asked questions and conclusion. The post should not be less than 1200 words. Do not change the original keyword while writing the Title. Use the keyword at least 2-3 times in the text body.     * Please write text before the main blog writing that says "This post is supported by ChatbotApps.com” and write "Hire ChatbotApps Agency to help you create your Facebook Messenger AI Bots”, visit "https://chatbotapps.com” after the introduction paragraph.';
 
 		return $prompt;
 	}
