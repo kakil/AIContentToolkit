@@ -10,6 +10,8 @@ $results = $wpdb->get_results($sql);
 $getApiToken = $results[0]->api_token;
 $getTemperature = $results[0]->temperature;
 $getMaxTokens = $results[0]->max_tokens;
+$getFrequencyPenalty = intval($results[0]->frequency_penalty);
+$getPresencePenalty = intval($results[0]->presence_penalty);
 $getLanguage = $results[0]->language;
 
 $languages = array("tr","en");
@@ -23,6 +25,8 @@ if(isset($_POST["submit"])){
   $temperatureValue = $_POST["temperatureValue"];
   $apiToken = $_POST["apiToken"];
   $maxTokens = $_POST["maxTokens"];
+  $frequencyPenalty = $_POST["frequencyPenalty"];
+  $presencePenalty = $_POST["presencePenalty"];
   $selectLanguage = $_POST["selectLanguage"];
 
 
@@ -32,6 +36,8 @@ if(isset($_POST["submit"])){
       'api_token' => $apiToken, 
       'temperature' => $temperatureValue,
       'max_tokens' => $maxTokens,
+      'frequency_penalty' => $frequencyPenalty,
+      'presence_penalty' => $presencePenalty,
       'language' => $selectLanguage,
    ),
       array(
@@ -63,8 +69,8 @@ if(isset($_POST["submit"])){
     </div>
     
     <div class="mb-5">
-      <label class="form-label"><?php echo $lang["temperature"]; ?><b id="temperatureTextValue"><?php echo $getTemperature; ?></b></label><br>
-      <input onchange="updateTemperature();" type="range" class="form-range" min="0" max="1" step="0.1" id="temperatureValue" name="temperatureValue" value="<?php echo $getTemperature; ?>">
+      <label class="form-label"><?php echo $lang["temperature"]; ?></label><output id="temperatureTextValue"><?php echo $getTemperature; ?></output><br>
+      <input type="range" class="form-range" min="0" max="1" step="0.1" id="temperatureValue" name="temperatureValue" value="<?php echo $getTemperature; ?>" oninput="temperatureTextValue.value = temperatureValue.value">
       <small><?php echo $lang["temperatureText"]; ?></small>
     </div>
 

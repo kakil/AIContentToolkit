@@ -6,20 +6,22 @@ $postTitle = NULL;
 $personality = NULL;
 
 global $wpdb;
-$tablename = $wpdb->prefix . 'chatgpt_content_tool';
+$tablename = $wpdb->prefix . 'ai_content_tool';
 $sql = "SELECT * FROM $tablename";
 
 $results = $wpdb->get_results($sql);
 $getApiToken = $results[0]->api_token;
 $getTemperature = intval($results[0]->temperature);
 $getMaxTokens = intval($results[0]->max_tokens);
+$getFrequencyPenalty = intval($results[0]->frequency_penalty);
+$getPresencePenalty = intval($results[0]->presence_penalty);
 $getLanguage = $results[0]->language;
 
 $languages = array("tr", "en");
 if (in_array($getLanguage, $languages)) {
-  include CHATGPTTOO_PLUGIN_DIR . "/languages/" . $getLanguage . ".php";
+  include AICONTENTT_PLUGIN_DIR . "/languages/" . $getLanguage . ".php";
 } else {
-  include CHATGPTTOO_PLUGIN_DIR . "/languages/en.php";
+  include AICONTENTT_PLUGIN_DIR . "/languages/en.php";
 }
 
 if(isset($_POST['chatGptPersonality'])) {
@@ -29,8 +31,8 @@ if(isset($_POST['chatGptPersonality'])) {
 }
 
 if (isset($_POST["chatGptText"])) {
-  $prompt = CHATGPTTOO()->helpers->get_blog_post_outline_prompt($_POST['chatGptText'], $personality);
-  $postContent = CHATGPTTOO()->helpers->get_chatgpt_response($prompt, 'text-davinci-003', $getTemperature, $getMaxTokens);
+  $prompt = AICONTENTT()->helpers->get_blog_post_outline_prompt($_POST['chatGptText'], $personality);
+  $postContent = AICONTENTT()->helpers->get_chatgpt_response($prompt, 'text-davinci-003', $getTemperature, $getMaxTokens);
   $postTitle = $_POST['chatGptText'];
   
 }

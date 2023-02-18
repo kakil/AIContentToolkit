@@ -130,6 +130,11 @@ jQuery(document).ready(function() {
           })
     })();
 
+    jQuery('#temperatureValue').on('slide', function(event,ui) {
+      console.log("Slider: " + ui.value );
+      document.getElementById("temperatureTextValue").innerText = ui.value;
+    });
+      
 
 });
 
@@ -139,6 +144,3 @@ function insertTextIntoTitle( form, inputText) {
     form.postTitle.value = inputText;
 }
 
-function updateTemperature() {
-  document.getElementById("temperatureTextValue").innerText = document.getElementById("temperatureValue").value
-}
