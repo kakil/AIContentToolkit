@@ -110,8 +110,23 @@ class AI_Content_Toolkit_Helpers{
 		return $prompt;
 	}
 
-	public function get_long_tail_keyword_prompt($topic) {
-		$prompt = 'give me a list of long tail keywords that contain the phrase: ' . $topic . '. The first list should be a list of why ' . $topic . '. The second list should be how to ' . $topic . '. The third list should be who ' . $topic . '. The fourth list should be what ' . $topic . '. The fifth list should be when ' . $topic . '. The sixth list should be where ' . $topic . '.' ;
+	public function get_long_tail_keyword_prompt($keyword, $question) {
+		// $prompt = 'give me a list of long tail keywords that contain the phrase: ' . $topic . '. The first list should be a list of why ' . $topic . '. The second list should be how to ' . $topic . '. The third list should be who ' . $topic . '. The fourth list should be what ' . $topic . '. The fifth list should be when ' . $topic . '. The sixth list should be where ' . $topic . '.' ;
+
+		if($question == 1) {
+			$prompt = 'give me a list of long-tail "how" question keywords for the keyword: "' . $keyword . '"';
+		} else if($question == 2) {
+			$prompt = 'give me a list of long-tail "who" question keywords for the keyword: "' . $keyword . '"';
+		} else if($question == 3) {
+			$prompt = 'give me a list of long tail "what" question keywords for the keyword: "' . $keyword . '"';
+		} else if($question == 4) {
+			$prompt = 'give me a list of long tail "when" question keywords for the keyword: "' . $keyword . '"';
+		} else if($question == 5) {
+			$prompt = 'give me a list of long tail "where" question keywords for the keyword: "' . $keyword . '"';
+		} else if($question == 6) {
+			$prompt = 'give me a list of long tail "why" question keywords for the keyword: "' . $keyword . '"';
+		}
+		
 		return $prompt;
 	}
 
@@ -188,7 +203,9 @@ class AI_Content_Toolkit_Helpers{
 			  'model'					=> 'text-davinci-003',
 			  'temperature'				=> $getTemperature,
 			  'max_tokens' 				=> $getMaxTokens,
-			  'number_of_completions'	=> 1,
+			  'frequency_penalty' 		=> 0.5,
+			  'presence_penalty' 		=> 0.5,
+			  'n'						=> 1,
 			));
 			$curl = curl_init('https://api.openai.com/v1/completions');
 			$options = array(

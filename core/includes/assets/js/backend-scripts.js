@@ -74,6 +74,58 @@ jQuery(document).ready(function() {
   
       //toggle button enabled on change of Image
       
+      //This is not currently used.  Placing code here for later
+      jQuery('#validationCustom1102').on( "change", function() {
+        var selValue = jQuery("#validationCustom1102").val();
+        var selText = jQuery('#validationCustom1102').text();
+        //console.log(selValue);
+        //console.log(selText);
+  
+        if(selValue == 1) {
+          //console.log('selValue == 1');
+          jQuery('#validationCustom1201').val('');
+        } else if (selValue == 2) {
+          //console.log('selValue == 2');
+          jQuery('#validationCustom1201').val('');
+        } else if (selValue == 3) {
+          //console.log('selValue == 3');
+          jQuery('#validationCustom1201').val('');
+        } else if (selValue == 4) {
+          jQuery('#validationCustom1201').val('');
+        } else if (selValue == 5) {
+          jQuery('#validationCustom1201').val('');
+        } else if (selValue == 6) {
+          jQuery('#validationCustom1201').val('');
+        } else if (selValue == 7) {
+          jQuery('#validationCustom1201').val('');
+        } else if (selValue == 8) {
+          jQuery('#validationCustom1201').val('');
+        } else if (selValue == 9) {
+          jQuery('#validationCustom1201').val('');
+        } else if (selValue == 10) {
+          jQuery('#validationCustom1201').val('');
+        } else if (selValue == 11) {
+          jQuery('#validationCustom1201').val('');
+        } else if (selValue == 12) {
+          jQuery('#validationCustom1201').val('');
+        } else if (selValue == 13) {
+          jQuery('#validationCustom1201').val('');
+        } else if (selValue == 14) {
+          jQuery('#validationCustom1201').val('');
+        } else if (selValue == 15) {
+          jQuery('#validationCustom1201').val('');
+        } else if (selValue == 16) {
+          jQuery('#validationCustom1201').val('');
+        }
+
+        
+        //jQuery('#validationCustom1201').val(selValue);
+      });
+
+      // for t11-longtailkeyword.php
+      jQuery('#validationCustom1102').change(function() {
+        jQuery('#question_hidden').val(('#validationCustom1102').find(':selected').text());
+      });
   
       jQuery('#validationCustom1203').on( "change", function() {
         var selValue = jQuery("#validationCustom1203").val();

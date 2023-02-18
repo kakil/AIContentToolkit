@@ -26,12 +26,14 @@ if(in_array($getLanguage,$languages)) {
  */
 if(isset($_POST["chatGptText"])){
 
-  $TEXT = $_POST["chatGptText"];
   $postTitle = $_POST['chatGptText'];   //adding prompt to Blog Title field
   $postKeywords = $_POST['blogKeywordText'];  //adding prompt to Blog Keyword field
+  $keyword = $_POST['chatGpt'];               //adding keyword back to Seed Keyword field
 
-  $prompt = AICONTENTT()->helpers->get_long_tail_keyword_prompt( $_POST["chatGptText"]);
-  //console_log($prompt);
+  
+  $prompt = AICONTENTT()->helpers->get_long_tail_keyword_prompt( $_POST["chatGptText"], intVal($_POST["questionPromtValue"]));
+  console_log($prompt);
+
   $postContent = AICONTENTT()->helpers->get_chatgpt_response( $prompt,'text-davinci-003', $getTemperature, $getMaxTokens);
   console_log($postContent);
 }
@@ -70,18 +72,35 @@ function console_log($output, $with_script_tags = true) {
 
 
 <div class="container-fluid w-50 m-3 bg-light border border-3 shadow p-3 rounded-4"> 
-  <h1 class="mt-3 mb-3">Longtail Keyword List</h1>
+  <h1 class="mt-3 mb-3">Answer The People Keyword Tool</h1>
   <form method="post" id="blogPostForm" class="needs-validation" novalidate>
     <!-- Keyword -->
     <div class="mb-3">
       <label for="validationCustom01" class="form-label"><?php echo $lang["keywordTopic"]; ?></label>
-      <input type="text" class="form-control" id="validationCustom01" name="chatGptText" placeholder="Make Money Online" rows="3" min="0" max="80"  required>
+      <input type="text" class="form-control" id="validationCustom1101" name="chatGptText" placeholder="Make Money Online" rows="3" min="0" max="80"  value="<?php echo isset($_POST['chatGptText']) ? $_POST['chatGptText'] : '' ?>" required>
       <div class="invalid-feedback">
         Please provide a keyword
       </div>
     </div>
     <div class="d-flex justify-content-end">
       <label for="decimal_input">0/80</label>
+    </div>
+
+    <!-- Select A Question -->
+    <div class="mb-3">
+      <select class="form-select" aria-label="Default select example" name="questionPromtValue" id="validationCustom1102">
+        <option selected>Select A Question</option>
+        <option value="1">How</option>
+        <option value="2">Who</option>
+        <option value="3">What</option>
+        <option value="4">When</option>
+        <option value="5">Where</option>
+        <option value="6">Why</option>
+      </select>
+      <input type="hidden" name="question" id="question_hidden">
+      <div class="invalid-feedback">
+        Please select a prompt or enter one below.
+      </div>
     </div>
 
     <!-- Submit Content to OpenAPI -->
