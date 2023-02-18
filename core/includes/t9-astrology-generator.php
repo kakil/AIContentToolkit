@@ -75,7 +75,7 @@ function console_log($output, $with_script_tags = true) {
     <!-- Blog Post Topic -->
     <div class="mb-3">
       <label for="validationCustom01" class="form-label"><?php echo $lang["blogTopic"]; ?></label>
-      <input type="text" class="form-control" id="validationCustom01" name="chatGptText" placeholder="career advice" rows="3" min="0" max="80"  required>
+      <input type="text" class="form-control" id="validationCustom01" name="chatGptText" placeholder="career advice" rows="3" min="0" max="80" value="<?php echo isset($_POST['chatGptText']) ? $_POST['chatGptText'] : '' ?>" required>
       <div class="invalid-feedback">
         Please provide a topic
       </div>
@@ -87,7 +87,7 @@ function console_log($output, $with_script_tags = true) {
     <!-- Date of Birth -->
     <div class="mb-3">
       <label for="validationCustom02" class="form-label"><?php echo $lang["dateOfBirth"]; ?></label>
-      <input type="text" class="form-control" id="validationCustom02" name="dateOfBirthText" placeholder="June 1, 1995" rows="3" min="0" max="80"  required>
+      <input type="text" class="form-control" id="validationCustom02" name="dateOfBirthText" placeholder="June 1, 1995" rows="3" min="0" max="80" value="<?php echo isset($_POST['dateOfBirthText']) ? $_POST['dateOfBirthText'] : '' ?>" required>
       <div class="invalid-feedback">
         Please provide a date of birth
       </div>
@@ -99,7 +99,7 @@ function console_log($output, $with_script_tags = true) {
     <!-- Time of Birth -->
     <div class="mb-3">
       <label for="validationCustom03" class="form-label"><?php echo $lang["timeOfBirth"]; ?></label>
-      <input type="text" class="form-control" id="validationCustom03" name="timeOfBirthText" placeholder="2 am" rows="3" min="0" max="80"  required>
+      <input type="text" class="form-control" id="validationCustom03" name="timeOfBirthText" placeholder="2 am" rows="3" min="0" max="80" value="<?php echo isset($_POST['timeOfBirthText']) ? $_POST['timeOfBirthText'] : '' ?>" required>
       <div class="invalid-feedback">
         Please provide a time of birth
       </div>
@@ -111,7 +111,7 @@ function console_log($output, $with_script_tags = true) {
     <!-- Place of Birth -->
     <div class="mb-3">
       <label for="validationCustom04" class="form-label"><?php echo $lang["placeOfBirth"]; ?></label>
-      <input type="text" class="form-control" id="validationCustom04" name="placeOfBirth" placeholder="Austin, Texas, USA" rows="3" min="0" max="80"  required>
+      <input type="text" class="form-control" id="validationCustom04" name="placeOfBirth" placeholder="Austin, Texas, USA" rows="3" min="0" max="80" value="<?php echo isset($_POST['placeOfBirth']) ? $_POST['placeOfBirth'] : '' ?>" required>
       <div class="invalid-feedback">
         Please provide a place of birth
       </div>
