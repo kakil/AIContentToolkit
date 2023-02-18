@@ -106,7 +106,8 @@ class AI_Content_Toolkit_Helpers{
 	}
 
 	public function get_video_script_prompt($topic, $tone) {
-		$prompt = 'You are a professional copywriter and YouTube expert.  Write a YouTube shorts script explaining ' . $topic . '. This video will be no longer than 60 seconds. Please be ' . $tone . '.';
+		//$prompt = 'You are a professional copywriter and YouTube expert.  Write a YouTube shorts script explaining ' . $topic . '. This video will be no longer than 60 seconds. Please be ' . $tone . '.';
+		$prompt = 'You are a professional copywriter and YouTube expert.  Create a compelling and captivating YouTube video script from the following description: '. $topic . '. You will use the following tone: ' . $tone . '.';
 		return $prompt;
 	}
 

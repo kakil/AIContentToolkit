@@ -76,7 +76,7 @@ function console_log($output, $with_script_tags = true) {
     <!-- Keyword -->
     <div class="mb-3">
       <label for="validationCustom01" class="form-label"><?php echo $lang["videoTopic"]; ?></label>
-      <input type="text" class="form-control" id="validationCustom01" name="chatGptText" placeholder="Make Money Online" rows="3" min="0" max="80"  required>
+      <input type="text" class="form-control" id="validationCustom01" name="chatGptText" placeholder="Make Money Online" rows="3" min="0" max="80" value="<?php echo isset($_POST['chatGptText']) ? $_POST['chatGptText'] : '' ?>" required>
       <div class="invalid-feedback">
         Please provide a video topic
       </div>
@@ -88,7 +88,7 @@ function console_log($output, $with_script_tags = true) {
     <!-- Tone -->
     <div class="mb-3">
       <label for="validationCustom03" class="form-label"><?php echo $lang["blogTone"]; ?></label>
-      <input type="text" class="form-control" id="validationCustom06" name="blogToneText" placeholder="Tone: formal, informal, humorous, assertive" rows="3" min="0" max="80"  required>
+      <input type="text" class="form-control" id="validationCustom06" name="blogToneText" placeholder="Tone: formal, informal, humorous, assertive" rows="3" min="0" max="80" value="<?php echo isset($_POST['blogToneText']) ? $_POST['blogToneText'] : '' ?>" required>
       <div class="invalid-feedback">
         Please provide a tone
       </div>

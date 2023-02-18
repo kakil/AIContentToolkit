@@ -228,7 +228,7 @@ function console_log($output, $with_script_tags = true) {
     <!-- Prompt -->
     <div class="mb-3">
       <label for="validationCustom1201" class="form-label"><?php echo $lang["imagePrompt"]; ?></label>
-      <textarea class="form-control" id="validationCustom1201" name="chatGptText" placeholder="Cute cartoon cat" rows="5" min="0" max="200"  value="" required></textarea>
+      <textarea class="form-control" id="validationCustom1201" name="chatGptText" placeholder="Cute cartoon cat" rows="5" min="0" max="200"  value="<?php echo isset($_POST['chatGptText']) ? $_POST['chatGptText'] : '' ?>" required></textarea>
       <div class="invalid-feedback">
         Please describe your image or select a starter prompt above
       </div>
