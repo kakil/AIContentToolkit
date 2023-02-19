@@ -63,7 +63,7 @@ if(isset($_POST["addBlog"])){
     <!-- Topic -->
     <div class="mb-3">
       <label for="validationCustom01" class="form-label"><?php echo $lang["mindmapTopic"]; ?></label>
-      <input type="text" class="form-control" id="validationCustom01" name="chatGptText" placeholder="Popular Diets" rows="3" min="0" max="80" required>
+      <input type="text" class="form-control" id="validationCustom01" name="chatGptText" placeholder="Popular Diets" rows="3" min="0" max="80" value="<?php echo isset($_POST['chatGptText']) ? $_POST['chatGptText'] : '' ?>" required>
       <div class="invalid-feedback">
         Please provide a mind map topic
       </div>
