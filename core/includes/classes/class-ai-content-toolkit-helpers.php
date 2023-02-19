@@ -91,8 +91,9 @@ class AI_Content_Toolkit_Helpers{
 		return $prompt;
 	}
 
-	public function get_how_to_prompt($topic, $niche, $tone ) {
-		$prompt = 'I want you to act as a blogger and ' . $topic . ' expert. You are writing a blog post for your ' . $niche . ' blog. You are writing a How To blog post for ' . $topic . '. This post should be helpful for people researching ' . $topic . '. The blog post title will start with: How To, and the title will be 60 characters or less in length.  The next section will be titled: What is ' . $topic . ', and Why Does It Matter? The next section will be titled: How to ' . $topic . '. The next section will be: 10 Tips and Reminders for ' . $topic . '. The next section will be the Conclusion. The tone will be ' . $tone . '. You should be writing as an individual blogger with a personal approach so do not use plural first-person to refer to yourself. Only use singular first-person. Do not use passive voice. H2 tag for the title. H3 tags for the section titles.';
+	public function get_how_to_prompt($topic, $tone ) {
+		// $prompt = 'I want you to act as a Content and ' . $topic . ' expert. You are writing a blog post for your ' . $niche . ' blog. You are writing a How To blog post for ' . $topic . '. This post should be helpful for people researching ' . $topic . '. The blog post title will start with: How To, and the title will be 60 characters or less in length.  The next section will be titled: What is ' . $topic . ', and Why Does It Matter? The next section will be titled: How to ' . $topic . '. The next section will be: 10 Tips and Reminders for ' . $topic . '. The next section will be the Conclusion. The tone will be ' . $tone . '. You should be writing as an individual blogger with a personal approach so do not use plural first-person to refer to yourself. Only use singular first-person. Do not use passive voice. H2 tag for the title. H3 tags for the section titles.';
+		$prompt = 'You will act as a Content and Digital Marketing Strategist expert.  Create detailed "How To" article for ' . $topic . '. You will Include top-level keywords and long-tail keywords.  Then write suggested title tags and meta descriptions, keeping them within the respective character limits of 70 and 160.  Put all this content into a structured blog post.  Your tone is ' . $tone . '.';
 		return $prompt;
 	}
 
