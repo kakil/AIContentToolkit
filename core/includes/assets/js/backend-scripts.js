@@ -30,8 +30,8 @@ jQuery(document).ready(function() {
         let spinner = document.getElementById("spinner-blog-submit");
         spinner.style.visibility = 'visible';
 
-        let imageInfoText = document.getElementById('imageInfoText');
-        imageInfoText.style.visibility = 'visible';
+        // let imageInfoText = document.getElementById('imageInfoText');
+        // imageInfoText.style.visibility = 'visible';
     });
 
     jQuery('#postContent').change( function() {
@@ -74,6 +74,11 @@ jQuery(document).ready(function() {
   
       //toggle button enabled on change of Image
       
+      // for t11-longtailkeyword.php
+      jQuery('#validationCustom1102').change(function() {
+        jQuery('#question_hidden').val(('#validationCustom1102').find(':selected').text());
+      });
+  
       //This is not currently used.  Placing code here for later
       jQuery('#validationCustom1102').on( "change", function() {
         var selValue = jQuery("#validationCustom1102").val();
@@ -122,11 +127,7 @@ jQuery(document).ready(function() {
         //jQuery('#validationCustom1201').val(selValue);
       });
 
-      // for t11-longtailkeyword.php
-      jQuery('#validationCustom1102').change(function() {
-        jQuery('#question_hidden').val(('#validationCustom1102').find(':selected').text());
-      });
-  
+      
       jQuery('#validationCustom1203').on( "change", function() {
         var selValue = jQuery("#validationCustom1203").val();
         var selText = jQuery('#validationCustom1203').text();
@@ -199,8 +200,8 @@ jQuery(document).ready(function() {
                     addBlogSpinner.style.visibility = 'hidden';
                  }
 
-                 let imageInfoText = document.getElementById('imageInfoText');
-                 imageInfoText.style.visibility = 'visible';
+                //  let imageInfoText = document.getElementById('imageInfoText');
+                //  imageInfoText.style.visibility = 'visible';
                  
                  console.log("Checked Validation");
               }

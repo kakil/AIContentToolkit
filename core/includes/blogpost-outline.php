@@ -64,11 +64,11 @@ if (isset($_POST["addBlog"])) {
     
     <!-- Topic -->
     <div class="mb-3">
-      <label for="validationCustom01" class="form-label">
+      <label for="validationCustom201" class="form-label">
         <?php echo $lang["blogTitleTopic"]; ?>
       </label>
-      <input type="text" class="form-control" id="validationCustom01" name="chatGptText"
-        placeholder="A Beginner Guide to Digital Marketing" rows="3" min="0" max="80" required>
+      <input type="text" class="form-control" id="validationCustom201" name="chatGptText"
+        placeholder="A Beginner Guide to Digital Marketing" rows="3" min="0" max="80" value="<?php echo isset($_POST['chatGptText']) ? $_POST['chatGptText'] : '' ?>" required>
         <div class="invalid-feedback">
           Please provide a blog topic
         </div>
@@ -83,7 +83,7 @@ if (isset($_POST["addBlog"])) {
         <?php echo $lang["personality"]; ?>
       </label>
       <input type="text" class="form-control" id="chatGptPersonality" name="chatGptPersonality"
-        placeholder="Helpful, Amusing, Instructional, Sarcastic" rows="3">
+        placeholder="Helpful, Amusing, Instructional, Sarcastic" rows="3" value="<?php echo isset($_POST['chatGptPersonality']) ? $_POST['chatGptPersonality'] : '' ?>">
     </div>
 
     <!-- Submit to OpenAI -->

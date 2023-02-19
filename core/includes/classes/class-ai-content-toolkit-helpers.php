@@ -71,7 +71,7 @@ class AI_Content_Toolkit_Helpers{
 	}
 
 	public function get_blog_post_outline_prompt($topic, $personality) {
-		$prompt = 'I want you to act as a blogger and ' . $topic . ' expert.  Please create a blog post outline for the topic: ' . $topic . '. The outline should have five sections including an introduction and a conclusion. Your tone is ' . $personality;
+		$prompt = 'I want you to act as a content writing expert.  Title: ' . $topic . '. Write an outline for a blog article. Your tone is ' . $personality;
 		return $prompt;
 	}
 
