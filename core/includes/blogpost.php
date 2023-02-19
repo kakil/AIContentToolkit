@@ -53,8 +53,8 @@ if(isset($_POST["addBlog"])){
 
     <!-- Topic -->
     <div class="mb-3">
-      <label for="validationCustom01" class="form-label"><?php echo $lang["blogTitle"]; ?></label>
-      <textarea class="form-control" id="validationCustom01" name="chatGptText" placeholder="Niche topic or keyword.  For  example: Affiliate Marketing, Traffic Generation, etc..." rows="3" min="0" max="200" value="<?php echo isset($_POST['chatGptText']) ? $_POST['chatGptText'] : '' ?>" required></textarea>
+      <label for="validationCustom101" class="form-label"><?php echo $lang["blogTitle"]; ?></label>
+      <textarea class="form-control" id="validationCustom101" name="chatGptText" placeholder="Niche topic or keyword.  For  example: Affiliate Marketing, Traffic Generation, etc..." rows="3" min="0" max="200" value="<?php echo isset($_POST['chatGptText']) ? $_POST['chatGptText'] : '' ?>" required></textarea>
       <div class="invalid-feedback">
         Please provide a blog topic
       </div>

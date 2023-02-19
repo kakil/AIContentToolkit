@@ -199,7 +199,7 @@ class AI_Content_Toolkit_Run{
 			'ai-content-tool-dashboard-selector',						//menu slug
 			array( $this, 'ai_content_tool_dashboard_selector' ),		//function
 			'dashicons-admin-tools',										//menu icon
-			999																//menu position
+			1																//menu position
 		);
 
 		add_submenu_page(
@@ -209,7 +209,17 @@ class AI_Content_Toolkit_Run{
 			'manage_options',										//capability
 			'ai-content-tool-settings',						//menu slug
 			array( $this, 'ai_content_tool_settings' ),		//function callback
-			100
+			20
+		);
+
+		add_submenu_page(
+			'ai-content-tool-dashboard-selector',				//parent slug
+			'AI Pro Tools',								//page title
+			'AI Pro Tools',								//menu title
+			'manage_options',										//capability
+			'ai-content-tool-pro-tools',						//menu slug
+			array( $this, 'ai_content_tool_pro_tools' ),		//function callback
+			10
 		);
 
 		add_submenu_page(
@@ -351,6 +361,10 @@ class AI_Content_Toolkit_Run{
 
 	 function ai_content_tool_dashboard_selector() {
 		include AICONTENTT_PLUGIN_DIR . "core/includes/dashboard-selector.php";
+	 }
+
+	 function ai_content_tool_pro_tools() {
+		include AICONTENTT_PLUGIN_DIR . "core/includes/pro-tools-selector.php";
 	 }
 
 	 function ai_content_tool_blog_post_outline() {
