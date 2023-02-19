@@ -78,7 +78,7 @@ class AI_Content_Toolkit_Run{
 		
 		add_action( 'plugin_action_links_' . AICONTENTT_PLUGIN_BASE, array( $this, 'add_plugin_action_link' ), 20 );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_backend_scripts_and_styles' ), 20 );
-		add_action( 'admin_bar_menu', array( $this, 'add_admin_bar_menu_items' ), 100, 1 );
+		//add_action( 'admin_bar_menu', array( $this, 'add_admin_bar_menu_items' ), 100, 1 );
 		add_action( 'admin_menu', array( $this, 'add_chatgpt_tools_menu_items' ), 100 );
 		//add_action('admin_menu', array($this, 'remove_submenus'), 101);
 
@@ -199,17 +199,7 @@ class AI_Content_Toolkit_Run{
 			'ai-content-tool-dashboard-selector',						//menu slug
 			array( $this, 'ai_content_tool_dashboard_selector' ),		//function
 			'dashicons-admin-tools',										//menu icon
-			1																//menu position
-		);
-
-		add_submenu_page(
-			'ai-content-tool-dashboard-selector',				//parent slug
-			'AI Tool Settings',								//page title
-			'AI Tool Settings',								//menu title
-			'manage_options',										//capability
-			'ai-content-tool-settings',						//menu slug
-			array( $this, 'ai_content_tool_settings' ),		//function callback
-			20
+			50																//menu position
 		);
 
 		add_submenu_page(
@@ -222,6 +212,17 @@ class AI_Content_Toolkit_Run{
 			10
 		);
 
+		add_submenu_page(
+			'ai-content-tool-dashboard-selector',				//parent slug
+			'AI Tool Settings',								//page title
+			'AI Tool Settings',								//menu title
+			'manage_options',										//capability
+			'ai-content-tool-settings',						//menu slug
+			array( $this, 'ai_content_tool_settings' ),		//function callback
+			15
+		);
+
+		
 		add_submenu_page(
 			null,
 			'AI Tool Blog Post',
