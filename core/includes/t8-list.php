@@ -30,7 +30,7 @@ if(isset($_POST["chatGptText"])){
   $postTitle = 'How to ' . $_POST['chatGptText'];   //adding prompt to Blog Title field
   $postKeywords = $_POST['blogKeywordText'];  //adding prompt to Blog Keyword field
 
-  $prompt = AICONTENTT()->helpers->get_list_prompt( $_POST["chatGptText"], $_POST["blogNicheText"]);
+  $prompt = AICONTENTT()->helpers->get_list_prompt( $_POST["chatGptText"]);
   //console_log($prompt);
   $postContent = AICONTENTT()->helpers->get_chatgpt_response( $prompt,'text-davinci-003', $getTemperature, $getMaxTokens);
   //console_log($postContent);
@@ -75,7 +75,7 @@ function console_log($output, $with_script_tags = true) {
     <!-- Blog Post Topic -->
     <div class="mb-3">
       <label for="validationCustom01" class="form-label"><?php echo $lang["blogTopic"]; ?></label>
-      <input type="text" class="form-control" id="validationCustom01" name="chatGptText" placeholder="Make Money Online" rows="3" min="0" max="80"  required>
+      <input type="text" class="form-control" id="validationCustom01" name="chatGptText" placeholder="Make Money Online" rows="3" min="0" max="80" value="<?php echo isset($_POST['chatGptText']) ? $_POST['chatGptText'] : '' ?>" required>
       <div class="invalid-feedback">
         Please provide a blog topic
       </div>
@@ -85,7 +85,7 @@ function console_log($output, $with_script_tags = true) {
     </div>
 
     <!-- Niche -->
-    <div class="mb-3">
+    <!-- <div class="mb-3">
       <label for="validationCustom02" class="form-label"><?php echo $lang["blogNiche"]; ?></label>
       <input type="text" class="form-control" id="validationCustom02" name="blogNicheText" placeholder="Affiliate Marketing" rows="3" min="0" max="80"  required>
       <div class="invalid-feedback">
@@ -94,7 +94,7 @@ function console_log($output, $with_script_tags = true) {
     </div>
     <div class="d-flex justify-content-end">
       <label for="decimal_input">0/80</label>
-    </div>
+    </div> -->
 
     <!-- Submit Content to OpenAPI -->
     <div class="row mb-5">

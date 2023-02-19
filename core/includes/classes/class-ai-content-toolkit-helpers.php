@@ -97,8 +97,9 @@ class AI_Content_Toolkit_Helpers{
 		return $prompt;
 	}
 
-	public function get_list_prompt($topic, $niche) {
-		$prompt = 'I want you to act as a blogger and ' . $topic . ' expert. You are writing a list blog post for your ' . $niche . ' blog. Create an appropriate article title. The first section will be an Introduction. The introduction will highlight why ' . $topic . ' is important, who ' . $topic . ' applies to, and what the article covers. The next section will disscuss why understanding ' . $topic . ' is important. The next section will be a list of at least 10 examples of ' . $topic . ' and each example will be briefly discussed. The final section will be a conclusion.  You will be writing as an individual blogger with a personal approach so do not use plural first-person to refer to yourself. Only use singular first-person. Do not use passive voice. H2 tag for title. H3 tags for the section titles.';
+	public function get_list_prompt($topic) {
+		//$prompt = 'I want you to act as a blogger and ' . $topic . ' expert. You are writing a list blog post for your ' . $niche . ' blog. Create an appropriate article title. The first section will be an Introduction. The introduction will highlight why ' . $topic . ' is important, who ' . $topic . ' applies to, and what the article covers. The next section will disscuss why understanding ' . $topic . ' is important. The next section will be a list of at least 10 examples of ' . $topic . ' and each example will be briefly discussed. The final section will be a conclusion.  You will be writing as an individual blogger with a personal approach so do not use plural first-person to refer to yourself. Only use singular first-person. Do not use passive voice. H2 tag for title. H3 tags for the section titles.';
+		$prompt = 'You will act as a Content and Digital Marketing Strategist expert.  Create a detailed "List" article for ' . $topic . '. You will include top-level keywords and long-tail keywords.  Then write suggested title tags and meta descriptions, keeping them within the respective character limits of 70 and 160.  Put all this content into a structured blog post.';
 		return $prompt;
 	}
 
