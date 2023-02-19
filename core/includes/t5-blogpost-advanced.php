@@ -76,7 +76,7 @@ function console_log($output, $with_script_tags = true) {
     <!-- Blog Post Topic -->
     <div class="mb-3">
       <label for="validationCustom01" class="form-label"><?php echo $lang["blogTopic"]; ?></label>
-      <input type="text" class="form-control" id="validationCustom01" name="chatGptText" placeholder="Dieting" rows="3" min="0" max="80"  required>
+      <input type="text" class="form-control" id="validationCustom01" name="chatGptText" placeholder="Dieting" rows="3" min="0" max="80" value="<?php echo isset($_POST['chatGptText']) ? $_POST['chatGptText'] : '' ?>" required>
       <div class="invalid-feedback">
         Please provide a blog topic
       </div>
@@ -88,7 +88,7 @@ function console_log($output, $with_script_tags = true) {
     <!-- Niche -->
     <div class="mb-3">
       <label for="validationCustom02" class="form-label"><?php echo $lang["blogNiche"]; ?></label>
-      <input type="text" class="form-control" id="validationCustom02" name="blogNicheText" placeholder="Weight Loss" rows="3" min="0" max="80"  required>
+      <input type="text" class="form-control" id="validationCustom02" name="blogNicheText" placeholder="Weight Loss" rows="3" min="0" max="80" value="<?php echo isset($_POST['blogNicheText']) ? $_POST['blogNicheText'] : '' ?>" required>
       <div class="invalid-feedback">
         Please provide a niche
       </div>
@@ -100,7 +100,7 @@ function console_log($output, $with_script_tags = true) {
     <!-- Problem -->
     <div class="mb-3">
       <label for="validationCustom03" class="form-label"><?php echo $lang["blogProblem"]; ?></label>
-      <input type="text" class="form-control" id="validationCustom03" name="blogProblemText" placeholder="The most popular diets" rows="3" min="0" max="80"  required>
+      <input type="text" class="form-control" id="validationCustom03" name="blogProblemText" placeholder="The most popular diets" rows="3" min="0" max="80" value="<?php echo isset($_POST['blogProblemText']) ? $_POST['blogProblemText'] : '' ?>" required>
       <div class="invalid-feedback">
         Please provide a problem
       </div>
@@ -112,7 +112,7 @@ function console_log($output, $with_script_tags = true) {
     <!-- Action -->
     <div class="mb-3">
       <label for="validationCustom04" class="form-label"><?php echo $lang["blogAction"]; ?></label>
-      <input type="text" class="form-control" id="validationCustom04" name="blogActionText" placeholder="Verb: choosing,buying,researching,learning,etc..." rows="3" min="0" max="80"  required>
+      <input type="text" class="form-control" id="validationCustom04" name="blogActionText" placeholder="Verb: choosing,buying,researching,learning,etc..." rows="3" min="0" max="80" value="<?php echo isset($_POST['blogActionText']) ? $_POST['blogActionText'] : '' ?>" required>
       <div class="invalid-feedback">
         Please provide an action
       </div>
@@ -124,7 +124,7 @@ function console_log($output, $with_script_tags = true) {
     <!-- Tone -->
     <div class="mb-3">
       <label for="validationCustom06" class="form-label"><?php echo $lang["blogTone"]; ?></label>
-      <input type="text" class="form-control" id="validationCustom06" name="blogToneText" placeholder="Tone: informal, helpful, persuasive, professional, authoritative, etc..." rows="3" min="0" max="80"  required>
+      <input type="text" class="form-control" id="validationCustom06" name="blogToneText" placeholder="Tone: informal, helpful, persuasive, professional, authoritative, etc..." rows="3" min="0" max="80" value="<?php echo isset($_POST['blogToneText']) ? $_POST['blogToneText'] : '' ?>" required>
       <div class="invalid-feedback">
         Please provide a tone
       </div>
@@ -136,7 +136,7 @@ function console_log($output, $with_script_tags = true) {
     <!-- Keywords -->
     <div class="mb-3">
       <label for="validationCustom07" class="form-label"><?php echo $lang["blogKeywords"]; ?></label>
-      <input type="text" class="form-control" id="validationCustom07" name="blogKeywordText" placeholder="Keywords: weight loss, keto, vegan" rows="3" min="0" max="80"  required>
+      <input type="text" class="form-control" id="validationCustom07" name="blogKeywordText" placeholder="Keywords: weight loss, keto, vegan" rows="3" min="0" max="80" value="<?php echo isset($_POST['blogKeywordText']) ? $_POST['blogKeywordText'] : '' ?>" required>
       <div class="invalid-feedback">
         Please provide at least one keyword
       </div>
