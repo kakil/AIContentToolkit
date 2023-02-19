@@ -25,7 +25,10 @@ if(in_array($getLanguage,$languages)) {
 if(isset($_POST["chatGptText"])){
   
   $postTitle = $_POST['chatGptText'];   //adding prompt to Blog Title field
+
+  AICONTENTT()->helpers->console_log('Keyword: ' . $postTitle);
   $prompt = AICONTENTT()->helpers->get_brainstorm_prompt( $postTitle );
+  AICONTENTT()->helpers->console_log('prompt: ' . $prompt);
   $postContent = AICONTENTT()->helpers->get_chatgpt_response( $prompt, 'text-davinci-003', $getTemperature, $getMaxTokens);
 
 }
@@ -58,8 +61,8 @@ if(isset($_POST["addBlog"])){
 
     <!-- Brainstorming topic -->
     <div class="mb-3">
-      <label for="validationCustom01" class="form-label"><?php echo $lang["brainstormingTopic"]; ?></label>
-      <input type="text" class="form-control" id="validationCustom01" name="chatGptText" placeholder="How to write effective Facebook Ads" rows="3" min="0" max="80" required>
+      <label for="validationCustom301" class="form-label"><?php echo $lang["brainstormingTopic"]; ?></label>
+      <input type="text" class="form-control" id="validationCustom301" name="chatGptText" placeholder="[Keyword] For example: Facebook Ads" rows="3" min="0" max="80" value="<?php echo isset($_POST['chatGptText']) ? $_POST['chatGptText'] : '' ?>" required>
       <div class="invalid-feedback">
         Please provide a brainstorming topic
       </div>
