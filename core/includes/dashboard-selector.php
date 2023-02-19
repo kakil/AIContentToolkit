@@ -152,7 +152,7 @@ include "header.php";
 				<div class="card h-100 shadow p-3 mb-5 bg-white rounded">
 					<img src="<?php echo AICONTENTT_PLUGIN_URL . 'core/includes/assets/images/AI_Toolkit_Plugin_Image_11.png'; ?>" alt="robot idea" class="card-img-top">
 					<div class="card-body">
-						<h5 class="card-title">Long Tail Keyword List Tool</h5>
+						<h5 class="card-title">Answer The Public Keyword Tool</h5>
 						<p class="card-text">This template will create a list of long tail keywords.</p>
 						<a href="<?php menu_page_url( 'ai-content-tool-long-tail-keywords' ); ?>" title="<?php echo __( 'AI Long Tail Keyword Tool', 'toolkit' ) ?>" class="btn btn-primary">Create Keyword List</a>
 					</div>
