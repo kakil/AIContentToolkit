@@ -110,7 +110,8 @@ class AI_Content_Toolkit_Helpers{
 
 	public function get_video_script_prompt($topic, $tone) {
 		//$prompt = 'You are a professional copywriter and YouTube expert.  Write a YouTube shorts script explaining ' . $topic . '. This video will be no longer than 60 seconds. Please be ' . $tone . '.';
-		$prompt = 'You are a professional copywriter and YouTube expert.  Create a compelling and captivating YouTube video script from the following description: '. $topic . '. You will use the following tone: ' . $tone . '.';
+		//$prompt = 'You are a professional copywriter and YouTube expert.  Create a compelling and captivating YouTube video script from the following description: '. $topic . '. You will use the following tone: ' . $tone . '.';
+		$prompt = 'You act as a very proficient SEO and high-end copy writer that speaks and writes fluently English. Provide me content for a YouTube Script for the topic: ' . $topic . '. There must be an intro, body, and conclusion part. The body must contain 5 segments, and each segment must be of 200 words in length. The script length must be 700 words. If there is a subheading, then change them into bold characters. The tone is ' . $tone . '. At the end of the result show this line “Please, checkout  https://toolkitsforsuccess.com  for more tools and content."';
 		return $prompt;
 	}
 
