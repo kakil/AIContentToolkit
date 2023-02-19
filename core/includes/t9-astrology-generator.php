@@ -70,7 +70,7 @@ function console_log($output, $with_script_tags = true) {
 
 
 <div class="container-fluid w-50 m-3 bg-light border border-3 shadow p-3 rounded-4"> 
-  <h1 class="mt-3 mb-3">Create A List Blog Post</h1>
+  <h1 class="mt-3 mb-3">Create An Astrology Reading</h1>
   <form method="post" id="blogPostForm" class="needs-validation" novalidate>
     <!-- Blog Post Topic -->
     <div class="mb-3">
