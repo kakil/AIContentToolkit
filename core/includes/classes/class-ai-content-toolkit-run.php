@@ -199,7 +199,7 @@ class AI_Content_Toolkit_Run{
 			'ai-content-tool-dashboard-selector',						//menu slug
 			array( $this, 'ai_content_tool_dashboard_selector' ),		//function
 			'dashicons-admin-tools',										//menu icon
-			50																//menu position
+			99																//menu position
 		);
 
 		add_submenu_page(
