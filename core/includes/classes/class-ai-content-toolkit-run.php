@@ -359,11 +359,11 @@ class AI_Content_Toolkit_Run{
 
 		add_submenu_page(
 			null,
-			'AI Five Product Comparison Tool',
-			'AI Five Product Comparison Tool',
+			'AI Single Product Review Tool',
+			'AI Single Product Review Tool',
 			'manage_options',
-			'ai-content-tool-five-product-comparison',
-			array( $this, 'ai_content_tool_five_product_comparison'),
+			'ai-content-tool-single-product-review',
+			array( $this, 'ai_content_tool_single_product_review'),
 			85
 		);
 
@@ -607,8 +607,8 @@ class AI_Content_Toolkit_Run{
 		include AICONTENTT_PLUGIN_DIR . "core/includes/t13-product-comparison.php";
 	 }
 
-	 function ai_content_tool_five_product_comparison() {
-		include AICONTENTT_PLUGIN_DIR . "core/includes/t14-five-product-comparison.php";
+	 function ai_content_tool_single_product_review() {
+		include AICONTENTT_PLUGIN_DIR . "core/includes/t14-single-product-review.php";
 	 }
 
 	 function ai_content_tool_amazon_product_review() {
@@ -671,7 +671,7 @@ class AI_Content_Toolkit_Run{
 		include AICONTENT_PLUGIN_DIR . "core/includes/t29-silo-structure.php";
 	 }
 
-	 fucntion ai_content_tool_faq() {
+	 function ai_content_tool_faq() {
 		include AICONTENT_PLUGIN_DIR . "core/includes/t30-faq.php";
 	 }
 

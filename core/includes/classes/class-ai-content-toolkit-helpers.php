@@ -186,6 +186,17 @@ class AI_Content_Toolkit_Helpers{
 		return $prompt;
 	}
 
+	public function get_single_product_review_prompt($product) {
+
+		$prompt = 'Write an in-depth product review article of unlimited length. The article should include a short summary with the product name and model, an H2 tag, a detailed description of the product\'s features, warranty and service information, other users\' opinions, and pros and cons of the product. Conclude the article with a final verdict. Additionally, provide an SEO title and meta description for product. The product is: '. $product . '. All content must be in English.';
+		return $prompt;
+	}
+
+	public function get_amazon_product_review_prompt($product) {
+		$prompt = 'Product Name: ' . $product . 'ps5 Description (200 words):  Key Feature (Pointwise):  Pros (Pointwise):   Cons (Pointwise):  Conclusion:  Please write all output in English.';
+		return $prompt;
+	}
+
 
 
 

@@ -44,5 +44,6 @@
     $lang["product1"] = "Product 1";
     $lang["product2"] = "Product 2";
     $lang["compareProductsButton"] = "Compare Products";
+    $lang["singleProductReviewButton"] = "Review Product";
 ?>
 
