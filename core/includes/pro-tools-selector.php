@@ -81,9 +81,9 @@ include "header.php";
 				<div class="card h-100 shadow p-3 mb-5 bg-white rounded">
 					<img src="<?php echo AICONTENTT_PLUGIN_URL . 'core/includes/assets/images/AI_Toolkit_Plugin_Image_18.png'; ?>" alt="robot thinking" class="card-img-top">
 					<div class="card-body">
-						<h5 class="card-title">Product Collection Tool</h5>
-						<p class="card-text">This tool will create a product collection summary article.</p><br/>
-						<a href="<?php menu_page_url( 'ai-content-tool-product-collection-summary' ); ?>" title="<?php echo __( 'AI Product Collection Summary', 'toolkit' ) ?>" class="btn btn-primary">Create Product Summary</a>
+						<h5 class="card-title">Misconceptions List Tool</h5>
+						<p class="card-text">This tool will create a list of common misconceptions about any topic.</p><br/>
+						<a href="<?php menu_page_url( 'ai-content-tool-misconceptions' ); ?>" title="<?php echo __( 'AI Misconceptions Tool', 'toolkit' ) ?>" class="btn btn-primary">Get List of Misconceptions</a>
 					</div>
 				</div>
 			</div>

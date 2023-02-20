@@ -399,11 +399,11 @@ class AI_Content_Toolkit_Run{
 
 		add_submenu_page(
 			null,
-			'AI Product Collection Summary Tool',
-			'AI Product Collection Summary Tool',
+			'AI Misconceptions Tool',
+			'AI Misconceptions Tool',
 			'manage_options',
-			'ai-content-tool-product-collection-summary',
-			array( $this, 'ai_content_tool_product_collection_summary'),
+			'ai-content-tool-misconceptions',
+			array( $this, 'ai_content_tool_misconceptions'),
 			100
 		);
 
@@ -623,8 +623,8 @@ class AI_Content_Toolkit_Run{
 		include AICONTENTT_PLUGIN_DIR . "core/includes/t17-product-description.php";
 	 }
 
-	 function ai_content_tool_product_collection_summary() {
-		include AICONTENTT_PLUGIN_DIR . "core/includes/t18-product-collection-summary.php";
+	 function ai_content_tool_misconceptions() {
+		include AICONTENTT_PLUGIN_DIR . "core/includes/t18-misconceptions.php";
 	 }
 
 	 function ai_content_tool_long_form_blog_post() {

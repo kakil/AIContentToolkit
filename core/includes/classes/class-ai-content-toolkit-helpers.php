@@ -207,6 +207,12 @@ class AI_Content_Toolkit_Helpers{
 		return $prompt;
 	}
 
+	public function get_misconceptions_prompt($topic) {
+		$prompt = 'I want you to act like you have both positive and negative information about anything. I want you to pretend that you are a reliable and reputable source of information in English.
+		Your task is to write a list of 20 misconceptions about ' . $topic . '. Each list item should be on a separate line.';
+		return $prompt;
+	}
+
 
 
 
