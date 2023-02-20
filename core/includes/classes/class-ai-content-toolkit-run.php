@@ -419,6 +419,16 @@ class AI_Content_Toolkit_Run{
 
 		add_submenu_page(
 			null,
+			'AI Short Story Tool',
+			'AI Short Story Tool',
+			'manage_options',
+			'ai-content-tool-short-story',
+			array( $this, 'ai_content_tool_short_story'),
+			107
+		);
+
+		add_submenu_page(
+			null,
 			'AI Book Chapter Tool',
 			'AI Book Chapter Tool',
 			'manage_options',

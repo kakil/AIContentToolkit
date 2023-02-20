@@ -50,5 +50,7 @@
     $lang["getMisconceptionsButton"] = "Get Misconceptions";
     $lang["longFormTopic"] = "Topic or Keyword";
     $lang["longFormButton"] = "Get Article";
+    $lang["shortStoryTopic"] = "Topic";
+    $lang["shortStoryButton"] = "Create Story";
 ?>
 

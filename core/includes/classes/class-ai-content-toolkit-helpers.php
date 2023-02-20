@@ -218,7 +218,10 @@ class AI_Content_Toolkit_Helpers{
 		return $prompt;
 	}
 
-
+	public function get_short_story_prompt($topic) {
+		$prompt = 'Write a unique short story without plagiarizing using the following description: ' . $topic . '. Generate a title.';
+		return $prompt;
+	}
 
 
 
