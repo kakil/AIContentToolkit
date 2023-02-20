@@ -174,7 +174,22 @@ class AI_Content_Toolkit_Helpers{
 		}
 		return $imagePrompt; 
 	}
+
+	/**
+	 *  Prompts for Pro Tools
+	 * 
+	 */
 	
+	public function get_product_comparison_prompt($product1, $product2) {
+
+		$prompt = 'You are an e-commerce expert. You have extensive knowledge of products in variety of categories. Create a detailed and structured blog post comparing the features of two products and provide short details for each feature?  Analyze the results: Compare the scores and ratings of each product to identify which one performs better overall. Draw conclusions: Based on the analysis, draw conclusions about which product is the better choice for your needs. You will Include top-level keywords, long-tail keywords, and a list of 3 optimized suggested titles.  Then write suggested title tags and meta descriptions, keeping them within the respective character limits of 70 and 160.  The two products are' . $product1 . ' vs ' . $product2 . '. ';
+		return $prompt;
+	}
+
+
+
+
+
 	/**
 	 * end of prompts
 	 */
@@ -211,8 +226,8 @@ class AI_Content_Toolkit_Helpers{
 			  'model'					=> 'text-davinci-003',
 			  'temperature'				=> $getTemperature,
 			  'max_tokens' 				=> $getMaxTokens,
-			  'frequency_penalty' 		=> 0.5,
-			  'presence_penalty' 		=> 0.5,
+			  'frequency_penalty' 		=> 1.0,					// prevent repeating of words and content (increase number)
+			  'presence_penalty' 		=> 1.0,					// prevent staying on one topic too long (increase number)
 			  'n'						=> 1,
 			));
 			$curl = curl_init('https://api.openai.com/v1/completions');

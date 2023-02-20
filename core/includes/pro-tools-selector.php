@@ -17,7 +17,7 @@ include "header.php";
 					<div class="card-body">
 						<h5 class="card-title">Product Comparison Tool</h5>
 						<p class="card-text">This tool will write an article that compares two products.</p><br/>
-						<a href="<?php menu_page_url( 'ai-content-tool-blog-post' ); ?>" title="<?php echo __( 'AI Blog Post', 'toolkit' ) ?>" class="btn btn-primary">Create Blog Post</a>
+						<a href="<?php menu_page_url( 'ai-content-tool-product-comparison' ); ?>" title="<?php echo __( 'AI Product Comparison', 'toolkit' ) ?>" class="btn btn-primary">Create Product Comparison</a>
 					</div>
 				</div>
 			</div>

@@ -300,7 +300,7 @@ class AI_Content_Toolkit_Run{
 			'manage_options',
 			'ai-content-tool-list-article',
 			array( $this, 'ai_content_tool_list_article'),
-			50
+			55
 		);
 
 		add_submenu_page(
@@ -310,7 +310,7 @@ class AI_Content_Toolkit_Run{
 			'manage_options',
 			'ai-content-tool-astrology',
 			array( $this, 'ai_content_tool_astrology'),
-			50
+			60
 		);
 
 		add_submenu_page(
@@ -320,7 +320,7 @@ class AI_Content_Toolkit_Run{
 			'manage_options',
 			'ai-content-tool-video-script',
 			array( $this, 'ai_content_tool_video_script'),
-			50
+			65
 		);
 
 		add_submenu_page(
@@ -330,7 +330,7 @@ class AI_Content_Toolkit_Run{
 			'manage_options',
 			'ai-content-tool-long-tail-keywords',
 			array( $this, 'ai_content_tool_long_tail_keywords'),
-			50
+			70
 		);
 
 		add_submenu_page(
@@ -340,7 +340,17 @@ class AI_Content_Toolkit_Run{
 			'manage_options',
 			'ai-content-tool-image-generator',
 			array( $this, 'ai_content_tool_image_generator'),
-			50
+			75
+		);
+
+		add_submenu_page(
+			null,
+			'AI Product Comparison Tool',
+			'AI Product Comparison Tool',
+			'manage_options',
+			'ai-content-tool-product-comparison',
+			array( $this, 'ai_content_tool_product_comparison'),
+			80
 		);
 
 	 }
@@ -411,6 +421,11 @@ class AI_Content_Toolkit_Run{
 	 function ai_content_tool_image_generator() {
 		include AICONTENTT_PLUGIN_DIR . "core/includes/t12-image-generator.php";
 	 }
+
+	 function ai_content_tool_product_comparison() {
+		include AICONTENTT_PLUGIN_DIR . "core/includes/t13-product-comparison.php";
+	 }
+	 
 
 	 //CREATE TABLES
 	function create_table_ai_content_tool() {
