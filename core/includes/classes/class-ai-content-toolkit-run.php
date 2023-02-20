@@ -343,6 +343,10 @@ class AI_Content_Toolkit_Run{
 			75
 		);
 
+		/**
+		 * Pro Tools Menus
+		 * 
+		 */
 		add_submenu_page(
 			null,
 			'AI Product Comparison Tool',
@@ -352,6 +356,178 @@ class AI_Content_Toolkit_Run{
 			array( $this, 'ai_content_tool_product_comparison'),
 			80
 		);
+
+		add_submenu_page(
+			null,
+			'AI Five Product Comparison Tool',
+			'AI Five Product Comparison Tool',
+			'manage_options',
+			'ai-content-tool-five-product-comparison',
+			array( $this, 'ai_content_tool_five_product_comparison'),
+			85
+		);
+
+		add_submenu_page(
+			null,
+			'AI Amazon Product Review Tool',
+			'AI Amazon Product Review Tool',
+			'manage_options',
+			'ai-content-tool-amazon-product-review',
+			array( $this, 'ai_content_tool_amazon_product_review'),
+			90
+		);
+
+		add_submenu_page(
+			null,
+			'AI Product Review Tool',
+			'AI Product Review Tool',
+			'manage_options',
+			'ai-content-tool-product-review',
+			array( $this, 'ai_content_tool_product_review'),
+			85
+		);
+
+		add_submenu_page(
+			null,
+			'AI Product Description Tool',
+			'AI Product Description Tool',
+			'manage_options',
+			'ai-content-tool-product-description',
+			array( $this, 'ai_content_tool_product_description'),
+			95
+		);
+
+		add_submenu_page(
+			null,
+			'AI Product Collection Summary Tool',
+			'AI Product Collection Summary Tool',
+			'manage_options',
+			'ai-content-tool-product-collection-summary',
+			array( $this, 'ai_content_tool_product_collection_summary'),
+			100
+		);
+
+		add_submenu_page(
+			null,
+			'AI Long Form Blog Post Tool',
+			'AI Long Form Blog Post Tool',
+			'manage_options',
+			'ai-content-tool-long-form-blog-post',
+			array( $this, 'ai_content_tool_long_form_blog_post'),
+			105
+		);
+
+		add_submenu_page(
+			null,
+			'AI Book Chapter Tool',
+			'AI Book Chapter Tool',
+			'manage_options',
+			'ai-content-tool-book-chapter',
+			array( $this, 'ai_content_tool_book_chapter'),
+			110
+		);
+
+		add_submenu_page(
+			null,
+			'AI SEO Article Tool',
+			'AI SEO Article Tool',
+			'manage_options',
+			'ai-content-tool-seo-article',
+			array( $this, 'ai_content_tool_seo_article'),
+			115
+		);
+
+		add_submenu_page(
+			null,
+			'AI Inspirational Quotes Tool',
+			'AI Inspirational Quotes Tool',
+			'manage_options',
+			'ai-content-tool-inspirational-quotes',
+			array( $this, 'ai_content_tool_inspirational_quotes'),
+			120
+		);
+
+		add_submenu_page(
+			null,
+			'AI Email Generator Tool',
+			'AI Email Generator Tool',
+			'manage_options',
+			'ai-content-tool-email-generator',
+			array( $this, 'ai_content_tool_email_generator'),
+			125
+		);
+
+		add_submenu_page(
+			null,
+			'AI Youtube Tag Generator Tool',
+			'AI Youtube Tag Generator Tool',
+			'manage_options',
+			'ai-content-tool-youtube-tag-generator',
+			array( $this, 'ai_content_tool_youtube_tag_generator'),
+			130
+		);
+
+		add_submenu_page(
+			null,
+			'AI Facebook Ads Tool',
+			'AI Facebook Ads Tool',
+			'manage_options',
+			'ai-content-tool-youtube-facebook-ads',
+			array( $this, 'ai_content_tool_facebook_ads'),
+			135
+		);
+
+		add_submenu_page(
+			null,
+			'AI Alternative Article Tool',
+			'AI Alternative Article Tool',
+			'manage_options',
+			'ai-content-tool-alternative-article',
+			array( $this, 'ai_content_tool_alternative_article'),
+			140
+		);
+
+		add_submenu_page(
+			null,
+			'AI Alternative Article Tool',
+			'AI Alternative Article Tool',
+			'manage_options',
+			'ai-content-tool-alternative-article',
+			array( $this, 'ai_content_tool_alternative_article'),
+			145
+		);
+
+		add_submenu_page(
+			null,
+			'AI Content Calendar Tool',
+			'AI Content Calendar Tool',
+			'manage_options',
+			'ai-content-tool-content-calendar',
+			array( $this, 'ai_content_tool_content_calendar'),
+			150
+		);
+
+		add_submenu_page(
+			null,
+			'AI Silo Structure Tool',
+			'AI Silo Structure Tool',
+			'manage_options',
+			'ai-content-tool-silo-structure',
+			array( $this, 'ai_content_tool_silo_structure'),
+			150
+		);
+
+		add_submenu_page(
+			null,
+			'AI FAQ Tool',
+			'AI FAQ Tool',
+			'manage_options',
+			'ai-content-tool-faq',
+			array( $this, 'ai_content_tool_faq'),
+			150
+		);
+
+
 
 	 }
 
@@ -425,6 +601,76 @@ class AI_Content_Toolkit_Run{
 	 function ai_content_tool_product_comparison() {
 		include AICONTENTT_PLUGIN_DIR . "core/includes/t13-product-comparison.php";
 	 }
+
+	 function ai_content_tool_five_product_comparison() {
+		include AICONTENTT_PLUGIN_DIR . "core/includes/t-14-five-product-comparison.php";
+	 }
+
+	 function ai_content_tool_amazon_product_review() {
+		include AICONTENTT_PLUGIN_DIR . "core/includes/t-15-amazon-product-review.php";
+	 }
+
+	 function ai_content_tool_product_review() {
+		include AICONTENT_PLUGIN_DIR . "core/includes/t-16-product-review.php";
+	 }
+
+	 function ai_content_tool_product_description() {
+		include AICONTENT_PLUGIN_DIR . "core/includes/t-17-product-description.php";
+	 }
+
+	 function ai_content_tool_product_collection_summary() {
+		include AICONTENT_PLUGIN_DIR . "core/includes/t-18-product-collection-summary.php";
+	 }
+
+	 function ai_content_tool_long_form_blog_post() {
+		include AICONTENT_PLUGIN_DIR . "core/includes/t-19-long-form.php";
+	 }
+
+	 function ai_content_tool_short_story() {
+		include AICONTENT_PLUGIN_DIR . "core/includes/t-20-short-story.php";
+	 }
+
+	 function ai_content_tool_book_chapter() {
+		include AICONTENT_PLUGIN_DIR . "core/includes/t-21-book-chapter.php";
+	 }
+
+	 function ai_content_tool_seo_article() {
+		include AICONTENT_PLUGIN_DIR . "core/includes/t-22-seo-article.php";
+	 }
+
+	 function ai_content_tool_inspirational_quotes() {
+		include AICONTENT_PLUGIN_DIR . "core/includes/t-23-inpirational-quotes.php";
+	 }
+
+	 function ai_content_tool_email_generator() {
+		include AICONTENT_PLUGIN_DIR . "core/includes/t-24-email-generator.php";
+	 }
+
+	 function ai_content_tool_youtube_tag_generator() {
+		include AICONTENT_PLUGIN_DIR . "core/includes/t-25-youtube-tag-generator.php";
+	 }
+
+	 function ai_content_tool_facebook_ads() {
+		include AICONTENT_PLUGIN_DIR . "core/includes/t-26-facebook-ads.php";
+	 }
+
+	 function ai_content_tool_alternative_article() {
+		include AICONTENT_PLUGIN_DIR . "core/includes/t-27-alternative-article.php";
+	 }
+
+	 function ai_content_tool_content_calendar() {
+		include AICONTENT_PLUGIN_DIR . "core/includes/t-28-content-calendar.php";
+	 }
+
+	 function ai_content_tool_silo_structure() {
+		include AICONTENT_PLUGIN_DIR . "core/includes/t-29-silo-structure.php";
+	 }
+
+	 fucntion ai_content_tool_faq() {
+		include AICONTENT_PLUGIN_DIR . "core/includes/t-30-faq.php";
+	 }
+
+
 	 
 
 	 //CREATE TABLES
