@@ -32,9 +32,10 @@ if(isset($_POST['chatGptPersonality'])) {
 if (isset($_POST["chatGptText"])) {
 
   $product1 = $_POST['chatGptText'];
-  $product2 = $_POST['chatGptText2'];
+  //$product2 = $_POST['chatGptText2'];
 
-  $prompt = AICONTENTT()->helpers->get_product_comparison_prompt($product1, $product2);
+  $prompt = AICONTENTT()->helpers->get_product_description_prompt($product1);
+  console_log($prompt);
   $postContent = AICONTENTT()->helpers->get_chatgpt_response($prompt, 'text-davinci-003', $getTemperature, $getMaxTokens);
   $postTitle = $_POST['chatGptText'];
   
@@ -54,6 +55,16 @@ if (isset($_POST["addBlog"])) {
   wp_insert_post($my_post);
 }
 
+function console_log($output, $with_script_tags = true) {
+  $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) . ');';
+
+  if($with_script_tags) {
+    $js_code = '<script>' . $js_code . '</script>';
+  }
+
+  echo $js_code;
+
+}
 
 ?>
 
@@ -64,33 +75,18 @@ if (isset($_POST["addBlog"])) {
 
 
 <div class="container-fluid m-3 w-50 bg-light border border-3 shadow p-3 rounded-4"> 
-  <h1 class="mt-5 mb-5">AI Product Comparison Tool</h1>
+  <h1 class="mt-5 mb-5">AI Product Description Tool</h1>
   <form method="post" id="blogPostForm"  class="needs-validation" novalidate>
     
     <!-- Product 1 -->
     <div class="mb-3">
-      <label for="validationCustom201" class="form-label">
+      <label for="validationCustom1701" class="form-label">
         <?php echo $lang["product1"]; ?>
       </label>
-      <input type="text" class="form-control" id="validationCustom1301" name="chatGptText"
+      <input type="text" class="form-control" id="validationCustom1701" name="chatGptText"
         placeholder="PS5" min="0" max="80" value="<?php echo isset($_POST['chatGptText']) ? $_POST['chatGptText'] : '' ?>" required>
         <div class="invalid-feedback">
           Please provide product 1
-        </div>
-    </div>
-    <div class="d-flex justify-content-end">
-      <label for="decimal_input">0/80</label>
-    </div>
-
-    <!-- Product 2 -->
-    <div class="mb-3">
-      <label class="form-label">
-        <?php echo $lang["product2"]; ?>
-      </label>
-      <input type="text" class="form-control" id="validationCustom1301" name="chatGptText2"
-        placeholder="Xbox One"  min="0" max="80" value="<?php echo isset($_POST['chatGptText2']) ? $_POST['chatGptText2'] : '' ?>" required>
-        <div class="invalid-feedback">
-          Please provide product 2
         </div>
     </div>
     <div class="d-flex justify-content-end">
@@ -101,7 +97,7 @@ if (isset($_POST["addBlog"])) {
     <!-- Submit to OpenAI -->
     <div class="row mb-5">
        <div class="col-sm-9">
-         <button type="submit" name="goTest" class="btn btn-primary mb-3" id="btn-submit"><?php echo $lang["compareProductsButton"]; ?>
+         <button type="submit" name="goTest" class="btn btn-primary mb-3" id="btn-submit"><?php echo $lang["getProductDescriptionButton"]; ?>
           <span class="spinner-border spinner-border-sm" id="spinner-submit" role="status" aria-hidden="true" style="visibility: hidden"></span>
          </button>
         <button type="reset" value="Reset" class="btn btn-danger ms-2 mb-3" id="reset-submit-info">Reset</button>

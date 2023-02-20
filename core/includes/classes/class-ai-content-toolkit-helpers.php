@@ -202,6 +202,11 @@ class AI_Content_Toolkit_Helpers{
 		return $prompt;
 	}
 
+	public function get_product_description_prompt($product) {
+		$prompt = 'I want you to pretend that you are an E-commerce SEO expert who writes compelling product descriptions for users looking to buy online. Write a product description for: ' . $product . ' and I want you to come up with a minimum of three distinct content sections for the product description, each section about a unique subset of keywords relating to the product I provide you. Make sure that each of the unique content sections are labeled with an informative and eye-catching subheading describing the main focus of the content section. The main point of these commands is for you to developing a new keyword-rich, informative, and captivating product summary/description that is less than 1000 words. The purpose of the product description is marketing the products to users looking to buy. After you generate the new product summary, please generate a bulleted list of 5 possible H1 headings for this product page, and make each H1 less than 7 words each. Please also include a bulleted list of broad match keywords. Write a persuasive and professional sounding Meta Title and Description. Make sure to include a numerical aspect in the Meta Title.';
+		return $prompt;
+	}
+
 
 
 
