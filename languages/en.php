@@ -52,5 +52,7 @@
     $lang["longFormButton"] = "Get Article";
     $lang["shortStoryTopic"] = "Topic";
     $lang["shortStoryButton"] = "Create Story";
+    $lang["bookChapterTitle"] = "Chapter Title";
+    $lang["chapterTitleButton"] = "Get Chapter";
 ?>
 
