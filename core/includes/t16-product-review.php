@@ -32,9 +32,9 @@ if(isset($_POST['chatGptPersonality'])) {
 if (isset($_POST["chatGptText"])) {
 
   $product1 = $_POST['chatGptText'];
-  $product2 = $_POST['chatGptText2'];
+  //$product2 = $_POST['chatGptText2'];
 
-  $prompt = AICONTENTT()->helpers->get_product_comparison_prompt($product1, $product2);
+  $prompt = AICONTENTT()->helpers->get_product_review_prompt($product1);
   $postContent = AICONTENTT()->helpers->get_chatgpt_response($prompt, 'text-davinci-003', $getTemperature, $getMaxTokens);
   $postTitle = $_POST['chatGptText'];
   
@@ -64,7 +64,7 @@ if (isset($_POST["addBlog"])) {
 
 
 <div class="container-fluid m-3 w-50 bg-light border border-3 shadow p-3 rounded-4"> 
-  <h1 class="mt-5 mb-5">AI Product Comparison Tool</h1>
+  <h1 class="mt-5 mb-5">AI Product Review Tool</h1>
   <form method="post" id="blogPostForm"  class="needs-validation" novalidate>
     
     <!-- Product 1 -->
@@ -73,24 +73,9 @@ if (isset($_POST["addBlog"])) {
         <?php echo $lang["product1"]; ?>
       </label>
       <input type="text" class="form-control" id="validationCustom1301" name="chatGptText"
-        placeholder="PS5" min="0" max="80" value="<?php echo isset($_POST['chatGptText']) ? $_POST['chatGptText'] : '' ?>" required>
+        placeholder="Philips Sonicare" min="0" max="80" value="<?php echo isset($_POST['chatGptText']) ? $_POST['chatGptText'] : '' ?>" required>
         <div class="invalid-feedback">
           Please provide product 1
-        </div>
-    </div>
-    <div class="d-flex justify-content-end">
-      <label for="decimal_input">0/80</label>
-    </div>
-
-    <!-- Product 2 -->
-    <div class="mb-3">
-      <label class="form-label">
-        <?php echo $lang["product2"]; ?>
-      </label>
-      <input type="text" class="form-control" id="validationCustom1301" name="chatGptText2"
-        placeholder="Xbox One"  min="0" max="80" value="<?php echo isset($_POST['chatGptText2']) ? $_POST['chatGptText2'] : '' ?>" required>
-        <div class="invalid-feedback">
-          Please provide product 2
         </div>
     </div>
     <div class="d-flex justify-content-end">
@@ -116,7 +101,7 @@ if (isset($_POST["addBlog"])) {
       <label class="form-label">
         <?php echo $lang["blogTitle"]; ?>
       </label>
-      <input type="text" name="postTitle" placeholder="How To Become An Affiliate Marketer" id="postTitle"
+      <input type="text" name="postTitle" placeholder="Philips Sonicare Review" id="postTitle"
         class="form-control" value="<?php echo ucwords($postTitle); ?>" />
     </div>
 

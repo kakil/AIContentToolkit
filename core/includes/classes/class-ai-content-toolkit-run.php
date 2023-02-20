@@ -616,63 +616,63 @@ class AI_Content_Toolkit_Run{
 	 }
 
 	 function ai_content_tool_product_review() {
-		include AICONTENT_PLUGIN_DIR . "core/includes/t16-product-review.php";
+		include AICONTENTT_PLUGIN_DIR . "core/includes/t16-product-review.php";
 	 }
 
 	 function ai_content_tool_product_description() {
-		include AICONTENT_PLUGIN_DIR . "core/includes/t17-product-description.php";
+		include AICONTENTT_PLUGIN_DIR . "core/includes/t17-product-description.php";
 	 }
 
 	 function ai_content_tool_product_collection_summary() {
-		include AICONTENT_PLUGIN_DIR . "core/includes/t18-product-collection-summary.php";
+		include AICONTENTT_PLUGIN_DIR . "core/includes/t18-product-collection-summary.php";
 	 }
 
 	 function ai_content_tool_long_form_blog_post() {
-		include AICONTENT_PLUGIN_DIR . "core/includes/t19-long-form.php";
+		include AICONTENTT_PLUGIN_DIR . "core/includes/t19-long-form.php";
 	 }
 
 	 function ai_content_tool_short_story() {
-		include AICONTENT_PLUGIN_DIR . "core/includes/t20-short-story.php";
+		include AICONTENTT_PLUGIN_DIR . "core/includes/t20-short-story.php";
 	 }
 
 	 function ai_content_tool_book_chapter() {
-		include AICONTENT_PLUGIN_DIR . "core/includes/t21-book-chapter.php";
+		include AICONTENTT_PLUGIN_DIR . "core/includes/t21-book-chapter.php";
 	 }
 
 	 function ai_content_tool_seo_article() {
-		include AICONTENT_PLUGIN_DIR . "core/includes/t22-seo-article.php";
+		include AICONTENTT_PLUGIN_DIR . "core/includes/t22-seo-article.php";
 	 }
 
 	 function ai_content_tool_inspirational_quotes() {
-		include AICONTENT_PLUGIN_DIR . "core/includes/t23-inpirational-quotes.php";
+		include AICONTENTT_PLUGIN_DIR . "core/includes/t23-inpirational-quotes.php";
 	 }
 
 	 function ai_content_tool_email_generator() {
-		include AICONTENT_PLUGIN_DIR . "core/includes/t24-email-generator.php";
+		include AICONTENTT_PLUGIN_DIR . "core/includes/t24-email-generator.php";
 	 }
 
 	 function ai_content_tool_youtube_tag_generator() {
-		include AICONTENT_PLUGIN_DIR . "core/includes/t25-youtube-tag-generator.php";
+		include AICONTENTT_PLUGIN_DIR . "core/includes/t25-youtube-tag-generator.php";
 	 }
 
 	 function ai_content_tool_facebook_ads() {
-		include AICONTENT_PLUGIN_DIR . "core/includes/t26-facebook-ads.php";
+		include AICONTENTT_PLUGIN_DIR . "core/includes/t26-facebook-ads.php";
 	 }
 
 	 function ai_content_tool_alternative_article() {
-		include AICONTENT_PLUGIN_DIR . "core/includes/t27-alternative-article.php";
+		include AICONTENTT_PLUGIN_DIR . "core/includes/t27-alternative-article.php";
 	 }
 
 	 function ai_content_tool_content_calendar() {
-		include AICONTENT_PLUGIN_DIR . "core/includes/t28-content-calendar.php";
+		include AICONTENTT_PLUGIN_DIR . "core/includes/t28-content-calendar.php";
 	 }
 
 	 function ai_content_tool_silo_structure() {
-		include AICONTENT_PLUGIN_DIR . "core/includes/t29-silo-structure.php";
+		include AICONTENTT_PLUGIN_DIR . "core/includes/t29-silo-structure.php";
 	 }
 
 	 function ai_content_tool_faq() {
-		include AICONTENT_PLUGIN_DIR . "core/includes/t30-faq.php";
+		include AICONTENTT_PLUGIN_DIR . "core/includes/t30-faq.php";
 	 }
 
 

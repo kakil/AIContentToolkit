@@ -64,7 +64,7 @@ if (isset($_POST["addBlog"])) {
 
 
 <div class="container-fluid m-3 w-50 bg-light border border-3 shadow p-3 rounded-4"> 
-  <h1 class="mt-5 mb-5">AI Amazon Product Description Tool</h1>
+  <h1 class="mt-5 mb-5">AI Amazon Product Review Tool</h1>
   <form method="post" id="blogPostForm"  class="needs-validation" novalidate>
     
     <!-- Product 1 -->

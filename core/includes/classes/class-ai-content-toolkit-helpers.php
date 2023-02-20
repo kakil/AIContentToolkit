@@ -197,6 +197,11 @@ class AI_Content_Toolkit_Helpers{
 		return $prompt;
 	}
 
+	public function get_product_review_prompt($product) {
+		$prompt = 'You write a product review article Minimum 100000000 character. Include SEO Article Title, SEO meta description, Focus keyword, Short article summary Introduction, products Information, Article body, Why people prefer This product, Additional Features, Warranty & Service, Other Users Opinion, Final Verdict, Pros and cons, Conclusion, See more information and Buy on amazon, 5 FAQ and answer. 5 article relevant Photo Link. English. The product to review is: ' . $product . '.';
+		return $prompt;
+	}
+
 
 
 
