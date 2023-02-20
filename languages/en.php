@@ -48,5 +48,7 @@
     $lang["multipleProductReviewButton"] = "Review Products";
     $lang["getProductDescriptionButton"] = "Get Description";
     $lang["getMisconceptionsButton"] = "Get Misconceptions";
+    $lang["longFormTopic"] = "Topic or Keyword";
+    $lang["longFormButton"] = "Get Article";
 ?>
 

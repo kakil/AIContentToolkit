@@ -213,6 +213,11 @@ class AI_Content_Toolkit_Helpers{
 		return $prompt;
 	}
 
+	public function get_long_form_prompt($topic) {
+		$prompt = 'Write an article on "' . $topic . '" in a conversational style that is at least 1000 words long. Assume the persona of a professional copywriter who is very proficient in SEO and knows everything about Google guidelines for EAT. Pretend that you can write content so good in English that it can outrank other websites. Use contractions, colloquialisms, and other language that is commonly used in everyday conversation to make the content feel more human. Additionally, express personal feelings about the topic too. Make the article a long form article and use useful subheadings with keyword-rich titles. Get to the point precisely and accurately. Make headings bold and appropriate for h tags. Format all the headings in valid markdown syntax. Do not explain how SEO works. Do not lecture on general SEO rules. Do not explain what the Google EAT guidelines are. Do not self-reference. Do not use generic filler phrases. Do not write a conclusion paragraph at the end. Do not address the readers directly. Do not use greetings.';
+		return $prompt;
+	}
+
 
 
 
