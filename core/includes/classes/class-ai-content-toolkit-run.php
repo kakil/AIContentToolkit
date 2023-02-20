@@ -362,8 +362,8 @@ class AI_Content_Toolkit_Run{
 			'AI Single Product Review Tool',
 			'AI Single Product Review Tool',
 			'manage_options',
-			'ai-content-tool-single-product-review',
-			array( $this, 'ai_content_tool_single_product_review'),
+			'ai-content-tool-multiple-product-review',
+			array( $this, 'ai_content_tool_multiple_product_review'),
 			85
 		);
 
@@ -607,8 +607,8 @@ class AI_Content_Toolkit_Run{
 		include AICONTENTT_PLUGIN_DIR . "core/includes/t13-product-comparison.php";
 	 }
 
-	 function ai_content_tool_single_product_review() {
-		include AICONTENTT_PLUGIN_DIR . "core/includes/t14-single-product-review.php";
+	 function ai_content_tool_multiple_product_review() {
+		include AICONTENTT_PLUGIN_DIR . "core/includes/t14-multiple-product-review.php";
 	 }
 
 	 function ai_content_tool_amazon_product_review() {

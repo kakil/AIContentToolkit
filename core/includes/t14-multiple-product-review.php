@@ -32,9 +32,10 @@ if(isset($_POST['chatGptPersonality'])) {
 if (isset($_POST["chatGptText"])) {
 
   $product1 = $_POST['chatGptText'];
-  //$product2 = $_POST['chatGptText2'];
+  $product2 = $_POST['chatGptText2'];
+  $product3 = $_POST['chatGptText3'];
 
-  $prompt = AICONTENTT()->helpers->get_single_product_review_prompt($product1);
+  $prompt = AICONTENTT()->helpers->get_multiple_product_review_prompt($product1, $product2, $product3);
   $postContent = AICONTENTT()->helpers->get_chatgpt_response($prompt, 'text-davinci-003', $getTemperature, $getMaxTokens);
   $postTitle = $_POST['chatGptText'];
   
@@ -69,11 +70,41 @@ if (isset($_POST["addBlog"])) {
     
     <!-- Product 1 -->
     <div class="mb-3">
-      <label for="validationCustom201" class="form-label">
+      <label for="validationCustom1401" class="form-label">
         <?php echo $lang["product1"]; ?>
       </label>
-      <input type="text" class="form-control" id="validationCustom1301" name="chatGptText"
+      <input type="text" class="form-control" id="validationCustom1401" name="chatGptText"
         placeholder="Apple Watch" min="0" max="80" value="<?php echo isset($_POST['chatGptText']) ? $_POST['chatGptText'] : '' ?>" required>
+        <div class="invalid-feedback">
+          Please provide product 1
+        </div>
+    </div>
+    <div class="d-flex justify-content-end">
+      <label for="decimal_input">0/80</label>
+    </div>
+
+    <!-- Product 2 -->
+    <div class="mb-3">
+      <label for="validationCustom1402" class="form-label">
+        <?php echo $lang["product2"]; ?>
+      </label>
+      <input type="text" class="form-control" id="validationCustom1402" name="chatGptText2"
+        placeholder="Fitbit Luxe Fitness" min="0" max="80" value="<?php echo isset($_POST['chatGptText2']) ? $_POST['chatGptText2'] : '' ?>" required>
+        <div class="invalid-feedback">
+          Please provide product 1
+        </div>
+    </div>
+    <div class="d-flex justify-content-end">
+      <label for="decimal_input">0/80</label>
+    </div>
+
+    <!-- Product 3 -->
+    <div class="mb-3">
+      <label for="validationCustom1403" class="form-label">
+        <?php echo $lang["product3"]; ?>
+      </label>
+      <input type="text" class="form-control" id="validationCustom1403" name="chatGptText3"
+        placeholder="Garmin fenix 7S Solar" min="0" max="80" value="<?php echo isset($_POST['chatGptText3']) ? $_POST['chatGptText3'] : '' ?>" required>
         <div class="invalid-feedback">
           Please provide product 1
         </div>

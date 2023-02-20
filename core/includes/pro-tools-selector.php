@@ -27,9 +27,9 @@ include "header.php";
 				<div class="card h-100 shadow p-3 mb-5 bg-white rounded">
 					<img src="<?php echo AICONTENTT_PLUGIN_URL . 'core/includes/assets/images/AI_Toolkit_Plugin_Image_14.png'; ?>" alt="robot idea" class="card-img-top">
 					<div class="card-body">
-						<h5 class="card-title">Single Product Review Tool</h5>
-						<p class="card-text">This tool will write an article that reviews a product.</p><br/><br/>
-						<a href="<?php menu_page_url( 'ai-content-tool-single-product-review' ); ?>" title="<?php echo __( 'AI Single Product Review', 'toolkit' ) ?>" class="btn btn-primary">Create Product Review</a>
+						<h5 class="card-title">Multiple Product Review Tool</h5>
+						<p class="card-text">This tool will review several articles at one time.</p><br/><br/>
+						<a href="<?php menu_page_url( 'ai-content-tool-multiple-product-review' ); ?>" title="<?php echo __( 'AI Single Product Review', 'toolkit' ) ?>" class="btn btn-primary">Create Product Review</a>
 					</div>
 				</div>
 			</div>
