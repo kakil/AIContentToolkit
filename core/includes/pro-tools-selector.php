@@ -28,8 +28,8 @@ include "header.php";
 					<img src="<?php echo AICONTENTT_PLUGIN_URL . 'core/includes/assets/images/AI_Toolkit_Plugin_Image_14.png'; ?>" alt="robot idea" class="card-img-top">
 					<div class="card-body">
 						<h5 class="card-title">Top 5 Product Comparison Tool</h5>
-						<p class="card-text">This tool will write an article that compares 5 products.</p>
-						<a href="<?php menu_page_url( 'ai-content-tool-blog-post-outline' ); ?>" title="<?php echo __( 'AI Blog Post Outline', 'toolkit' ) ?>" class="btn btn-primary">Create Blog Post Outline</a>
+						<p class="card-text">This tool will write an article that compares 5 products.</p><br/><br/>
+						<a href="<?php menu_page_url( 'ai-content-tool-five-product-comparison' ); ?>" title="<?php echo __( 'AI Five Product Comparison', 'toolkit' ) ?>" class="btn btn-primary">Create Product Comparison</a>
 					</div>
 				</div>
 			</div>
@@ -41,7 +41,7 @@ include "header.php";
 					<div class="card-body">
 						<h5 class="card-title">Amazon Product Review Tool</h5>
 						<p class="card-text">This tool will write an article that reviews an Amazon product.</p><br/>
-						<a href="<?php menu_page_url( 'ai-content-tool-brainstorming' ); ?>" title="<?php echo __( 'AI Brainstorming', 'toolkit' ) ?>" class="btn btn-primary">Brainstorm A Topic</a>
+						<a href="<?php menu_page_url( 'ai-content-tool-amazon-product-review' ); ?>" title="<?php echo __( 'AI Amazon Product Review', 'toolkit' ) ?>" class="btn btn-primary">Create Amazon Product Review</a>
 					</div>
 				</div>
 			</div>
@@ -58,8 +58,8 @@ include "header.php";
 					<img src="<?php echo AICONTENTT_PLUGIN_URL . 'core/includes/assets/images/AI_Toolkit_Plugin_Image_16.png'; ?>" alt="robot head exploded" class="card-img-top">
 					<div class="card-body">
 						<h5 class="card-title">Product Review Tool</h5>
-						<p class="card-text">This tool will create a generic product review.</p><br/>
-						<a href="<?php menu_page_url( 'ai-content-tool-mindmap' ); ?>" title="<?php echo __( 'AI Mind Map', 'toolkit' ) ?>" class="btn btn-primary">Create Mind Map</a>
+						<p class="card-text">This tool will create a generic product review.</p><br/><br>
+						<a href="<?php menu_page_url( 'ai-content-tool-product-review' ); ?>" title="<?php echo __( 'AI Product Review', 'toolkit' ) ?>" class="btn btn-primary">Create Product Review</a>
 					</div>
 				</div>
 			</div>
@@ -70,8 +70,8 @@ include "header.php";
 					<img src="<?php echo AICONTENTT_PLUGIN_URL . 'core/includes/assets/images/AI_Toolkit_Plugin_Image_17.png'; ?>" alt="robot idea" class="card-img-top">
 					<div class="card-body">
 						<h5 class="card-title">Product Description Tool</h5>
-						<p class="card-text">This tool will create a product description.</p>
-						<a href="<?php menu_page_url( 'ai-content-tool-advanced-blog-post' ); ?>" title="<?php echo __( 'AI Advanced Blog Post Tool', 'toolkit' ) ?>" class="btn btn-primary">Create Advanced Post</a>
+						<p class="card-text">This tool will create a product description.</p><br/><br/>
+						<a href="<?php menu_page_url( 'ai-content-tool-product-description' ); ?>" title="<?php echo __( 'AI Product Description Tool', 'toolkit' ) ?>" class="btn btn-primary">Create Product Description</a>
 					</div>
 				</div>
 			</div>
@@ -83,7 +83,7 @@ include "header.php";
 					<div class="card-body">
 						<h5 class="card-title">Product Collection Tool</h5>
 						<p class="card-text">This tool will create a product collection summary article.</p><br/>
-						<a href="<?php menu_page_url( 'ai-content-tool-keywords' ); ?>" title="<?php echo __( 'AI Keywords', 'toolkit' ) ?>" class="btn btn-primary">Find Keywords</a>
+						<a href="<?php menu_page_url( 'ai-content-tool-product-collection-summary' ); ?>" title="<?php echo __( 'AI Product Collection Summary', 'toolkit' ) ?>" class="btn btn-primary">Create Product Summary</a>
 					</div>
 				</div>
 			</div>
@@ -101,7 +101,7 @@ include "header.php";
 					<div class="card-body">
 						<h5 class="card-title">Long Form Blog Post Tool</h5>
 						<p class="card-text">This tool will create a long form blog post.</p>
-						<a href="<?php menu_page_url( 'ai-content-tool-how-to-article' ); ?>" title="<?php echo __( 'AI Article Tool - How To', 'toolkit' ) ?>" class="btn btn-primary">Create Article</a>
+						<a href="<?php menu_page_url( 'ai-content-tool-long-form-blog-post' ); ?>" title="<?php echo __( 'AI Long Form Blog Post Tool', 'toolkit' ) ?>" class="btn btn-primary">Create Long Form Blog Post</a>
 					</div>
 				</div>
 			</div>
@@ -113,7 +113,7 @@ include "header.php";
 					<div class="card-body">
 						<h5 class="card-title">Short Story Generator Tool</h5>
 						<p class="card-text">This tool will create a short story.</p>
-						<a href="<?php menu_page_url( 'ai-content-tool-list-article' ); ?>" title="<?php echo __( 'AI List Blog Post Tool', 'toolkit' ) ?>" class="btn btn-primary">Create List Post</a>
+						<a href="<?php menu_page_url( 'ai-content-tool-short-story' ); ?>" title="<?php echo __( 'AI Short Story Generator', 'toolkit' ) ?>" class="btn btn-primary">Create Short Story</a>
 					</div>
 				</div>
 			</div>
@@ -125,7 +125,7 @@ include "header.php";
 					<div class="card-body">
 						<h5 class="card-title">Book Chapter Tool</h5>
 						<p class="card-text">This tool will create chapter for a book.</p>
-						<a href="<?php menu_page_url( 'ai-content-tool-astrology' ); ?>" title="<?php echo __( 'AI Astrology Tool', 'toolkit' ) ?>" class="btn btn-primary">Astrology Reading</a>
+						<a href="<?php menu_page_url( 'ai-content-tool-book-chapter' ); ?>" title="<?php echo __( 'AI Book Chapter Tool', 'toolkit' ) ?>" class="btn btn-primary">Create a Book Chapter</a>
 					</div>
 				</div>
 			</div>
@@ -142,7 +142,7 @@ include "header.php";
 					<div class="card-body">
 						<h5 class="card-title">100% Human SEO Article Tool</h5>
 						<p class="card-text">This tool will create an SEO article with 100% human content.</p>
-						<a href="<?php menu_page_url( 'ai-content-tool-video-script' ); ?>" title="<?php echo __( 'AI Video Script Tool', 'toolkit' ) ?>" class="btn btn-primary">Create Script</a>
+						<a href="<?php menu_page_url( 'ai-content-tool-seo-article' ); ?>" title="<?php echo __( 'AI SEO Article Tool', 'toolkit' ) ?>" class="btn btn-primary">Create SEO Article</a>
 					</div>
 				</div>
 			</div>
@@ -154,7 +154,7 @@ include "header.php";
 					<div class="card-body">
 						<h5 class="card-title">Inspirational Quotes Tool</h5>
 						<p class="card-text">This tool will create a list of inspirational quotes.</p>
-						<a href="<?php menu_page_url( 'ai-content-tool-long-tail-keywords' ); ?>" title="<?php echo __( 'AI Long Tail Keyword Tool', 'toolkit' ) ?>" class="btn btn-primary">Create Keyword List</a>
+						<a href="<?php menu_page_url( 'ai-content-tool-inspirational-quotes' ); ?>" title="<?php echo __( 'AI Inspirational Quotes Tool', 'toolkit' ) ?>" class="btn btn-primary">Create Inspirational Quotes</a>
 					</div>
 				</div>
 			</div>
@@ -165,8 +165,8 @@ include "header.php";
 					<img src="<?php echo AICONTENTT_PLUGIN_URL . 'core/includes/assets/images/AI_Toolkit_Plugin_Image_24.png'; ?>" alt="robot thinking" class="card-img-top">
 					<div class="card-body">
 						<h5 class="card-title">Email Generator Tool</h5>
-						<p class="card-text">This tool will create an email to promote anything.</p>
-						<a href="<?php menu_page_url( 'ai-content-tool-image-generator' ); ?>" title="<?php echo __( 'AI Image Generator Tool', 'toolkit' ) ?>" class="btn btn-primary">Generate Images</a>
+						<p class="card-text">This tool will create an email to promote anything.</p><br/>
+						<a href="<?php menu_page_url( 'ai-content-tool-email-generator' ); ?>" title="<?php echo __( 'AI Email Generator Tool', 'toolkit' ) ?>" class="btn btn-primary">Generate Email</a>
 					</div>
 				</div>
 			</div>
@@ -182,8 +182,8 @@ include "header.php";
 					<img src="<?php echo AICONTENTT_PLUGIN_URL . 'core/includes/assets/images/AI_Toolkit_Plugin_Image_25.png'; ?>" alt="robot head exploded" class="card-img-top">
 					<div class="card-body">
 						<h5 class="card-title">Youtube Tag Generator Tool</h5>
-						<p class="card-text">This tool will generate Youtube tags.</p>
-						<a href="<?php menu_page_url( 'ai-content-tool-video-script' ); ?>" title="<?php echo __( 'AI Video Script Tool', 'toolkit' ) ?>" class="btn btn-primary">Create Script</a>
+						<p class="card-text">This tool will generate Youtube tags.</p><br/>
+						<a href="<?php menu_page_url( 'ai-content-tool-youtube-tag-generator' ); ?>" title="<?php echo __( 'AI Youtube Tag Generator Tool', 'toolkit' ) ?>" class="btn btn-primary">Create Tags</a>
 					</div>
 				</div>
 			</div>
@@ -195,7 +195,7 @@ include "header.php";
 					<div class="card-body">
 						<h5 class="card-title">Facebook Ad Copy Tool</h5>
 						<p class="card-text">This tool will generate Facebook Ads.</p>
-						<a href="<?php menu_page_url( 'ai-content-tool-long-tail-keywords' ); ?>" title="<?php echo __( 'AI Long Tail Keyword Tool', 'toolkit' ) ?>" class="btn btn-primary">Create Keyword List</a>
+						<a href="<?php menu_page_url( 'ai-content-tool-Facebook-Ads' ); ?>" title="<?php echo __( 'AI Facebook Ads Tool', 'toolkit' ) ?>" class="btn btn-primary">Create Facebook Ads</a>
 					</div>
 				</div>
 			</div>
@@ -207,7 +207,7 @@ include "header.php";
 					<div class="card-body">
 						<h5 class="card-title">Alternate Perspective Article Tool</h5>
 						<p class="card-text">This tool will generate an article with a surprising viewpoint.</p>
-						<a href="<?php menu_page_url( 'ai-content-tool-image-generator' ); ?>" title="<?php echo __( 'AI Image Generator Tool', 'toolkit' ) ?>" class="btn btn-primary">Generate Images</a>
+						<a href="<?php menu_page_url( 'ai-content-tool-alternative-article' ); ?>" title="<?php echo __( 'AI Alternative Article Tool', 'toolkit' ) ?>" class="btn btn-primary">Generate Alternative Article</a>
 					</div>
 				</div>
 			</div>
@@ -223,8 +223,8 @@ include "header.php";
 					<img src="<?php echo AICONTENTT_PLUGIN_URL . 'core/includes/assets/images/AI_Toolkit_Plugin_Image_28.png'; ?>" alt="robot head exploded" class="card-img-top">
 					<div class="card-body">
 						<h5 class="card-title">Content Calendar Tool</h5>
-						<p class="card-text">This AI tool will help you generate a content calendar.</p>
-						<a href="<?php menu_page_url( 'ai-content-tool-video-script' ); ?>" title="<?php echo __( 'AI Video Script Tool', 'toolkit' ) ?>" class="btn btn-primary">Create Script</a>
+						<p class="card-text">This AI tool will help you generate a content calendar.</p><br/><br/>
+						<a href="<?php menu_page_url( 'ai-content-tool-content-calendar' ); ?>" title="<?php echo __( 'AI Content Calendar Tool', 'toolkit' ) ?>" class="btn btn-primary">Create Content Calendar</a>
 					</div>
 				</div>
 			</div>
@@ -235,8 +235,8 @@ include "header.php";
 					<img src="<?php echo AICONTENTT_PLUGIN_URL . 'core/includes/assets/images/AI_Toolkit_Plugin_Image_29.png'; ?>" alt="robot idea" class="card-img-top">
 					<div class="card-body">
 						<h5 class="card-title">Website Silo Structure Tool</h5>
-						<p class="card-text">This tool will help you create a silo structure for your website.</p>
-						<a href="<?php menu_page_url( 'ai-content-tool-long-tail-keywords' ); ?>" title="<?php echo __( 'AI Long Tail Keyword Tool', 'toolkit' ) ?>" class="btn btn-primary">Create Keyword List</a>
+						<p class="card-text">This tool will help you create a silo structure for your website.</p><br/>
+						<a href="<?php menu_page_url( 'ai-content-tool-silo-structure' ); ?>" title="<?php echo __( 'AI Silo Structure Tool', 'toolkit' ) ?>" class="btn btn-primary">Create Silo Structure</a>
 					</div>
 				</div>
 			</div>
@@ -247,8 +247,8 @@ include "header.php";
 					<img src="<?php echo AICONTENTT_PLUGIN_URL . 'core/includes/assets/images/AI_Toolkit_Plugin_Image_30.png'; ?>" alt="robot thinking" class="card-img-top">
 					<div class="card-body">
 						<h5 class="card-title">FAQ Tool</h5>
-						<p class="card-text">This tool will help generate a list of FAQs for your keyword.</p>
-						<a href="<?php menu_page_url( 'ai-content-tool-image-generator' ); ?>" title="<?php echo __( 'AI Image Generator Tool', 'toolkit' ) ?>" class="btn btn-primary">Generate Images</a>
+						<p class="card-text">This tool will help generate a list of FAQs for your keyword.</p><br/>
+						<a href="<?php menu_page_url( 'ai-content-tool-faq' ); ?>" title="<?php echo __( 'AI FAQ Tool', 'toolkit' ) ?>" class="btn btn-primary">Create FAQ</a>
 					</div>
 				</div>
 			</div>
