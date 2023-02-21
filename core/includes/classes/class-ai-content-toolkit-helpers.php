@@ -272,6 +272,13 @@ class AI_Content_Toolkit_Helpers{
 		return $prompt;
 	}
 
+	public function get_content_calendar($topic) {
+		$prompt = 'I would like you to help me come up with a 4 week content schedule for my blog that has the best chance of helping me rank for long tail keywords that are specific to my keyword. I will tell you my main target keyword in the prompt below. Please target transaction style search terms only. Please come up with clickbait style titles for these blog posts. Each week should be separated with a header. Above the list say "CONTENT CALENDAR FOR KEYWORD" and replace "KEYWORD" with the keyword provided in the prompt in all caps.
+
+		The keyword I am targeting is: ' . $topic;
+		return $prompt;
+	}
+
 
 	/**
 	 * end of prompts

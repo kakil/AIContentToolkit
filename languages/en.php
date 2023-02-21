@@ -64,5 +64,7 @@
     $lang["dallePromptOutput"] = "Prompts:";
     $lang["dallePromptButton"] = "Create Prompts";
     $lang["blogPostOutput"] = "Blog Post:";
+    $lang["contentCalendarOutput"] = "Content Calendar";
+    $lang["contentCalendarButton"] = "Create Calendar";
 ?>
 
