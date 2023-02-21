@@ -282,17 +282,17 @@ include "header.php";
 				</div>
 			</div>
 
-			<!-- Card 33 --
+			<!-- Card 33 -->
 			<div class="col-12 col-md-6 col-lg-4">
 				<div class="card h-100 shadow p-3 mb-5 bg-white rounded">
 					<img src="<?php echo AICONTENTT_PLUGIN_URL . 'core/includes/assets/images/AI_Toolkit_Plugin_Image_30.png'; ?>" alt="robot thinking" class="card-img-top">
 					<div class="card-body">
-						<h5 class="card-title">FAQ Tool</h5>
-						<p class="card-text">This tool will help generate a list of FAQs for your keyword.</p><br/><br/>
-						<a href="<?php menu_page_url( 'ai-content-tool-faq' ); ?>" title="<?php echo __( 'AI FAQ Tool', 'toolkit' ) ?>" class="btn btn-primary">Create</a>
+						<h5 class="card-title">Comparisons Keyword Tool</h5>
+						<p class="card-text">This tool will help generate comparison keywords similar to AnswerThePublic.com.</p><br/><br/>
+						<a href="<?php menu_page_url( 'ai-content-tool-comparisons' ); ?>" title="<?php echo __( 'AI Comparisons Tool', 'toolkit' ) ?>" class="btn btn-primary">Create</a>
 					</div>
 				</div>
-			</div> -->
+			</div>
 		</div>
 
 	</div>
