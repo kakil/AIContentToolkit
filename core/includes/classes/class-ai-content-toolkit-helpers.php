@@ -120,18 +120,26 @@ class AI_Content_Toolkit_Helpers{
 
 		$prompt = 'I want you to act as a very proficient SEO and most powerful SEO Audit and Keyword Explorer tools that speak and write so well in English.  I want you to ';
 		if($question == 1) {
-			$prompt = $prompt . 'give me a list of long-tail "how" question keywords for the keyword: "' . $keyword . '"';
+			$prompt = $prompt . 'create a list of question keywords that use or imply the adverb "how" and use the following keyword phrase: "' . $keyword . '". The phrase "' . $keyword . '" must appear in each keyword.';
 		} else if($question == 2) {
-			$prompt = $prompt . 'give me a list of long-tail "who" question keywords for the keyword: "' . $keyword . '"';
+			$prompt = $prompt . 'create a list of question keywords that use or imply the pronoun "who" and use the following keyword phrase: "' . $keyword . '". The phrase "' . $keyword . '" must appear in each keyword.';
 		} else if($question == 3) {
-			$prompt = $prompt . 'give me a list of long tail "what" question keywords for the keyword: "' . $keyword . '"';
+			$prompt = $prompt . 'create a list of question keywords that use or imply the pronoun "what" and use the following keyword phrase: "' . $keyword . '". The phrase "' . $keyword . '" must appear in each keyword. Do not use the following words: how, who, when, where, why, which, will, can';
 		} else if($question == 4) {
-			$prompt = $prompt . 'give me a list of long tail "when" question keywords for the keyword: "' . $keyword . '"';
+			$prompt = $prompt . 'create a list of question keywords that use or imply the adverb "when" and use the following keyword phrase: "' . $keyword . '". The phrase "' . $keyword . '" must appear in each keyword. Do not use the following words: how, who, what, where, why, which, will, can';
 		} else if($question == 5) {
-			$prompt = $prompt . 'give me a list of long tail "where" question keywords for the keyword: "' . $keyword . '"';
+			$prompt = $prompt . 'create a list of question keywords that use or imply the adverb "where" and use the following keyword phrase: "' . $keyword . '". The phrase "' . $keyword . '" must appear in each keyword. Do not use the following words: how, who, what, when, why, which, will, can';
 		} else if($question == 6) {
-			$prompt = $prompt . 'give me a list of long tail "why" question keywords for the keyword: "' . $keyword . '"';
-		}
+			$prompt = $prompt . 'create a list of question keywords that use or imply the adverb "why" and use the following keyword phrase: "' . $keyword . '". The phrase "' . $keyword . '" must appear in each keyword. Do not use the following words: how, who, what, when, where, which, will, can';
+		} else if($question == 7) { 
+            $prompt = $prompt . 'create a list of question keywords that use or imply the pronoun "which" and use the following keyword phrase: "' . $keyword . '". The phrase "' . $keyword . '" must appear in each keyword. Do not use the following words: how, who, what, when, where, why, will, can';
+        } else if($question == 8) { 
+            $prompt = $prompt . 'create a list of question keywords that use or imply the verb "will" and use the following keyword phrase: "' . $keyword . '". The phrase "' . $keyword . '" must appear in each keyword. Do not use the following words: how, who, what, when, where, why, which, can';
+        } else if($question == 9) { 
+            $prompt = $prompt . 'create a list of question keywords that use or imply the verb "can" and use the following keyword phrase: "' . $keyword . '". The phrase "' . $keyword . '" must appear in each keyword. Do not use the following words: how, who, what, when, where, why, which, will';
+        } else if($question == 10) { 
+            $prompt = $prompt . 'create a list of question keywords that use or imply the verb "are" and use the following keyword phrase: "' . $keyword . '". The phrase "' . $keyword . '" must appear in each keyword. Do not use the following words: how, who, what, when, where, why, which, will, can';
+        }
 		
 		$prompt = $prompt . '. Also provide search volume and SEO difficulty';
 		
