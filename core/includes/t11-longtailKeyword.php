@@ -96,6 +96,10 @@ function console_log($output, $with_script_tags = true) {
         <option value="4">When</option>
         <option value="5">Where</option>
         <option value="6">Why</option>
+        <option value="7">Which</option>
+        <option value="8">Will</option>
+        <option value="9">Can</option>
+        <option value="10">Are</option>
       </select>
       <input type="hidden" name="question" id="question_hidden">
       <div class="invalid-feedback">
