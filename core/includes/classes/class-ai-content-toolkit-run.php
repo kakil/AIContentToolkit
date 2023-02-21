@@ -539,6 +539,16 @@ class AI_Content_Toolkit_Run{
 
 		add_submenu_page(
 			null,
+			'AI Prepositions Keyword Tool',
+			'AI Prepositions Keyword Tool',
+			'manage_options',
+			'ai-content-tool-prepositions',
+			array( $this, 'ai_content_tool_prepositions'),
+			165
+		);
+
+		add_submenu_page(
+			null,
 			'AI Alphabetical Keyword Tool',
 			'AI Alphabetical Keyword Tool',
 			'manage_options',
@@ -547,6 +557,15 @@ class AI_Content_Toolkit_Run{
 			170
 		);
 
+		add_submenu_page(
+			null,
+			'AI Comparisons Keyword Tool',
+			'AI Comparisons Keyword Tool',
+			'manage_options',
+			'ai-content-tool-comparisons',
+			array( $this, 'ai_content_tool_comparisons'),
+			175
+		);
 
 
 	 }
@@ -697,6 +716,14 @@ class AI_Content_Toolkit_Run{
 
 	 function ai_content_tool_alphabetical() {
 		include AICONTENTT_PLUGIN_DIR . "core/includes/t32-alphabetical.php";
+	 }
+
+	 function ai_content_tool_prepositions() {
+		include AICONTENTT_PLUGIN_DIR . "core/includes/t31-prepositions.php";
+	 }
+
+	 function ai_content_tool_comparisons() {
+		include AICONTENTT_PLUGIN_DIR . "core/includes/t33-comparisons.php";
 	 }
 
 

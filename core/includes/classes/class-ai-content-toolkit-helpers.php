@@ -360,7 +360,26 @@ class AI_Content_Toolkit_Helpers{
 		return $prompt;
 	}
 
+	public function get_prepositions_prompt($keyword, $question) {
+		// $prompt = 'give me a list of long tail keywords that contain the phrase: ' . $topic . '. The first list should be a list of why ' . $topic . '. The second list should be how to ' . $topic . '. The third list should be who ' . $topic . '. The fourth list should be what ' . $topic . '. The fifth list should be when ' . $topic . '. The sixth list should be where ' . $topic . '.' ;
 
+		$prompt = 'I want you to act as a very proficient SEO and most powerful SEO Audit and Keyword Explorer tools that speak and write so well in English.  I want you to ';
+		if($question == 1) {
+			$prompt = $prompt . 'create a list of low, medium, and high competition keywords that use or imply the preposition "for" and use the following keyword phrase: "' . $keyword . '". The phrase "' . $keyword . '" must appear in each keyword.';
+		} else if($question == 2) {
+			$prompt = $prompt . 'create a list of low, medium, and high competition keywords that use or imply the preposition "in" and use the following keyword phrase: "' . $keyword . '". The phrase "' . $keyword . '" must appear in each keyword.';
+		} else if($question == 3) {
+			$prompt = $prompt . 'create a list of low, medium, and high competition keywords that use or imply the preposition "with" and use the following keyword phrase: "' . $keyword . '". The phrase "' . $keyword . '" must appear in each keyword.';
+		} else if($question == 4) {
+			$prompt = $prompt . 'create a list of low, medium, and high competition keywords that use or imply the preposition "without" and use the following keyword phrase: "' . $keyword . '". The phrase "' . $keyword . '" must appear in each keyword.';
+		} else if($question == 5) {
+			$prompt = $prompt . 'create a list of low, medium, and high competition keywords that use or imply the preposition "to" and use the following keyword phrase: "' . $keyword . '". The phrase "' . $keyword . '" must appear in each keyword.';
+		} 
+		
+		$prompt = $prompt . '. Also provide Search Volume, CPC, and SEO difficulty. There should be a list of 10 low competition keywords, 10 medium competition keywords, and 10 high competition keywords.  Make the list structured.';
+		
+		return $prompt;
+	}
 
 
 	/**

@@ -271,18 +271,18 @@ include "header.php";
 			</div>
 
 			<!-- Card 32 -->
-			<!-- <div class="col-12 col-md-6 col-lg-4">
+			<div class="col-12 col-md-6 col-lg-4">
 				<div class="card h-100 shadow p-3 mb-5 bg-white rounded">
 					<img src="<?php echo AICONTENTT_PLUGIN_URL . 'core/includes/assets/images/AI_Toolkit_Plugin_Image_29.png'; ?>" alt="robot idea" class="card-img-top">
 					<div class="card-body">
-						<h5 class="card-title">Website Silo Structure Tool</h5>
-						<p class="card-text">This tool will help you create a silo structure for your website.</p><br/>
-						<a href="<?php menu_page_url( 'ai-content-tool-silo-structure' ); ?>" title="<?php echo __( 'AI Silo Structure Tool', 'toolkit' ) ?>" class="btn btn-primary">Create</a>
+						<h5 class="card-title">Prepositions Keyword Tool</h5>
+						<p class="card-text">This tool will help you generate prepositions keywords similar to AnswerThePublic.com.</p><br/>
+						<a href="<?php menu_page_url( 'ai-content-tool-prepositions' ); ?>" title="<?php echo __( 'AI Prepositions Tool', 'toolkit' ) ?>" class="btn btn-primary">Create</a>
 					</div>
 				</div>
 			</div>
 
-			-- Card 33 --
+			<!-- Card 33 --
 			<div class="col-12 col-md-6 col-lg-4">
 				<div class="card h-100 shadow p-3 mb-5 bg-white rounded">
 					<img src="<?php echo AICONTENTT_PLUGIN_URL . 'core/includes/assets/images/AI_Toolkit_Plugin_Image_30.png'; ?>" alt="robot thinking" class="card-img-top">
