@@ -66,5 +66,8 @@
     $lang["blogPostOutput"] = "Blog Post:";
     $lang["contentCalendarOutput"] = "Content Calendar";
     $lang["contentCalendarButton"] = "Create Calendar";
+    $lang["siloButton"] = "Create Silo";
+    $lang["siloStructure"] = "Silo Structure:";
+    $lang["siloTopic"] = "Website Topic";
 ?>
 

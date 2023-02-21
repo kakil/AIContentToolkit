@@ -279,6 +279,11 @@ class AI_Content_Toolkit_Helpers{
 		return $prompt;
 	}
 
+	public function get_silo_structure_prompt($topic) {
+		$prompt = 'Create a detailed SILO structure for a website using the keyword: ' . $topic . '. The sections and categories should be organized in a hierarchical structure, with the Home page at the top and the more specific pages at the bottom. Use the knowledge of how to make the best structure in terms of linking and SEO to get to the top positions in Google. All output should be in English.';
+		return $prompt;
+	}
+
 
 	/**
 	 * end of prompts
