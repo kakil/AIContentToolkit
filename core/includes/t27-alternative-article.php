@@ -68,12 +68,12 @@ if (isset($_POST["addBlog"])) {
     <!-- Product 1 -->
     <div class="mb-3">
       <label for="validationCustom2701" class="form-label">
-        <?php echo $lang["product1"]; ?>
+        <?php echo $lang["longFormTopic"]; ?>
       </label>
       <input type="text" class="form-control" id="validationCustom2701" name="chatGptText"
         placeholder="Self Confidence" min="0" max="80" value="<?php echo isset($_POST['chatGptText']) ? $_POST['chatGptText'] : '' ?>" required>
         <div class="invalid-feedback">
-          Please provide product 1
+        Please provide a topic or keyword
         </div>
     </div>
     <div class="d-flex justify-content-end">

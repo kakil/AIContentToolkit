@@ -74,7 +74,7 @@ if (isset($_POST["addBlog"])) {
       <input type="text" class="form-control" id="validationCustom1801" name="chatGptText"
         placeholder="SEO" min="0" max="80" value="<?php echo isset($_POST['chatGptText']) ? $_POST['chatGptText'] : '' ?>" required>
         <div class="invalid-feedback">
-          Please provide product 1
+        Please provide a topic or keyword
         </div>
     </div>
     <div class="d-flex justify-content-end">

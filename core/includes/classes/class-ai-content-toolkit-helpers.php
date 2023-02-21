@@ -284,6 +284,11 @@ class AI_Content_Toolkit_Helpers{
 		return $prompt;
 	}
 
+	public function get_faq($topic) {
+		$prompt = 'Write in English a list of 50 things about ' . $topic . ' that most people do not know and randomize the order of the list. Please explain each item and be sure to mention ' . $topic .'.';
+		return $prompt;
+	}
+
 
 	/**
 	 * end of prompts
