@@ -229,6 +229,11 @@ class AI_Content_Toolkit_Helpers{
 		return $prompt;
 	}
 
+	public function get_seo_article_prompt($topic) {
+		$prompt = 'I want you to act as a Content writer very proficient SEO that speaks and writes fluently English*. Write an SEO-optimized Long Form article with a minimum of 1000 words. Please use a minimum of 6 headings. The final paragraph should be a conclusion. Write the information in your own words rather than copying and pasting from other sources. Also, double-check for plagiarism because I need pure unique content. Write the content in a conversational style as if it were written by a human. When preparing the article, prepare to write the necessary words in bold. I want you to write content so that it can outrank other websites. I give you the Title: ' . $topic . '. ';
+		return $prompt;
+	}
+
 
 
 	/**

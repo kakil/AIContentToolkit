@@ -54,5 +54,7 @@
     $lang["shortStoryButton"] = "Create Story";
     $lang["bookChapterTitle"] = "Chapter Title";
     $lang["chapterTitleButton"] = "Get Chapter";
+    $lang["seoBlogPostTopic"] = "SEO Blog Post Topic";
+    $lang["seoButton"] = "Get Blog Post";
 ?>
 
