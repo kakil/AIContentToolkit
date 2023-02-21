@@ -63,5 +63,6 @@
     $lang["youTubeResponse"] = "YouTube Tags:";
     $lang["dallePromptOutput"] = "Prompts:";
     $lang["dallePromptButton"] = "Create Prompts";
+    $lang["blogPostOutput"] = "Blog Post:";
 ?>
 

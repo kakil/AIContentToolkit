@@ -261,6 +261,17 @@ class AI_Content_Toolkit_Helpers{
 		return $prompt;
 	}
 
+	public function get_alternative_article($topic) {
+		$prompt = 'Now Imagine you are an experienced copywriter who has over 40 years of experience in writing contrarian articles. Write a 1000-word contrarian article on ' . $topic . ' . Start by clearly defining your contrarian viewpoint. Make sure it is well-reasoned and supported by evidence.
+
+		You are going to write a heading, intro, 6 body paragraphs (each body paragraph must be 200 words long and each body paragraph will have its own subheading that is relevant to the main theme of the article) and a conclusion.
+		
+		Start with a contrarian style headline that is catchy. Make sure it is one that will go viral on social media. Begin writing your introduction. This should grab the reader\'s attention and provide an overview of your contrarian viewpoint. Move on to the 6 body paragraphs. Make each paragraph 200 words. Start each body paragraph with a subheading, then in each body paragraph, use 100 words to present a specific piece of evidence or argument that supports your viewpoint. Then use another 100 words to address and refute any counterarguments that may be commonly made against your viewpoint. Write long explanations and use stories, metaphors, and anecdotes to elaborate your viewpoint. Make sure to elaborate on anything you write.
+		
+		Conclude your post by summarizing your main arguments and reiterating the importance of your contrarian viewpoint.';
+		return $prompt;
+	}
+
 
 	/**
 	 * end of prompts
