@@ -234,6 +234,11 @@ class AI_Content_Toolkit_Helpers{
 		return $prompt;
 	}
 
+	public function get_inspirational_quotes_prompt($topic) {
+		$prompt = 'Give me 50 short inspirational quotes about ' . $topic . ', mix the quotes up with metaphors, straight up advice, wrong ideas to avoid, and encouragement. Start each quote with a different word. Do not self-reference. Refrain from starting with "you" or "like". Avoid repetition and keep the quotes fresh and activating.';
+		return $prompt;
+	}
+
 
 
 	/**
