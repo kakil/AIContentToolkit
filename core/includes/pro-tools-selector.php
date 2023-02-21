@@ -193,9 +193,9 @@ include "header.php";
 				<div class="card h-100 shadow p-3 mb-5 bg-white rounded">
 					<img src="<?php echo AICONTENTT_PLUGIN_URL . 'core/includes/assets/images/AI_Toolkit_Plugin_Image_26.png'; ?>" alt="robot idea" class="card-img-top">
 					<div class="card-body">
-						<h5 class="card-title">Facebook Ad Copy Tool</h5>
-						<p class="card-text">This tool will generate Facebook Ads.</p>
-						<a href="<?php menu_page_url( 'ai-content-tool-Facebook-Ads' ); ?>" title="<?php echo __( 'AI Facebook Ads Tool', 'toolkit' ) ?>" class="btn btn-primary">Create Facebook Ads</a>
+						<h5 class="card-title">Dall-e Prompt Tool</h5>
+						<p class="card-text">This tool will generate Dall-e prompts.</p>
+						<a href="<?php menu_page_url( 'ai-content-tool-dalle-prompt' ); ?>" title="<?php echo __( 'AI Dall-e Prompt Tool', 'toolkit' ) ?>" class="btn btn-primary">Create Dall-e Prompts</a>
 					</div>
 				</div>
 			</div>

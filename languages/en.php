@@ -58,5 +58,10 @@
     $lang["seoButton"] = "Get Blog Post";
     $lang["quotesButton"] = "Get Quotes";
     $lang["getEmailButton"] = "Get Email";
+    $lang["youtubeTags"] = "Youtube Video Title";
+    $lang["youtubeButton"] = "Create Tags";
+    $lang["youTubeResponse"] = "YouTube Tags:";
+    $lang["dallePromptOutput"] = "Prompts:";
+    $lang["dallePromptButton"] = "Create Prompts";
 ?>
 

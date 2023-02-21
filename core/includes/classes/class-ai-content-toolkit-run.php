@@ -479,11 +479,11 @@ class AI_Content_Toolkit_Run{
 
 		add_submenu_page(
 			null,
-			'AI Facebook Ads Tool',
-			'AI Facebook Ads Tool',
+			'AI Dall-e Prompt Tool',
+			'AI Dall-e Prompt Tool',
 			'manage_options',
-			'ai-content-tool-youtube-facebook-ads',
-			array( $this, 'ai_content_tool_facebook_ads'),
+			'ai-content-tool-dalle-prompt',
+			array( $this, 'ai_content_tool_dalle_prompt'),
 			135
 		);
 
@@ -665,8 +665,8 @@ class AI_Content_Toolkit_Run{
 		include AICONTENTT_PLUGIN_DIR . "core/includes/t25-youtube-tag-generator.php";
 	 }
 
-	 function ai_content_tool_facebook_ads() {
-		include AICONTENTT_PLUGIN_DIR . "core/includes/t26-facebook-ads.php";
+	 function ai_content_tool_dalle_prompt() {
+		include AICONTENTT_PLUGIN_DIR . "core/includes/t26-dalleprompt.php";
 	 }
 
 	 function ai_content_tool_alternative_article() {

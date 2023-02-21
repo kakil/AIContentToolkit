@@ -244,6 +244,23 @@ class AI_Content_Toolkit_Helpers{
 		return $prompt;
 	}
 
+	public function get_youtube_tags_prompt($topic) {
+		$prompt = 'Create 30 YouTube tags targeting an LSI keyword with some search volume for the following topic: ' . $topic . '. No hashtags, separate keywords by commas. Only capitalize proper nouns.';
+		return $prompt;
+	}
+
+	public function get_dalle_prompt($topic) {
+		$prompt = '1. The prompt generator will provide 4 different prompts for a generative AI based on the given concept: "' . $topic . '".  2. Each prompt will follow the same structure, consisting of 7 parts, and will only differ in the detailed description and the art style used.  3. The 7 parts of each prompt are as follows:
+			Part [0]: "/Imagine prompt: "
+			Part [1]: The concept given - "house on the golf course"
+			Part [2]: The art style used in the image, such as photography, painting, illustration, etc.
+			Part [3]: A detailed description of the concept that includes the scenery, landscape, background, colors, kind of paint (watercolor, etc.), facial expressions, feeling, and atmosphere.
+			Part [4]: "Inspired by [ARTIST 1] and [ARTIST 2]" - choose 2 artists that are most suited for the style of the concept given in part [3].
+			Part [5]: "Intricate, ornate" - a phrase to be included in all prompts.
+			Part [6]: "--stylize 1000" - a phrase to be included in all prompts to set the style of the generated image.  4. Each prompt must be written in English and should not use line breaks between the parts.  5. One of the prompts must be in a realistic photographic style, and a lens type and size should be chosen for this prompt. Part [4] (artists) can be skipped for the photographic prompt.  6. The description given in part [3] should not include words such as "real", "realistic", or "photograph" for concepts that are not realistic, such as scenes that are fantastic or made of paper.  7. The prompt generator should ensure that the 4 prompts are diverse in their description and style, but should all follow the same structure.';
+		return $prompt;
+	}
+
 
 	/**
 	 * end of prompts
