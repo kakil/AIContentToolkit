@@ -57,5 +57,6 @@
     $lang["seoBlogPostTopic"] = "SEO Blog Post Topic";
     $lang["seoButton"] = "Get Blog Post";
     $lang["quotesButton"] = "Get Quotes";
+    $lang["getEmailButton"] = "Get Email";
 ?>
 

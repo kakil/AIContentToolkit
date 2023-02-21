@@ -239,6 +239,10 @@ class AI_Content_Toolkit_Helpers{
 		return $prompt;
 	}
 
+	public function get_email_prompt($topic) {
+		$prompt = 'Write a best marketing email promoting this product or service: ' . $topic . '. Write 5 Subject lines for the email.';
+		return $prompt;
+	}
 
 
 	/**
