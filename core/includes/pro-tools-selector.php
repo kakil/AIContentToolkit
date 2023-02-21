@@ -253,4 +253,46 @@ include "header.php";
 				</div>
 			</div>
 		</div>
+
+		<!-- Row 6 -->
+
+		<div class="row gy-3 mb-5">
+
+			<!-- Card 31 -->
+			<div class="col-12 col-md-6 col-lg-4">
+				<div class="card h-100 shadow p-3 mb-5 bg-white rounded">
+					<img src="<?php echo AICONTENTT_PLUGIN_URL . 'core/includes/assets/images/AI_Toolkit_Plugin_Image_28.png'; ?>" alt="robot head exploded" class="card-img-top">
+					<div class="card-body">
+						<h5 class="card-title">Alphabetical Keyword Tool</h5>
+						<p class="card-text">This AI tool will help you generate alphabetical keywords similar to AnswerThePublic.com.</p><br/><br/>
+						<a href="<?php menu_page_url( 'ai-content-tool-alphabetical' ); ?>" title="<?php echo __( 'AI Alphabetical Keyword Tool', 'toolkit' ) ?>" class="btn btn-primary">Create</a>
+					</div>
+				</div>
+			</div>
+
+			<!-- Card 32 -->
+			<!-- <div class="col-12 col-md-6 col-lg-4">
+				<div class="card h-100 shadow p-3 mb-5 bg-white rounded">
+					<img src="<?php echo AICONTENTT_PLUGIN_URL . 'core/includes/assets/images/AI_Toolkit_Plugin_Image_29.png'; ?>" alt="robot idea" class="card-img-top">
+					<div class="card-body">
+						<h5 class="card-title">Website Silo Structure Tool</h5>
+						<p class="card-text">This tool will help you create a silo structure for your website.</p><br/>
+						<a href="<?php menu_page_url( 'ai-content-tool-silo-structure' ); ?>" title="<?php echo __( 'AI Silo Structure Tool', 'toolkit' ) ?>" class="btn btn-primary">Create</a>
+					</div>
+				</div>
+			</div>
+
+			-- Card 33 --
+			<div class="col-12 col-md-6 col-lg-4">
+				<div class="card h-100 shadow p-3 mb-5 bg-white rounded">
+					<img src="<?php echo AICONTENTT_PLUGIN_URL . 'core/includes/assets/images/AI_Toolkit_Plugin_Image_30.png'; ?>" alt="robot thinking" class="card-img-top">
+					<div class="card-body">
+						<h5 class="card-title">FAQ Tool</h5>
+						<p class="card-text">This tool will help generate a list of FAQs for your keyword.</p><br/><br/>
+						<a href="<?php menu_page_url( 'ai-content-tool-faq' ); ?>" title="<?php echo __( 'AI FAQ Tool', 'toolkit' ) ?>" class="btn btn-primary">Create</a>
+					</div>
+				</div>
+			</div> -->
+		</div>
+
 	</div>

@@ -524,7 +524,7 @@ class AI_Content_Toolkit_Run{
 			'manage_options',
 			'ai-content-tool-silo-structure',
 			array( $this, 'ai_content_tool_silo_structure'),
-			150
+			155
 		);
 
 		add_submenu_page(
@@ -534,7 +534,17 @@ class AI_Content_Toolkit_Run{
 			'manage_options',
 			'ai-content-tool-faq',
 			array( $this, 'ai_content_tool_faq'),
-			150
+			160
+		);
+
+		add_submenu_page(
+			null,
+			'AI Alphabetical Keyword Tool',
+			'AI Alphabetical Keyword Tool',
+			'manage_options',
+			'ai-content-tool-alphabetical',
+			array( $this, 'ai_content_tool_alphabetical'),
+			170
 		);
 
 
@@ -683,6 +693,10 @@ class AI_Content_Toolkit_Run{
 
 	 function ai_content_tool_faq() {
 		include AICONTENTT_PLUGIN_DIR . "core/includes/t30-faq.php";
+	 }
+
+	 function ai_content_tool_alphabetical() {
+		include AICONTENTT_PLUGIN_DIR . "core/includes/t32-alphabetical.php";
 	 }
 
 

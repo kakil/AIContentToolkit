@@ -297,6 +297,71 @@ class AI_Content_Toolkit_Helpers{
 		return $prompt;
 	}
 
+	public function get_alphabetical_prompt($keyword, $question) {
+		// $prompt = 'give me a list of long tail keywords that contain the phrase: ' . $topic . '. The first list should be a list of why ' . $topic . '. The second list should be how to ' . $topic . '. The third list should be who ' . $topic . '. The fourth list should be what ' . $topic . '. The fifth list should be when ' . $topic . '. The sixth list should be where ' . $topic . '.' ;
+
+		$prompt = 'I want you to act as a very proficient SEO and most powerful SEO Audit and Keyword Explorer tools that speak and write so well in English.  I want you to ';
+		if($question == 1) {
+			$prompt = $prompt . 'create a list of keywords phrases that start with the phrase “' . $keyword . '" and the next word starts with the letter “A”';
+		} else if($question == 2) {
+			$prompt = $prompt . 'create a list of keywords phrases that start with the phrase “' . $keyword . '" and the next word starts with the letter “B”';
+		} else if($question == 3) {
+			$prompt = $prompt . 'create a list of keywords phrases that start with the phrase “' . $keyword . '" and the next word starts with the letter “C”';
+		} else if($question == 4) {
+			$prompt = $prompt . 'create a list of keywords phrases that start with the phrase “' . $keyword . '" and the next word starts with the letter “D”';
+		} else if($question == 5) {
+			$prompt = $prompt . 'create a list of keywords phrases that start with the phrase “' . $keyword . '" and the next word starts with the letter “E”';
+		} else if($question == 6) {
+			$prompt = $prompt . 'create a list of keywords phrases that start with the phrase “' . $keyword . '" and the next word starts with the letter “F”';
+		} else if($question == 7) { 
+            $prompt = $prompt . 'create a list of keywords phrases that start with the phrase “' . $keyword . '" and the next word starts with the letter “G”';
+        } else if($question == 8) { 
+            $prompt = $prompt . 'create a list of keywords phrases that start with the phrase “' . $keyword . '" and the next word starts with the letter “H”';
+        } else if($question == 9) { 
+            $prompt = $prompt . 'create a list of keywords phrases that start with the phrase “' . $keyword . '" and the next word starts with the letter “I”';
+        } else if($question == 10) { 
+            $prompt = $prompt . 'create a list of keywords phrases that start with the phrase “' . $keyword . '" and the next word starts with the letter “J”';
+        } else if($question == 11) { 
+            $prompt = $prompt . 'create a list of keywords phrases that start with the phrase “' . $keyword . '" and the next word starts with the letter “K”';
+        } else if($question == 12) { 
+            $prompt = $prompt . 'create a list of keywords phrases that start with the phrase “' . $keyword . '" and the next word starts with the letter “L”';
+        } else if($question == 13) { 
+            $prompt = $prompt . 'create a list of keywords phrases that start with the phrase “' . $keyword . '" and the next word starts with the letter “M”';
+        } else if($question == 14) { 
+            $prompt = $prompt . 'create a list of keywords phrases that start with the phrase “' . $keyword . '" and the next word starts with the letter “N”';
+        } else if($question == 15) { 
+            $prompt = $prompt . 'create a list of keywords phrases that start with the phrase “' . $keyword . '" and the next word starts with the letter “O”';
+        } else if($question == 16) { 
+            $prompt = $prompt . 'create a list of keywords phrases that start with the phrase “' . $keyword . '" and the next word starts with the letter “P”';
+        } else if($question == 17) { 
+            $prompt = $prompt . 'create a list of keywords phrases that start with the phrase “' . $keyword . '" and the next word starts with the letter “Q”';
+        } else if($question == 18) { 
+            $prompt = $prompt . 'create a list of keywords phrases that start with the phrase “' . $keyword . '" and the next word starts with the letter “R”';
+        } else if($question == 19) { 
+            $prompt = $prompt . 'create a list of keywords phrases that start with the phrase “' . $keyword . '" and the next word starts with the letter “S”';
+        } else if($question == 20) { 
+            $prompt = $prompt . 'create a list of keywords phrases that start with the phrase “' . $keyword . '" and the next word starts with the letter “T”';
+        } else if($question == 21) { 
+            $prompt = $prompt . 'create a list of keywords phrases that start with the phrase “' . $keyword . '" and the next word starts with the letter “U”';
+        } else if($question == 22) { 
+            $prompt = $prompt . 'create a list of keywords phrases that start with the phrase “' . $keyword . '" and the next word starts with the letter “V”';
+        } else if($question == 23) { 
+            $prompt = $prompt . 'create a list of keywords phrases that start with the phrase “' . $keyword . '" and the next word starts with the letter “W”';
+        } else if($question == 24) { 
+            $prompt = $prompt . 'create a list of keywords phrases that start with the phrase “' . $keyword . '" and the next word starts with the letter “X”';
+        } else if($question == 25) { 
+            $prompt = $prompt . 'create a list of keywords phrases that start with the phrase “' . $keyword . '" and the next word starts with the letter “Y”';
+        } else if($question == 26) { 
+            $prompt = $prompt . 'create a list of keywords phrases that start with the phrase “' . $keyword . '" and the next word starts with the letter “Z”';
+        }
+		
+		$prompt = $prompt . '. Also provide search volume and SEO difficulty';
+		
+		return $prompt;
+	}
+
+
+
 
 	/**
 	 * end of prompts
@@ -334,8 +399,8 @@ class AI_Content_Toolkit_Helpers{
 			  'model'					=> 'text-davinci-003',
 			  'temperature'				=> $getTemperature,
 			  'max_tokens' 				=> $getMaxTokens,
-			  'frequency_penalty' 		=> 1.0,					// prevent repeating of words and content (increase number)
-			  'presence_penalty' 		=> 1.0,					// prevent staying on one topic too long (increase number)
+			  'frequency_penalty' 		=> 0.5,					// prevent repeating of words and content (increase number)
+			  'presence_penalty' 		=> 0.5,					// prevent staying on one topic too long (increase number)
 			  'n'						=> 1,
 			));
 			$curl = curl_init('https://api.openai.com/v1/completions');
