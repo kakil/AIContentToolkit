@@ -92,7 +92,7 @@ class AI_Content_Toolkit_Helpers{
 
 
 	public function get_keywords_prompt($topic) {
-		$prompt = 'Provide 25 long tail keywords related to ' . $topic . '.  Match each keyword with any of the 4 types of search intent.  Cluster the list of keywords according to funnel stages whether they are top of the funnel, middle of the funnel, or bottom of the funnel keywords.';
+		$prompt = 'Create a structured markdown article Provide 25 long tail keywords related to ' . $topic . '.  Match each keyword with any of the 4 types of search intent.  Cluster the list of keywords according to funnel stages whether they are top of the funnel, middle of the funnel, or bottom of the funnel keywords. Each funnel stage should be formatted as a header.';
 		return $prompt;
 	}
 
