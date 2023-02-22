@@ -39,8 +39,8 @@ include "header.php";
 				<div class="card h-100 shadow p-3 mb-5 bg-white rounded">
 					<img src="<?php echo AICONTENTT_PLUGIN_URL . 'core/includes/assets/images/AI_Toolkit_Plugin_Image_15.png'; ?>" alt="robot thinking" class="card-img-top">
 					<div class="card-body">
-						<h5 class="card-title">Amazon Product Review Tool</h5>
-						<p class="card-text">This tool will write an article that reviews an Amazon product.</p><br/>
+						<h5 class="card-title">Amazon Product Description Tool</h5>
+						<p class="card-text">This tool will write an Amazon product description.</p><br/>
 						<a href="<?php menu_page_url( 'ai-content-tool-amazon-product-review' ); ?>" title="<?php echo __( 'AI Amazon Product Review', 'toolkit' ) ?>" class="btn btn-primary">Create</a>
 					</div>
 				</div>
