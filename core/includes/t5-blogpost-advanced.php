@@ -30,11 +30,22 @@ if(isset($_POST["chatGptText"])){
   $postTitle = $_POST['chatGptText'];   //adding prompt to Blog Title field
   $postKeywords = $_POST['blogKeywordText'];  //adding prompt to Blog Keyword field
 
-  $prompt = AICONTENTT()->helpers->get_blog_prompt( $_POST["chatGptText"], $_POST["blogNicheText"], $_POST["blogProblemText"], $_POST["blogActionText"], $_POST["blogToneText"], $_POST["blogKeywordText"]);
+  $prompt = AICONTENTT()->helpers->get_advanced_blog_prompt( $_POST["chatGptText"], $_POST["blogNicheText"], $_POST["blogProblemText"], $_POST["blogActionText"], $_POST["blogToneText"], $_POST["blogKeywordText"]);
   $postTitle = $_POST['chatGptText'];   //adding prompt to Blog Title field
   //console_log($prompt);
   $postContent = AICONTENTT()->helpers->get_chatgpt_response( $prompt,'text-davinci-003', $getTemperature, $getMaxTokens);
   //console_log($postContent);
+
+// Replace multiple spaces of all positions (deal with linebreaks) with single linebreak
+$postContent = preg_replace('/\s{2,}/', "\n", $postContent); 
+
+//place a newline character before "##"
+$pattern = '/\n?(?=##)/';
+$replacement = "\n";
+$postContent = preg_replace($pattern, $replacement, $postContent);
+
+
+
 }
 
 if(isset($_POST["addBlog"])){

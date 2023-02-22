@@ -70,7 +70,7 @@ class AI_Content_Toolkit_Helpers{
 	}
 
 	public function get_blog_post_outline_prompt($topic, $personality) {
-		$prompt = 'You will act as a Content and Digital Marketing Strategist expert. You have strong writing and editing skills and are able to create compelling, high-quality content that resonates with the target audience. You are an outstanding strategic thinker. You are able to think critically and strategically about our team\'s overall content and digital marketing goals, and how to achieve them. You have a deep understanding of SEO best practices, as well as an understanding of the various digital marketing channels and how to leverage them effectively. Write a detailed structured markdown outline for a blog article. The article topic is "' . $topic . '". Use this tone: "' . $personality . '".  Keep each item on a separate line.';
+		$prompt = 'You will act as a Content and Digital Marketing Strategist expert. You have strong writing and editing skills and are able to create compelling, high-quality content that resonates with the target audience. You are an outstanding strategic thinker. You are able to think critically and strategically about our overall content and digital marketing goals, and how to achieve them. You have a deep understanding of SEO best practices, as well as an understanding of the various digital marketing channels and how to leverage them effectively. Write a detailed structured markdown outline for a blog article. The article topic is "' . $topic . '". Use this tone: "' . $personality . '".  Keep each item on a separate line.';
 		return $prompt;
 	}
 
@@ -84,6 +84,12 @@ class AI_Content_Toolkit_Helpers{
 		$prompt = 'Please create a structured markdown mind-map for the topic: ' . $topic . ' and include the central idea, main branches, and sub-branches.  The mind-map should have at least 3 subitems under each item. The main branches and sub-branches should be formatted with markdown headers.';
 		return $prompt;
 	}
+
+	public function get_advanced_blog_prompt( $topic, $niche, $problem, $action, $tone, $keywords) {
+		$prompt = 'Please write a structured markdown blog post in a press release style like an experienced news reporter in English for the Keyword ' . $topic . '. The article should include Creative Title, SEO meta description, Introduction, headings, sub headings, bullet points or Numbered list if needed, frequently asked questions and conclusion. The post should not be less than 1200 words. Do not change the original keyword while writing the Title. Use the keyword at least 2-3 times in the text body. The niche is "' . $niche . '". The problem is "' . $problem . '". The tone is "' . $tone . '". The keywords are "' . $keywords . '"';
+		return $prompt;
+	}
+
 
 	public function get_keywords_prompt($topic) {
 		$prompt = 'Provide 25 long tail keywords related to ' . $topic . '.  Match each keyword with any of the 4 types of search intent.  Cluster the list of keywords according to funnel stages whether they are top of the funnel, middle of the funnel, or bottom of the funnel keywords.';
