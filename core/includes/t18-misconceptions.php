@@ -37,6 +37,11 @@ if (isset($_POST["chatGptText"])) {
   $postContent = AICONTENTT()->helpers->get_chatgpt_response($prompt, 'text-davinci-003', $getTemperature, $getMaxTokens);
   $postTitle = $_POST['chatGptText'];
   
+  //This will preserve leading number of each row. 
+  $regex = '/\d*+\s+(?=[0-9])/';
+  //$postContent = preg_replace($regex, '<br>', $postContent); //for HTML output
+  $postContent = preg_replace($regex, "\n", $postContent); //for txt file
+
 }
 
 
