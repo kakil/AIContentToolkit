@@ -36,6 +36,10 @@ if(isset($_POST["chatGptText"])){
 
   $postContent = AICONTENTT()->helpers->get_chatgpt_response( $prompt,'text-davinci-003', $getTemperature, $getMaxTokens);
   console_log($postContent);
+
+  // Replace multiple spaces of all positions (deal with linebreaks) with single linebreak
+  $postContent = preg_replace('/\s{4,}/', ' ', $postContent); 
+
 }
 
 if(isset($_POST["addBlog"])){
