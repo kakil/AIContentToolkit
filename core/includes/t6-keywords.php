@@ -40,6 +40,7 @@ if(isset($_POST["chatGptText"])){
   $replacement = "\n";
   $postContent = preg_replace($pattern, $replacement, $postContent);
 
+  //This will preserve leading number of each row. 
   $regex = '/\d*+\s+(?=[0-9])/';
   //$postContent = preg_replace($regex, '<br>', $postContent); //for HTML output
   $postContent = preg_replace($regex, "\n", $postContent); //for txt file
