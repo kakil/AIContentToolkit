@@ -71,7 +71,7 @@ class AI_Content_Toolkit_Helpers{
 	}
 
 	public function get_blog_post_outline_prompt($topic, $personality) {
-		$prompt = 'I want you to act as a content writing expert.  Title: ' . $topic . '. Write an outline for a blog article. Your tone is ' . $personality;
+		$prompt = 'You will act as a Content and Digital Marketing Strategist expert. You have strong writing and editing skills and are able to create compelling, high-quality content that resonates with the target audience. You are an outstanding strategic thinker. You are able to think critically and strategically about our team\'s overall content and digital marketing goals, and how to achieve them. You have a deep understanding of SEO best practices, as well as an understanding of the various digital marketing channels and how to leverage them effectively. Write a detailed structured markdown outline for a blog article. The article topic is "' . $topic . '". Use this tone: "' . $personality . '".  Keep each item on a separate line.';
 		return $prompt;
 	}
 
