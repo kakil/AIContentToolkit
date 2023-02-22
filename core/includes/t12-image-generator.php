@@ -164,7 +164,7 @@ function console_log($output, $with_script_tags = true) {
 
     <!-- Number of Images -->
     <div class="mb-3">
-      <select class="form-select" aria-label="Default select example" name="numberOfImages" id="validationCustom1202">
+      <select class="form-select" aria-label="Default select example" name="numberOfImages" id="validationCustom1202" value="<?php echo isset($_POST['numberOfImages']) ? $_POST['numberOfImages'] : '' ?>" >
         <option selected>Select # of Images</option>
         <option value="1">1</option>
         <option value="2">2</option>
@@ -182,7 +182,7 @@ function console_log($output, $with_script_tags = true) {
 
      <!-- Select Size of Images -->
     <div class="mb-3">
-      <select class="form-select" aria-label="Default select example" name="sizeOfImages" id="validationCustom1204">
+      <select class="form-select" aria-label="Default select example" name="sizeOfImages" id="validationCustom1204" value="<?php echo isset($_POST['sizeOfImages']) ? $_POST['sizeOfImages'] : '' ?>" >
         <option selected>Select Size of Images</option>
         <option value="1">256px</option>
         <option value="2">512px</option>
@@ -200,7 +200,7 @@ function console_log($output, $with_script_tags = true) {
 
     <!-- Select A Prompt -->
     <div class="mb-3">
-      <select class="form-select" aria-label="Default select example" name="starterPromtValue" id="validationCustom1203">
+      <select class="form-select" aria-label="Default select example" name="starterPromtValue" id="validationCustom1203" value="<?php echo isset($_POST['starterPromtValue']) ? $_POST['starterPromtValue'] : '' ?>" >
         <option selected>Select A Starter Prompt</option>
         <option value="1">Cute Dog</option>
         <option value="2">Diesel Punk Female</option>
@@ -218,6 +218,33 @@ function console_log($output, $with_script_tags = true) {
         <option value="14">Beautiful Pond</option>
         <option value="15">Aged Bronze Statue</option>
         <option value="16">Marble Greek Statue</option>
+        <option value="17">Young Girl Portrait</option>
+        <option value="18">Old Coal Miner</option>
+        <option value="19">Sango Fantasy</option>
+        <option value="20">Woman With Flowers</option>
+        <option value="21">Elsa</option>
+        <option value="22">Zulu Warrior</option>
+        <option value="23">Realistic Photo</option>
+        <option value="24">Realistic Cat Photo</option>
+        <option value="25">Afghani Girl</option>
+        <option value="26">Anime Princess</option>
+        <option value="27">Goddess</option>
+        <option value="28">Tank Commander</option>
+        <option value="29">Nike Sneaker</option>
+        <option value="30">Woman Wearing Jacket</option>
+        <option value="31">Italian Manor</option>
+        <option value="32">Persian Villa</option>
+        <option value="33">Modern House</option>
+        <option value="34">Sailing Ship</option>
+        <option value="35">Sunset Landscape</option>
+        <option value="36">Sci-Fi Robot</option>
+        <option value="37">Nubian King</option>
+        <option value="38">Marble Sculpture</option>
+        <option value="39">Robot In City</option>
+        <option value="40">Portrait of Paladin</option>
+        <option value="41">Chibi Spiderman</option>
+        <option value="42">Female Samurai</option>
+        <option value="43">Grilled Steak</option>
       </select>
       <div class="invalid-feedback">
         Please select a prompt or enter one below.
@@ -228,7 +255,7 @@ function console_log($output, $with_script_tags = true) {
     <!-- Prompt -->
     <div class="mb-3">
       <label for="validationCustom1201" class="form-label"><?php echo $lang["imagePrompt"]; ?></label>
-      <textarea class="form-control" id="validationCustom1201" name="chatGptText" placeholder="Cute cartoon cat" rows="5" min="0" max="200"  value="<?php echo isset($_POST['chatGptText']) ? $_POST['chatGptText'] : '' ?>" required></textarea>
+      <textarea class="form-control" id="validationCustom1201" name="chatGptText" placeholder="Cute cartoon cat" rows="5" min="0" max="200" value="<?php echo isset($_POST['chatGptText']) ? $_POST['chatGptText'] : '' ?>" required></textarea>
       <div class="invalid-feedback">
         Please describe your image or select a starter prompt above
       </div>
