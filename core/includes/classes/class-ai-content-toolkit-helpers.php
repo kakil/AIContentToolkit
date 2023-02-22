@@ -81,7 +81,7 @@ class AI_Content_Toolkit_Helpers{
 	}
 
 	 public function get_mindmap_prompt($topic) {
-		$prompt = 'Please create a mind map for the topic: ' . $topic . ' and include the central idea, main branches, and sub-branches.';
+		$prompt = 'Please create a structured markdown mind-map for the topic: ' . $topic . ' and include the central idea, main branches, and sub-branches.  The mind-map should have at least 3 subitems under each item. The main branches and sub-branches should be formatted with markdown headers.';
 		return $prompt;
 	}
 
