@@ -38,6 +38,10 @@ if (isset($_POST["chatGptText"])) {
   $prompt = AICONTENTT()->helpers->get_multiple_product_review_prompt($product1, $product2, $product3);
   $postContent = AICONTENTT()->helpers->get_chatgpt_response($prompt, 'text-davinci-003', $getTemperature, $getMaxTokens);
   $postTitle = $_POST['chatGptText'];
+
+  // Replace multiple spaces of all positions (deal with linebreaks) with single linebreak
+  $postContent = preg_replace('/\s{3,}/', "\n\n", $postContent); 
+
   
 }
 
@@ -117,7 +121,7 @@ if (isset($_POST["addBlog"])) {
     <!-- Submit to OpenAI -->
     <div class="row mb-5">
        <div class="col-sm-9">
-         <button type="submit" name="goTest" class="btn btn-primary mb-3" id="btn-submit"><?php echo $lang["singleProductReviewButton"]; ?>
+         <button type="submit" name="goTest" class="btn btn-primary mb-3" id="btn-submit"><?php echo $lang["multipleProductReviewButton"]; ?>
           <span class="spinner-border spinner-border-sm" id="spinner-submit" role="status" aria-hidden="true" style="visibility: hidden"></span>
          </button>
         <button type="reset" value="Reset" class="btn btn-danger ms-2 mb-3" id="reset-submit-info">Reset</button>
