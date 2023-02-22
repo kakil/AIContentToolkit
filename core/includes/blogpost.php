@@ -31,6 +31,15 @@ if(isset($_POST["chatGptText"])){
   $prompt = AICONTENTT()->helpers->get_blog_prompt($TEXT);
   $postContent = AICONTENTT()->helpers->get_chatgpt_response($prompt, $model, $getTemperature, $getMaxTokens);
 
+  // Replace multiple spaces of all positions (deal with linebreaks) with single linebreak
+  $postContent = preg_replace('/\s{3,}/', "\n", $postContent); 
+
+  //place a newline character before "##"
+  $pattern = '/\n?(?=##)/';
+  $replacement = "\n";
+  $postContent = preg_replace($pattern, $replacement, $postContent);
+
+
 }
 
 if(isset($_POST["addBlog"])){

@@ -32,6 +32,19 @@ if(isset($_POST["chatGptText"])){
   $prompt = AICONTENTT()->helpers->get_keywords_prompt( $_POST['chatGptText'] );
   $postContent = AICONTENTT()->helpers->get_chatgpt_response( $prompt, 'text-davinci-003', $getTemperature, $getMaxTokens);
 
+  // Replace multiple spaces of all positions (deal with linebreaks) with single linebreak
+  $postContent = preg_replace('/\s{2,}/', "\n", $postContent); 
+
+  //place a newline character before "##"
+  $pattern = '/\n?(?=##)/';
+  $replacement = "\n";
+  $postContent = preg_replace($pattern, $replacement, $postContent);
+
+  //This will preserve leading number of each row. 
+  $regex = '/\d*+\s+(?=[0-9])/';
+  //$postContent = preg_replace($regex, '<br>', $postContent); //for HTML output
+  $postContent = preg_replace($regex, "\n", $postContent); //for txt file
+
 }
 
 

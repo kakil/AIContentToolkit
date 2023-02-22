@@ -65,29 +65,34 @@ class AI_Content_Toolkit_Helpers{
 	 */
 	
 	 public function get_blog_prompt($topic) {
-		$prompt = 'Please write a blog post in a press release style like an experienced news reporter in English for the Keyword ' . $topic . ' e. The article should include Creative Title (should be in H1 Heading), SEO meta description, Introduction, headings (Should be h2 heading), sub headings (h3, h4,h5,h6 headings), bullet points or Numbered list if needed, frequently asked questions and conclusion. The post should not be less than 1200 words. Do not change the original keyword while writing the Title. Use the keyword at least 2-3 times in the text body.     * Please write text before the main blog writing that says "This post is supported by ChatbotApps.com” and write "Hire ChatbotApps Agency to help you create your Facebook Messenger AI Bots”, visit "https://chatbotapps.com” after the introduction paragraph.';
-
+		$prompt = 'Please write a structured markdown blog post in a press release style like an experienced news reporter in English for the Keyword ' . $topic . ' e. The article should include Creative Title, SEO meta description, Introduction, headings, sub headings, bullet points or Numbered list if needed, frequently asked questions and conclusion. The post should not be less than 1200 words. Do not change the original keyword while writing the Title. Use the keyword at least 2-3 times in the text body.';
 		return $prompt;
 	}
 
 	public function get_blog_post_outline_prompt($topic, $personality) {
-		$prompt = 'I want you to act as a content writing expert.  Title: ' . $topic . '. Write an outline for a blog article. Your tone is ' . $personality;
+		$prompt = 'You will act as a Content and Digital Marketing Strategist expert. You have strong writing and editing skills and are able to create compelling, high-quality content that resonates with the target audience. You are an outstanding strategic thinker. You are able to think critically and strategically about our overall content and digital marketing goals, and how to achieve them. You have a deep understanding of SEO best practices, as well as an understanding of the various digital marketing channels and how to leverage them effectively. Write a detailed structured markdown outline for a blog article. The article topic is "' . $topic . '". Use this tone: "' . $personality . '".  Keep each item on a separate line.';
 		return $prompt;
 	}
 
 	public function get_brainstorm_prompt($topic) {
 		//$prompt = 'Please write 10 article title ideas and 10 alternative title ideas for ' . $topic;
-		$prompt = 'You will act as a Content and Digital Marketing Strategist expert. You have strong writing and editing skills and are able to create compelling, high-quality content that resonates with the target audience. You are an outstanding strategic thinker. You are able to think critically and strategically about our team\'s overall content and digital marketing goals, and how to achieve them. You have a deep understanding of SEO best practices, as well as an understanding of the various digital marketing channels and how to leverage them effectively. You have a strong understanding of branding and marketing principles. You are extremely creative and are able to think outside the box and come up with unique and innovative ideas for content. You have a passion for learning and staying up to date with the latest trends and developments. Brainstorm new angles and a approaches and prioritize ideas that are uncommon or novel for the following: ' . $topic . '.';
+		$prompt = 'You will act as a Content and Digital Marketing Strategist expert. You have strong writing and editing skills and are able to create compelling, high-quality content that resonates with the target audience. You are an outstanding strategic thinker. You are able to think critically and strategically about our overall content and digital marketing goals, and how to achieve them. You have a deep understanding of SEO best practices, as well as an understanding of the various digital marketing channels and how to leverage them effectively. You have a strong understanding of branding and marketing principles. You are extremely creative and are able to think outside the box and come up with unique and innovative ideas for content. You have a passion for learning and staying up to date with the latest trends and developments. Create a structured markdown article that Brainstorms new angles and a approaches and prioritize ideas that are uncommon or novel for the following: ' . $topic . '.';
 		return $prompt;
 	}
 
 	 public function get_mindmap_prompt($topic) {
-		$prompt = 'Please create a mind map for the topic: ' . $topic . ' and include the central idea, main branches, and sub-branches.';
+		$prompt = 'Please create a structured markdown mind-map for the topic: ' . $topic . ' and include the central idea, main branches, and sub-branches.  The mind-map should have at least 3 subitems under each item. The main branches and sub-branches should be formatted with markdown headers.';
 		return $prompt;
 	}
 
+	public function get_advanced_blog_prompt( $topic, $niche, $problem, $action, $tone, $keywords) {
+		$prompt = 'Please write a structured markdown blog post in a press release style like an experienced news reporter in English for the Keyword ' . $topic . '. The article should include Creative Title, SEO meta description, Introduction, headings, sub headings, bullet points or Numbered list if needed, frequently asked questions and conclusion. The post should not be less than 1200 words. Do not change the original keyword while writing the Title. Use the keyword at least 2-3 times in the text body. The niche is "' . $niche . '". The problem is "' . $problem . '". The tone is "' . $tone . '". The keywords are "' . $keywords . '"';
+		return $prompt;
+	}
+
+
 	public function get_keywords_prompt($topic) {
-		$prompt = 'Provide 25 long tail keywords related to ' . $topic . '.  Match each keyword with any of the 4 types of search intent.  Cluster the list of keywords according to funnel stages whether they are top of the funnel, middle of the funnel, or bottom of the funnel keywords.';
+		$prompt = 'Create a structured markdown article Provide 25 long tail keywords related to ' . $topic . '.  Match each keyword with any of the 4 types of search intent.  Cluster the list of keywords according to funnel stages whether they are top of the funnel, middle of the funnel, or bottom of the funnel keywords. Each funnel stage should be formatted as a header.';
 		return $prompt;
 	}
 
@@ -179,7 +184,63 @@ class AI_Content_Toolkit_Helpers{
 			$imagePrompt = 'Aged bronze statue of a Buffalo Soldier on his horse, shiny patches on face, in a london park on a sunny day ';
 		} else if($promptNumber == 16) {
 			$imagePrompt = 'A marble Greek statue of Black Panther';
+		} else if($promptNumber == 17) {
+			$imagePrompt = 'botticelli’s simonetta vespucci young portrait photography hyperrealistic modern dressed, futuristic';
+		} else if($promptNumber == 18) {
+			$imagePrompt = 'a portrait of an old coal miner in 19th century, beautiful painting with highly detailed face by greg rutkowski and magali villanueve';
+		} else if($promptNumber == 19) {
+			$imagePrompt = 'sango fantasy, fantasy magic,  , intricate, sharp focus, illustration, highly detailed, digital painting, concept art, matte, Artgerm and Paul lewin and kehinde wiley, masterpiece';
+		} else if($promptNumber == 20) {
+			$imagePrompt = 'Beautiful Woman with smile appearing from colorful flowers, wet, dewdrops, cinematic lighting, photo realistic, by karol bak --ar 2:3 --beta --upbeta';
+		}  else if($promptNumber == 21) {
+			$imagePrompt = 'Elsa, d & d, fantasy, intricate, elegant, highly detailed, digital painting, artstation, concept art, matte, sharp focus, illustration, hearthstone, art by artgerm and greg rutkowski and alphonse mucha, 8k';
+		} else if($promptNumber == 22) {
+			$imagePrompt = 'painted portrait of rugged zulu warrior, bald, masculine, mature, handsome, upper body, muscular, hairless torso, fantasy, intricate, elegant, highly detailed, digital painting, artstation, concept art, smooth, sharp focus, illustration, art by gaston bussiere and alphonse mucha';
+		} else if($promptNumber == 23) {
+			$imagePrompt = 'photo of a gorgeous mixed-race female, realistic, professional body shot, sharp focus, a hint of cleavage, 8K, insanely detailed, intricate, elegant, intricate office background';
+		} else if($promptNumber == 24) {
+			$imagePrompt = 'realistic portrait of an orange cat, bright eyes, with angel wings, radiant and ethereal intricately detailed photography, cinematic lighting, 50mm lens with bokeh';
+		} else if($promptNumber == 25) {
+			$imagePrompt = 'a teenage girl of afghani descent with striking rainbow eyes stares at the camera with a deep read head scarf. kodachrome film';
+		} else if($promptNumber == 26) {
+			$imagePrompt = 'a portrait of a anime ghibli akihiko yoshida style african princess of china and japan, at the throne room, soft light, finely detailed features, perfect art, at an ancient city, gapmoe yandere grimdark, trending on pixiv fanbox, painted by greg rutkowski makoto shinkai takashi takeuchi studio ghibli, akihiko yoshida ';
+		} else if($promptNumber == 27) {
+			$imagePrompt = 'hyperrealistic full length portrait of gorgeous goddess | standing in field full of flowers | (detailed gorgeous face) | full body | (skimpy armor) | god rays | intricate | elegant | realistic | hyperrealistic | cinematic | character design | concept art | highly detailed | illustration | digital art | digital painting | depth of field';
+		} else if($promptNumber == 28) {
+			$imagePrompt = 'hyperrealistic portrait of female tank commander in dgs illustration style| full shot| detailed face| symmetric| intricate| realistic| cinematic| character design| concept art| highly detailed| illustration| digital art| digital painting| by Anders Zorn and Ruan Jia and Mandy Jurgens';
+		} else if($promptNumber == 29) {
+			$imagePrompt = 'nike sneaker made of colorful plasma :: redshift render, digital art, hyper-detailed, ultra-realistic, 8k post-production';
+		} else if($promptNumber == 30) {
+			$imagePrompt = 'well lit fashion shoot portrait of extremely beautiful female wearing massively over size puffer jacket by craig green, dingyun zhang, yeezy, balenciaga, vetements, sharp focus, clear, detailed, , cinematic, detailed, off white, glamourous, symmetrical, vogue, editorial, fashion, magazine shoot, glossy --q 2';
+		} else if($promptNumber == 31) {
+			$imagePrompt = 'aerial photography of an Italian manor in Tuscany, poolsuite style';
+		} else if($promptNumber == 32) {
+			$imagePrompt = 'a big Persian Villa surrounded by water and nature, village, close view, volumetric lighting, photorealistic, insanely detailed and intricate, Fantasy, epic cinematic shot, trending on ArtStation, mountains, 8k ultra hd, magical, mystical, matte painting, bright sunny day, flowers, massive cliffs, Sweeper3D';
+		} else if($promptNumber == 33) {
+			$imagePrompt = 'a big Persian Villa surrounded by water and nature, village, close view, volumetric lighting, photorealistic, insanely detailed and intricate, Fantasy, epic cinematic shot, trending on ArtStation, mountains, 8k ultra hd, magical, mystical, matte painting, bright sunny day, flowers, massive cliffs, Sweeper3D';
+		} else if($promptNumber == 34) {
+			$imagePrompt = 'photo of a ultra realistic sailing ship, dramatic light, pale sunrise, cinematic lighting, battered, low angle, trending on artstation, 4k, hyper realistic, focused, extreme details, unreal engine 5, cinematic, masterpiece, art by studio ghibli, intricate artwork by john william turner
+			';
+		} else if($promptNumber == 35) {
+			$imagePrompt = 'Emerald Lake::0.3 fairy pools::0.5 archival fine-art print of a misty sunset alpine landscape photograph::1.5 Captured with a medium format Fujifilm GFX100s:: stunning view of Emerald Lake in rocky mountain national park::1.1 sunset glow on the mountains and clouds::0.5 detailed pencil watercolor painting of::0.1 a tranquil alpine forest full small flowers:: a painterly, book illustration watercolor granular splatter dripping paper texture::0.2 award winning:: black paper::0.1 --h 320 --uplight';
+		} else if($promptNumber == 36) {
+			$imagePrompt = 'sci fi people standing surrounded by huge sci fi robotic cyborg city with intricate mechancial and sci-fi details, insane level of details, hyper realistic, cinematic, composition';
+		} else if($promptNumber == 37) {
+			$imagePrompt = 'Close-up portrait of a Nubian king from ancient egypt walking into no mans land, metallic armor,white black gold, porcelain face, mechanical features, baroque rococo, cinematic lighting, golden ratio, league of legends, dynamic pose,detailed energetic crystal chain wearing armor,sigil metallic armor, cryptic writing, ritual, intricate gold, 3D ornate alter, pineal gland, highly detailed ornaments crystallized black gems, ambient oclusion, highkey photography, bokeh 8K beautiful, detailed scenery, metal diamond design gold photorealistic, insanely detailed and intricate, hypermaximalist, elegant, ornate, hyper realistic, super detailed, 8K --c 50 --v 4';
+		} else if($promptNumber == 38) {
+			$imagePrompt = 'mdjrny-v4 style, highly detailed marble and jade sculpture of a sugar skull, day of the dead, volumetric fog, volumetric lighting, Hyperrealism, breathtaking, ultra realistic, unreal engine, ultra detailed, cyber background, highly detailed, breathtaking, photography, stunning environment, wide-angle';
+		} else if($promptNumber == 39) {
+			$imagePrompt = '(nousr robot:1.1), city street background, highly detailed, ultra-realistic, cinematic';
+		} else if($promptNumber == 40) {
+			$imagePrompt = 'redshift style, painted portrait of a paladin, masculine, mature, handsome, upper body, grey and silver, fantasy, intricate, elegant, highly detailed, digital painting, artstation, concept art, smooth, sharp focus, illustration, art by gaston bussiere and alphonse mucha';
+		} else if($promptNumber == 41) {
+			$imagePrompt = 'Chibi spiderman, octane rendering, modern Disney style';
+		} else if($promptNumber == 42) {
+			$imagePrompt = '12th century female samurai in the style of greg rutkowski and Guweiz and Yoji Shinkawa, intricate black and red samurai armor, cinematic lighting, dark rainy city, depth of field, lumen reflections, photography, stunning environment, hyperrealism, insanely detailed --v 4';
+		} else if($promptNumber == 43) {
+			$imagePrompt = 'yummy beef grill steak and colorful vegetables in a single big white dish centered, tableware, food photograph, food styling, long shot, lens 85 mm, f 11, studio photograph, ultra detailed, octane render, 8k, --q 2 --s 6000 --ar 2:3';
 		}
+
 		return $imagePrompt; 
 	}
 

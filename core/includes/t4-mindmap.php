@@ -32,6 +32,15 @@ if(isset($_POST["chatGptText"])){
   $prompt = AICONTENTT()->helpers->get_mindmap_prompt( $_POST['chatGptText'] );
   $postContent = AICONTENTT()->helpers->get_chatgpt_response( $prompt, 'text-davinci-003', $getTemperature, $getMaxTokens);
 
+  // Replace multiple spaces of all positions (deal with linebreaks) with single linebreak
+  $postContent = preg_replace('/\s{2,}/', "\n", $postContent); 
+
+  //place a newline character before "##"
+  $pattern = '/\n?(?=##)/';
+  $replacement = "\n";
+  $postContent = preg_replace($pattern, $replacement, $postContent);
+
+
 }
 
 
