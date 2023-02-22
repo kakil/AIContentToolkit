@@ -36,6 +36,11 @@ if (isset($_POST["chatGptText"])) {
   $postContent = AICONTENTT()->helpers->get_chatgpt_response($prompt, 'text-davinci-003', $getTemperature, $getMaxTokens);
   $postTitle = $_POST['chatGptText'];
   
+  //This will preserve leading number of each row. 
+  $regex = '/\d*+\s+(?=[0-9])/';
+  //$postContent = preg_replace($regex, '<br>', $postContent); //for HTML output
+  $postContent = preg_replace($regex, "\n", $postContent); //for txt file
+
 }
 
 
@@ -84,7 +89,7 @@ if (isset($_POST["addBlog"])) {
     <!-- Submit to OpenAI -->
     <div class="row mb-5">
        <div class="col-sm-9">
-         <button type="submit" name="goTest" class="btn btn-primary mb-3" id="btn-submit"><?php echo $lang["faqButton"]; ?>
+         <button type="submit" name="goTest" class="btn btn-primary mb-3" id="btn-submit"><?php echo $lang["faqButton1"]; ?>
           <span class="spinner-border spinner-border-sm" id="spinner-submit" role="status" aria-hidden="true" style="visibility: hidden"></span>
          </button>
         <button type="reset" value="Reset" class="btn btn-danger ms-2 mb-3" id="reset-submit-info">Reset</button>

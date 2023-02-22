@@ -69,5 +69,7 @@
     $lang["siloButton"] = "Create Silo";
     $lang["siloStructure"] = "Silo Structure:";
     $lang["siloTopic"] = "Website Topic";
+    $lang["faqButton1"] = "Get FAQ";
+    $lang["faq"] = "FAQ:";
 ?>
 
