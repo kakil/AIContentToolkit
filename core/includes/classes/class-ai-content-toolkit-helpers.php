@@ -65,8 +65,7 @@ class AI_Content_Toolkit_Helpers{
 	 */
 	
 	 public function get_blog_prompt($topic) {
-		$prompt = 'Please write a blog post in a press release style like an experienced news reporter in English for the Keyword ' . $topic . ' e. The article should include Creative Title (should be in H1 Heading), SEO meta description, Introduction, headings (Should be h2 heading), sub headings (h3, h4,h5,h6 headings), bullet points or Numbered list if needed, frequently asked questions and conclusion. The post should not be less than 1200 words. Do not change the original keyword while writing the Title. Use the keyword at least 2-3 times in the text body.     * Please write text before the main blog writing that says "This post is supported by ChatbotApps.com” and write "Hire ChatbotApps Agency to help you create your Facebook Messenger AI Bots”, visit "https://chatbotapps.com” after the introduction paragraph.';
-
+		$prompt = 'Please write a structured markdown blog post in a press release style like an experienced news reporter in English for the Keyword ' . $topic . ' e. The article should include Creative Title, SEO meta description, Introduction, headings, sub headings, bullet points or Numbered list if needed, frequently asked questions and conclusion. The post should not be less than 1200 words. Do not change the original keyword while writing the Title. Use the keyword at least 2-3 times in the text body.';
 		return $prompt;
 	}
 
