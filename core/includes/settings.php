@@ -12,8 +12,17 @@ $getTemperature = $results[0]->temperature;
 $getMaxTokens = $results[0]->max_tokens;
 $getLanguage = $results[0]->language;
 
+if($results[0]->max_tokens < 1500) {
+  $getMaxTokens = 1500;
+}
 
-$languages = array("tr","en");
+if($results[0]->temperature < 0.7) {
+  $getTemperature = 0.7;
+}
+
+
+//$languages = array("tr","en");
+$languages = array("en");
 if(in_array($getLanguage,$languages)) {
     include AICONTENTT_PLUGIN_DIR . "/languages/".$getLanguage.".php";
 } else {
@@ -66,13 +75,15 @@ if(isset($_POST["submit"])){
   <form method="post">
     <div class="mb-5">
       <label class="form-label"><b>ChatGPT API Token (sk-xxxxx):</label>
-      <input type="text" id="apiToken" name="apiToken" class="form-control" value="<?php echo $getApiToken; ?>"/>
+      <input type="text" id="apiToken" name="apiToken" class="form-control" value="<?php echo $getApiToken; ?>" placeholder="sk-"/>
+      <a href="https://openai.com/api/" target="_blank" rel="noopener noreferrer"><btn btn-link class="mt-2">Get API Token</btn></a>
     </div>
     
-    <div class="mb-3">
+    <div class="mb-5">
     <label class="form-label"><?php echo $lang["temperature"]; ?><b id="temperatureTextValue"><?php echo $getTemperature; ?></b></label><br>
-    <small><?php echo $lang["temperatureText"]; ?></small>
     <input onchange="updateTemperature();" type="range" class="form-range" min="0" max="1" step="0.1" id="temperatureValue" name="temperatureValue" value="<?php echo $getTemperature; ?>">
+    <small><?php echo $lang["temperatureText"]; ?></small>
+
   </div>
 
     <div class="mb-5">
