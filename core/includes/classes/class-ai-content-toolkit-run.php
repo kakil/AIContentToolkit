@@ -106,7 +106,7 @@ class AI_Content_Toolkit_Run{
 	*/
 	public function add_plugin_action_link( $links ) {
 
-		$links['our_shop'] = sprintf( '<a href="%s" title="Settings" style="font-weight:700;">%s</a>', 'https://toolkitsforsuccess.com', __( 'Settings', 'ai-content-toolkit' ) );
+		$links['our_shop'] = sprintf( '<a href="%s" title="Settings" style="font-weight:700;">%s</a>', '/wp-admin/admin.php?page=ai-content-tool-settings', __( 'Settings', 'ai-content-toolkit' ) );
 
 		return $links;
 	}
