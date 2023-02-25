@@ -56,6 +56,13 @@ if(isset($_POST["addBlog"])){
 
 ?>
 
+<nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="?page=ai-content-tool-dashboard"><img src="<?php echo AICONTENTT_PLUGIN_URL . 'core/includes/assets/images/AI_Content_Toolkit_Navbar_Logo.png'; ?>" alt="AI Content Toolkit Logo" width="300" height="60">
+	</a>
+  </div>
+</nav>
+
 <div class="container-fluid w-50 m-3 bg-light border border-3 shadow p-3 rounded-4"> 
   <h1 class="mt-5 mb-5">Create A Blog Post</h1>
   <form method="post" id="blogPostForm" class="needs-validation" novalidate>
