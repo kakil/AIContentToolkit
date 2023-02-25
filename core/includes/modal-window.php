@@ -12,7 +12,8 @@ include "header.php";
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="chatgpt-modal-label">Chat with GPT</h5>
+                    <img src="<?php echo AICONTENTT_PLUGIN_URL . 'core/includes/assets/images/AI_Content_Toolkit_Small_Logo_60x60.png'; ?>">
+                    <h5 class="modal-title ms-2" id="chatgpt-modal-label">Chat with GPT</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
