@@ -70,6 +70,13 @@ if(isset($_POST["submit"])){
 }
 
 ?>
+
+<nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="?page=ai-content-tool-dashboard">AI Content Toolkit</a>
+  </div>
+</nav>
+
 <div class="container-fluid w-50 m-3 bg-light border border-3 shadow p-3 rounded-4"> 
   <h1 class="display-2 mt-3 mb-3">AI Settings</h1>
   <form method="post">

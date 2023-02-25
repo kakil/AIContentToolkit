@@ -82,6 +82,13 @@ class AI_Content_Toolkit_Run{
 		add_action( 'admin_menu', array( $this, 'add_chatgpt_tools_menu_items' ), 100 );
 		//add_action('admin_menu', array($this, 'remove_submenus'), 101);
 
+		add_action( 'wp_ajax_chatgpt_submit', 'chatgpt_submit' );
+		add_action( 'wp_ajax_nopriv_chatgpt_submit', 'chatgpt_submit' );
+
+		//add_shortcode( 'chatgpt', array( $this, 'chatgpt_shortcode', 10 ) );
+		add_shortcode('subscribe', 'subscribe_link');
+		add_shortcode( 'chatgpt_button', 'chatgpt_button_shortcode' );
+
 		register_activation_hook(AICONTENTT_PLUGIN_FILE, array( $this, 'create_table_ai_content_tool') );
 		
 	}
@@ -126,6 +133,7 @@ class AI_Content_Toolkit_Run{
 		wp_localize_script( 'aicontentt-backend-scripts', 'aicontentt', array(
 			'plugin_name'   	=> __( AICONTENTT_NAME, 'aicontent-toolkit' ),
 		));
+
 		wp_enqueue_media();
 
 		wp_footer();
@@ -726,7 +734,6 @@ class AI_Content_Toolkit_Run{
 		include AICONTENTT_PLUGIN_DIR . "core/includes/t33-comparisons.php";
 	 }
 
-
 	 
 
 	 //CREATE TABLES
@@ -750,6 +757,187 @@ class AI_Content_Toolkit_Run{
 
 	}
 
+}
+
+
+/**
+ * Short code
+ * 
+ */
+
+function chatgpt_shortcode( $atts ) {
+
+	$output = '';
+
+	//Retrieve settings from the database
+	global $wpdb;
+	$tableName = $wpdb->prefix.'ai_content_tool';
+	$sql = "SELECT * FROM $tableName";
+
+	$results = $wpdb->get_results($sql);
+	$getApiToken = $results[0]->api_token;
+	$getTemperature = intval($results[0]->temperature);
+	$getMaxTokens = intval($results[0]->max_tokens);
+	$getLanguage = $results[0]->language;
+	
+	//Select the language
+	$languages = array("en");
+	if(in_array($getLanguage,$languages)) {
+		include AICONTENTT_PLUGIN_DIR . "/languages/".$getLanguage.".php";
+	} else {
+		include AICONTENTT_PLUGIN_DIR . "/languages/en.php";
+	}
+
+	//Get response from server
+	if ( isset( $_POST['sitePrompt'] ) ) {
+		$sitePrompt = $_POST['sitePrompt'];
+		
+		//Set Headers
+		$header = array(
+			'Authorization: Bearer ' . $getApiToken,
+			'Content-type: application/json',
+		);
+
+		//Set Parameters
+		$param = json_encode(array(
+			'prompt'					=> $sitePrompt,
+			'model'						=> 'text-davinci-003',
+			'temperature'				=> $getTemperature,
+			'max_tokens'				=> $getMaxTokens,
+			'frequency_penalty'			=> 0.5,
+			'presence_penalty'			=> 0.5,
+			'n'							=> 1,
+		));
+
+		//Connect to server
+		$curl = curl_init('https://api.openai.com/v1/completions');
+		$options = array(
+			CURLOPT_POST => true,
+			CURLOPT_HTTPHEADER =>$header,
+			CURLOPT_POSTFIELDS => $params,
+			CURLOPT_RETURNTRANSFER => true,
+		);
+
+		curl_setopt_array($curl, $options);
+		$response = curl_exec($curl);
+		$httpcode = curl_getinfo($curl, CURLINFO_RESPONSE_CODE);
+
+		if($httpcode == 200) {
+			$json_array = json_decode($response, true);
+			$choices = $json_arry['choices'];
+			$postContent = $choices[0]["text"];
+		} else {
+			$postContent = "No Result";
+		}
+
+		$postContent .= '<form method="post">';
+		$postContent .= '<input type="text" name="sitePrompt" placeholder="Enter your prompt">';
+		$postContent .= '<input type="submit" value="Submit">';
+		$postContent .= '</form>';
+
+		return $postContent;
+	}
+
+}
+
+
+function subscribe_link(){
+	return 'Follow us on <a rel="nofollow" href="https://twitter.com/Hostinger?s=20">Twitter</a>';
+}
+
+
+
+// Add shortcode to display button and modal
+function chatgpt_button_shortcode() {
+    ob_start();
+    ?>
+   <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#chatgpt-modal">Chat with GPT</button> -->
+    <?php include AICONTENTT_PLUGIN_DIR . 'core/includes/modal-window.php'; ?>
+    <script>
+        jQuery( document ).ready( function() {
+            jQuery( '#chatgpt-submit' ).on( 'click', function() {
+                var prompt = jQuery( '#chatgpt-prompt' ).val();
+                jQuery.ajax( {
+                    type: 'POST',
+                    url: '<?php echo admin_url( "/wp-admin/admin-ajax.php" ); ?>',
+                    data: {
+                        'action': 'chatgpt_submit',
+                        'prompt': prompt
+                    },
+                    success: function( data ) {
+                        jQuery( '#chatgpt-response' ).val( data );
+                    }
+                } );
+            } );
+		} );
+    </script>
+    <?php
+    return ob_get_clean();
+}
+
+
+
+// Handle AJAX request to generate response
+function chatgpt_submit() {
+
+	global $wpdb;
+	$tablename = $wpdb->prefix . 'ai_content_tool';
+	$sql = "SELECT * FROM $tablename";
+
+	$results = $wpdb->get_results($sql);
+	$getApiToken = $results[0]->api_token;
+	$getTemperature = intval($results[0]->temperature);
+	$getMaxTokens = intval($results[0]->max_tokens);
+	$getLanguage = $results[0]->language;
+
+	$languages = array("tr", "en");
+	if (in_array($getLanguage, $languages)) {
+		include AICONTENTT_PLUGIN_DIR . "/languages/" . $getLanguage . ".php";
+	} else {
+		include AICONTENTT_PLUGIN_DIR . "/languages/en.php";
+	}
+
+    if ( isset( $_POST['prompt'] ) ) {
+        $prompt = $_POST['prompt'];
+
+        // Generate response using OpenAI API (replace YOUR_API_KEY with your actual API key)
+		$api_url = 'https://api.openai.com/v1/engines/davinci-codex/completions';
+		$request_data = array(
+			'prompt' => $prompt,
+			'max_tokens' => $getMaxTokens,
+			'temperature' => $getTemperature,
+			'stop' => ['\n']
+		);
+		
+		$request_headers = array(
+			'Content-Type: application/json',
+			'Authorization: Bearer ' . $getApiToken,
+		);
+		
+		$curl = curl_init();
+		curl_setopt_array( $curl, array(
+			CURLOPT_URL => $api_url,
+			CURLOPT_POST => true,
+			CURLOPT_POSTFIELDS => json_encode( $request_data ),
+			CURLOPT_HTTPHEADER => $request_headers,
+			CURLOPT_RETURNTRANSFER => true
+		) );
+		
+		$response = curl_exec( $curl );
+		$response_info = curl_getinfo( $curl );
+		$curl_error = curl_error( $curl );
+		curl_close( $curl );
+
+		if ( $response_info['http_code'] == 200 ) {
+			$response_data = json_decode( $response, true );
+			if ( isset( $response_data['choices'] ) ) {
+				echo $response_data['choices'][0]['text'];
+			}
+		} else {
+			echo 'Error: ' . $curl_error;
+		}
+		exit;
+	}
 }
 
 	/*

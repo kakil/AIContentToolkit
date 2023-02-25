@@ -675,7 +675,7 @@ class AI_Content_Toolkit_Helpers{
 	}
 	  
 	  
-
+ 
 	 /**
 	  * HELPER COMMENT END
 	  */
