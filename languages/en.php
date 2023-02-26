@@ -71,5 +71,6 @@
     $lang["siloTopic"] = "Website Topic";
     $lang["faqButton1"] = "Get FAQ";
     $lang["faq"] = "FAQ:";
+    $lang["modalPrompt"] = "Enter your request";
 ?>
 

@@ -42,4 +42,12 @@ Backend related CSS
     visibility:visible !important; 
   }
 
+  .modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font: .5rem;
+  }
+
 

@@ -88,6 +88,9 @@ class AI_Content_Toolkit_Run{
 		//add_shortcode( 'chatgpt', array( $this, 'chatgpt_shortcode', 10 ) );
 		add_shortcode('subscribe', 'subscribe_link');
 		add_shortcode( 'chatgpt_button', 'chatgpt_button_shortcode' );
+		// Register the shortcode
+		add_shortcode( 'my_modal', 'my_modal_shortcode' );
+
 
 		register_activation_hook(AICONTENTT_PLUGIN_FILE, array( $this, 'create_table_ai_content_tool') );
 		
@@ -864,7 +867,11 @@ function chatgpt_button_shortcode() {
                         'action': 'chatgpt_submit',
                         'prompt': prompt
                     },
+					error: function(jqXHR, textStatus, errorThrown) {
+						console.log(textStatus, errorThrown);
+					},
                     success: function( data ) {
+						console.log('Success');
                         jQuery( '#chatgpt-response' ).val( data );
                     }
                 } );
@@ -953,4 +960,27 @@ function chatgpt_submit() {
 
 */
 
+function my_modal_shortcode() {
+	ob_start();
+	?>
+	<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+		Launch Modal
+	</button>
 
+	<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+				<img src="<?php echo AICONTENTT_PLUGIN_URL . 'core/includes/assets/images/AI_Content_Toolkit_Small_Logo_60x60.png'; ?>">
+					<h5 class="modal-title" id="exampleModalLabel">Chat with GPT</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<?php include AICONTENTT_PLUGIN_DIR . "core/includes/t34-chatgpt-modal.php"; ?>
+				</div>
+			</div>
+		</div>
+	</div>
+	<?php
+	return ob_get_clean();
+}
