@@ -269,7 +269,27 @@ jQuery(document).ready(function() {
     //   console.log("Slider: " + ui.value );
     //   document.getElementById("temperatureTextValue").innerText = ui.value;
     // });
+    
+    
+    //t34-chatgpt-modal.php
+
+    // jQuery('#blogPostForm').on('submit', function() {
+    //   jQuery('#myModal').on('hide.bs.modal', function(e) {
+    //     e.preventDefault();
+    //   })
+    // });
+
+    // jQuery("#blogPostForm").submit(function(event) {
+    //   event.preventDefault();
+    // });
+
+    jQuery('#btn-submit-modal').click(function (e) {
+      let spinner = document.getElementById("spinner-blog-submit");
+      spinner.style.visibility = 'visible';
+
+      jQuery('#myModal').preventDefault();
       
+  });
 
 });
 

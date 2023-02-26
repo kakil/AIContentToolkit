@@ -81,7 +81,7 @@ if(isset($_POST["addBlog"])){
     <!-- Submit to OpenAI -->
     <div class="row mb-5">
        <div class="col-sm-9">
-        <button type="submit" name="goTest" class="btn btn-primary btn-small mb-2" id="btn-submit"><?php echo $lang["mindmapButton"]; ?>
+        <button type="submit" name="goTest" class="btn btn-primary btn-small mb-2" id="btn-submit-modal"><?php echo $lang["mindmapButton"]; ?>
           <span class="spinner-border spinner-border-sm" id="spinner-submit" role="status" aria-hidden="true" style="visibility: hidden"></span>
         </button>
         <!-- <button type="reset" value="Reset" class="btn btn-danger ms-2 mb-3" id="reset-submit-info">Reset</button> -->
