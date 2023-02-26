@@ -850,33 +850,56 @@ function subscribe_link(){
 
 
 
-// Add shortcode to display button and modal
+// Add shortcode to display button and popup
 function chatgpt_button_shortcode() {
     ob_start();
     ?>
-   <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#chatgpt-modal">Chat with GPT</button> -->
-    <?php include AICONTENTT_PLUGIN_DIR . 'core/includes/modal-window.php'; ?>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#chatgpt-modal">Chat with GPT</button>
+    <div class="modal fade" id="chatgpt-modal" tabindex="-1" role="dialog" aria-labelledby="chatgpt-modal-label" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="chatgpt-modal-label">Chat with GPT</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="chatgpt-form">
+                        <div class="form-group">
+                            <label for="chatgpt-prompt">Enter your prompt:</label>
+                            <input type="text" class="form-control" id="chatgpt-prompt" name="prompt">
+                        </div>
+                        <div class="form-group">
+                            <label for="chatgpt-response">Response:</label>
+                            <textarea class="form-control" id="chatgpt-response" name="response" rows="3" readonly></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="chatgpt-submit">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <script>
         jQuery( document ).ready( function() {
             jQuery( '#chatgpt-submit' ).on( 'click', function() {
                 var prompt = jQuery( '#chatgpt-prompt' ).val();
                 jQuery.ajax( {
                     type: 'POST',
-                    url: '<?php echo admin_url( "/wp-admin/admin-ajax.php" ); ?>',
+                    url: '<?php echo admin_url( "admin-ajax.php" ); ?>',
                     data: {
                         'action': 'chatgpt_submit',
                         'prompt': prompt
                     },
-					error: function(jqXHR, textStatus, errorThrown) {
-						console.log(textStatus, errorThrown);
-					},
                     success: function( data ) {
-						console.log('Success');
                         jQuery( '#chatgpt-response' ).val( data );
                     }
                 } );
             } );
-		} );
+        } );
     </script>
     <?php
     return ob_get_clean();
@@ -884,68 +907,52 @@ function chatgpt_button_shortcode() {
 
 
 
+
 // Handle AJAX request to generate response
 function chatgpt_submit() {
-
-	global $wpdb;
-	$tablename = $wpdb->prefix . 'ai_content_tool';
-	$sql = "SELECT * FROM $tablename";
-
-	$results = $wpdb->get_results($sql);
-	$getApiToken = $results[0]->api_token;
-	$getTemperature = intval($results[0]->temperature);
-	$getMaxTokens = intval($results[0]->max_tokens);
-	$getLanguage = $results[0]->language;
-
-	$languages = array("tr", "en");
-	if (in_array($getLanguage, $languages)) {
-		include AICONTENTT_PLUGIN_DIR . "/languages/" . $getLanguage . ".php";
-	} else {
-		include AICONTENTT_PLUGIN_DIR . "/languages/en.php";
-	}
-
     if ( isset( $_POST['prompt'] ) ) {
         $prompt = $_POST['prompt'];
 
         // Generate response using OpenAI API (replace YOUR_API_KEY with your actual API key)
-		$api_url = 'https://api.openai.com/v1/engines/davinci-codex/completions';
-		$request_data = array(
-			'prompt' => $prompt,
-			'max_tokens' => $getMaxTokens,
-			'temperature' => $getTemperature,
-			'stop' => ['\n']
-		);
-		
-		$request_headers = array(
-			'Content-Type: application/json',
-			'Authorization: Bearer ' . $getApiToken,
-		);
-		
-		$curl = curl_init();
-		curl_setopt_array( $curl, array(
-			CURLOPT_URL => $api_url,
-			CURLOPT_POST => true,
-			CURLOPT_POSTFIELDS => json_encode( $request_data ),
-			CURLOPT_HTTPHEADER => $request_headers,
-			CURLOPT_RETURNTRANSFER => true
-		) );
-		
-		$response = curl_exec( $curl );
-		$response_info = curl_getinfo( $curl );
-		$curl_error = curl_error( $curl );
-		curl_close( $curl );
-
-		if ( $response_info['http_code'] == 200 ) {
-			$response_data = json_decode( $response, true );
-			if ( isset( $response_data['choices'] ) ) {
-				echo $response_data['choices'][0]['text'];
-			}
-		} else {
-			echo 'Error: ' . $curl_error;
-		}
-		exit;
-	}
+$api_url = 'https://api.openai.com/v1/completions';
+$request_data = array(
+'prompt' => $prompt,
+'model' => 'text-davinci-003',
+'max_tokens' => 2048,
+'temperature' => 0.7,
+'stop' => ['\n']
+);
+$request_headers = array(
+'Content-Type: application/json',
+'Authorization: Bearer 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'
+);
+$curl = curl_init();
+curl_setopt_array( $curl, array(
+CURLOPT_URL => $api_url,
+CURLOPT_POST => true,
+CURLOPT_POSTFIELDS => json_encode( $request_data ),
+CURLOPT_HTTPHEADER => $request_headers,
+CURLOPT_RETURNTRANSFER => true
+) );
+$response = curl_exec( $curl );
+$response_info = curl_getinfo( $curl );
+$curl_error = curl_error( $curl );
+curl_close( $curl );
+if ( $response_info['http_code'] == 200 ) {
+$response_data = json_decode( $response, true );
+if ( isset( $response_data['choices'] ) ) {
+echo $response_data['choices'][0]['text'];
 }
+} else {
+echo 'Error: ' . $curl_error;
+}
+exit;
+}
+}
+
+
+
+
 
 	/*
 
