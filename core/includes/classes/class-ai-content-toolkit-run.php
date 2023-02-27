@@ -87,7 +87,7 @@ class AI_Content_Toolkit_Run{
 
 		//add_shortcode( 'chatgpt', array( $this, 'chatgpt_shortcode', 10 ) );
 		add_shortcode('subscribe', 'subscribe_link');
-		add_shortcode( 'chatgpt_button', 'chatgpt_button_shortcode' );
+		
 		// Register the shortcode
 		add_shortcode( 'my_modal', 'my_modal_shortcode' );
 
@@ -95,6 +95,8 @@ class AI_Content_Toolkit_Run{
 		register_activation_hook(AICONTENTT_PLUGIN_FILE, array( $this, 'create_table_ai_content_tool') );
 		
 	}
+
+
 
 	/**
 	 * ######################
@@ -141,6 +143,7 @@ class AI_Content_Toolkit_Run{
 
 		wp_footer();
 	}
+
 
 	/**
 	 * Add a new menu item to the WordPress topbar
@@ -849,43 +852,78 @@ function subscribe_link(){
 }
 
 
+// Register and enqueue Bootstrap CSS and JS
+function my_enqueue_scripts() {
+    wp_enqueue_style( 'bootstrap', 'https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css' );
+    wp_enqueue_script( 'bootstrap', 'https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js', array( 'jquery' ), '', true );
+}
+add_action( 'wp_enqueue_scripts', 'my_enqueue_scripts' );
+
 
 // Add shortcode to display button and popup
 function chatgpt_button_shortcode() {
     ob_start();
+	
     ?>
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#chatgpt-modal">Chat with GPT</button>
-    <div class="modal fade" id="chatgpt-modal" tabindex="-1" role="dialog" aria-labelledby="chatgpt-modal-label" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="chatgpt-modal-label">Chat with GPT</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form id="chatgpt-form">
-                        <div class="form-group">
-                            <label for="chatgpt-prompt">Enter your prompt:</label>
-                            <input type="text" class="form-control" id="chatgpt-prompt" name="prompt">
-                        </div>
-                        <div class="form-group">
-                            <label for="chatgpt-response">Response:</label>
-                            <textarea class="form-control" id="chatgpt-response" name="response" rows="3" readonly></textarea>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="chatgpt-submit">Submit</button>
-                </div>
-            </div>
-        </div>
+    <div class="modal fade" id="chatgpt-modal" tabindex="-1" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="chatgpt-modal-label" aria-hidden="true">
+		<style>
+			.modal {position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); font:.5rem;}
+			.vertical-alignment-helper{display:table; height: 100%; width: 100%; pointer-events:none;}
+			.vertical-align-center{display: table-cell; vertical-align: middle; pointer-events:none;}
+			.modal-content{width:inherit; max-width:inherit; height:inherit; margin:0 auto; pointer-events:all;}
+		</style>
+		<div class="vertical-alignment-helper">
+			<div class="modal-dialog vertical-align-center" role="document">
+				<div class="modal-content" style="font: .5rem">
+					<div class="modal-header">
+						<img src="<?php echo AICONTENTT_PLUGIN_URL . 'core/includes/assets/images/AI_Content_Toolkit_Small_Logo_60x60.png'; ?>" >
+						<h5 class="modal-title" id="chatgpt-modal-label">Chat with GPT</h5>
+						<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form id="chatgpt-form">
+							<div class="form-group">
+								<label for="chatgpt-prompt">Enter your prompt:</label>
+								<input type="text" class="form-control" id="chatgpt-prompt" name="prompt">
+							</div>
+							<div class="form-group">
+								<label for="chatgpt-response">Response:</label>
+								<textarea class="form-control" id="chatgpt-response" name="response" rows="3" readonly></textarea>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary" id="chatgpt-submit">Submit
+							<span class="spinner-border spinner-border-sm" id="spinner-submit" role="status" aria-hidden="true" style="visibility: hidden"></span>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
     </div>
     <script>
         jQuery( document ).ready( function() {
+
+			jQuery('#chatgpt-submit').click(function() {
+				//Show spinner
+				let spinner = document.getElementById("spinner-submit");
+         		spinner.style.visibility = 'visible';
+
+			});
+
+			
+			jQuery('#chatgpt-response').change( function() {
+				alert('Stop Spinner');
+				let spinner = document.getElementById("#spinner-submit");
+				spinner.style.visibility = 'hidden';
+			});
+
             jQuery( '#chatgpt-submit' ).on( 'click', function() {
+				//alert('Button Pressed');
                 var prompt = jQuery( '#chatgpt-prompt' ).val();
                 jQuery.ajax( {
                     type: 'POST',
@@ -895,7 +933,8 @@ function chatgpt_button_shortcode() {
                         'prompt': prompt
                     },
                     success: function( data ) {
-                        jQuery( '#chatgpt-response' ).val( data );
+                        jQuery( '#chatgpt-response' ).val( jQuery.trim(data) );
+						jQuery( '#spinner-submit').css("visibility", "hidden");
                     }
                 } );
             } );
@@ -904,7 +943,7 @@ function chatgpt_button_shortcode() {
     <?php
     return ob_get_clean();
 }
-
+add_shortcode( 'chatgpt_button', 'chatgpt_button_shortcode' );
 
 
 
@@ -914,40 +953,40 @@ function chatgpt_submit() {
         $prompt = $_POST['prompt'];
 
         // Generate response using OpenAI API (replace YOUR_API_KEY with your actual API key)
-$api_url = 'https://api.openai.com/v1/completions';
-$request_data = array(
-'prompt' => $prompt,
-'model' => 'text-davinci-003',
-'max_tokens' => 2048,
-'temperature' => 0.7,
-'stop' => ['\n']
-);
-$request_headers = array(
-'Content-Type: application/json',
-'Authorization: Bearer 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'
-);
-$curl = curl_init();
-curl_setopt_array( $curl, array(
-CURLOPT_URL => $api_url,
-CURLOPT_POST => true,
-CURLOPT_POSTFIELDS => json_encode( $request_data ),
-CURLOPT_HTTPHEADER => $request_headers,
-CURLOPT_RETURNTRANSFER => true
-) );
-$response = curl_exec( $curl );
-$response_info = curl_getinfo( $curl );
-$curl_error = curl_error( $curl );
-curl_close( $curl );
-if ( $response_info['http_code'] == 200 ) {
-$response_data = json_decode( $response, true );
-if ( isset( $response_data['choices'] ) ) {
-echo $response_data['choices'][0]['text'];
-}
-} else {
-echo 'Error: ' . $curl_error;
-}
-exit;
-}
+		$api_url = 'https://api.openai.com/v1/completions';
+		$request_data = array(
+			'prompt' => $prompt,
+			'model' => 'text-davinci-003',
+			'max_tokens' => 2048,
+			'temperature' => 0.7,
+			'stop' => ['\n']
+		);
+		$request_headers = array(
+			'Content-Type: application/json',
+			'Authorization: Bearer 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'
+		);
+		$curl = curl_init();
+		curl_setopt_array( $curl, array(
+			CURLOPT_URL => $api_url,
+			CURLOPT_POST => true,
+			CURLOPT_POSTFIELDS => json_encode( $request_data ),
+			CURLOPT_HTTPHEADER => $request_headers,
+			CURLOPT_RETURNTRANSFER => true
+		) );
+		$response = curl_exec( $curl );
+		$response_info = curl_getinfo( $curl );
+		$curl_error = curl_error( $curl );
+		curl_close( $curl );
+		if ( $response_info['http_code'] == 200 ) {
+		$response_data = json_decode( $response, true );
+		if ( isset( $response_data['choices'] ) ) {
+			echo $response_data['choices'][0]['text'];
+		}
+		} else {
+			echo 'Error: ' . $curl_error;
+		}
+		exit;
+	}
 }
 
 
@@ -966,28 +1005,3 @@ exit;
 	int|float $position = null ): string
 
 */
-
-function my_modal_shortcode() {
-	ob_start();
-	?>
-	<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
-		Launch Modal
-	</button>
-
-	<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
-		<div class="modal-dialog modal-dialog-centered">
-			<div class="modal-content">
-				<div class="modal-header">
-				<img src="<?php echo AICONTENTT_PLUGIN_URL . 'core/includes/assets/images/AI_Content_Toolkit_Small_Logo_60x60.png'; ?>">
-					<h5 class="modal-title" id="exampleModalLabel">Chat with GPT</h5>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-				</div>
-				<div class="modal-body">
-					<?php include AICONTENTT_PLUGIN_DIR . "core/includes/t34-chatgpt-modal.php"; ?>
-				</div>
-			</div>
-		</div>
-	</div>
-	<?php
-	return ob_get_clean();
-}
