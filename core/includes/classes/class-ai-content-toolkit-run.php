@@ -872,16 +872,19 @@ function chatgpt_button_shortcode() {
 			.vertical-alignment-helper{display:table; height: 100%; width: 100%; pointer-events:none;}
 			.vertical-align-center{display: table-cell; vertical-align: middle; pointer-events:none;}
 			.modal-content{width:inherit; max-width:inherit; height:inherit; margin:0 auto; pointer-events:all;}
+			.response-label {display:none;}
+			.chatgpt-response {display:none;}
+			.text-center {
+				text-align: center;
+			}
 		</style>
 		<div class="vertical-alignment-helper">
 			<div class="modal-dialog vertical-align-center" role="document">
 				<div class="modal-content" style="font: .5rem">
 					<div class="modal-header">
 						<img src="<?php echo AICONTENTT_PLUGIN_URL . 'core/includes/assets/images/AI_Content_Toolkit_Small_Logo_60x60.png'; ?>" >
-						<h5 class="modal-title" id="chatgpt-modal-label">Chat with GPT</h5>
-						<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
+						<h5 class="modal-title ms-2" id="chatgpt-modal-label">Chat with GPT</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
 					<div class="modal-body">
 						<form id="chatgpt-form">
@@ -889,17 +892,24 @@ function chatgpt_button_shortcode() {
 								<label for="chatgpt-prompt">Enter your prompt:</label>
 								<input type="text" class="form-control" id="chatgpt-prompt" name="prompt">
 							</div>
-							<div class="form-group">
-								<label for="chatgpt-response">Response:</label>
-								<textarea class="form-control" id="chatgpt-response" name="response" rows="3" readonly></textarea>
+							<div class="form-group d-none">
+								<label for="chatgpt-response" id="response-label">Response:</label>
+								<textarea class="form-control" id="chatgpt-response" name="chatgpt-response" rows="3" readonly></textarea>
 							</div>
 						</form>
+						<div class="copyLink d-none text-center">
+							<button class="btn btn-link" id="copyButton" style="font-size: medium">Copy To Clipboard</button>
+						</div>
 					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					<div class="modal-footer text-center">
+						<div>
 						<button type="button" class="btn btn-primary" id="chatgpt-submit">Submit
 							<span class="spinner-border spinner-border-sm" id="spinner-submit" role="status" aria-hidden="true" style="visibility: hidden"></span>
 						</button>
+						<div>
+						<div class="homeLink mt-2">
+							<a href="http://toolkitsforsuccess.com" style="font-size: small">Made By ToolkitsForSuccess.com in Florida</a>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -907,6 +917,12 @@ function chatgpt_button_shortcode() {
     </div>
     <script>
         jQuery( document ).ready( function() {
+
+			jQuery('#copyButton').on('click', function() {
+				var value = jQuery('#chatgpt-response').val();
+
+				copyText(value);
+			})
 
 			jQuery('#chatgpt-submit').click(function() {
 				//Show spinner
@@ -935,10 +951,26 @@ function chatgpt_button_shortcode() {
                     success: function( data ) {
                         jQuery( '#chatgpt-response' ).val( jQuery.trim(data) );
 						jQuery( '#spinner-submit').css("visibility", "hidden");
+						jQuery( '.form-group' ).removeClass("d-none");
+						jQuery( '.copyLink' ).removeClass("d-none");
+						
                     }
                 } );
             } );
         } );
+		
+		function copyText(text) {
+			var textField = document.createElement('textarea');
+			textField.innerText = text;
+			document.body.appendChild(textField);
+			textField.select();
+			textField.focus(); //SET FOCUS on the TEXTFIELD
+			document.execCommand('copy');
+			textField.remove();
+			console.log('should have copied ' + text); 
+			document.getElementById('chatgpt-response').focus(); //SET FOCUS BACK to MODAL
+		}
+
     </script>
     <?php
     return ob_get_clean();
