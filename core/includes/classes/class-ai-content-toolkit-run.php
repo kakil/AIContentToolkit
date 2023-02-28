@@ -890,10 +890,10 @@ function chatgpt_button_shortcode() {
 					<div class="modal-body">
 						<form class="needs-validation" id="chatgpt-form" novalidate>
 							<div class="form-group">
-								<label for="validationCustom09">Enter your prompt:</label>
+								<label for="validationCustom09">Enter your question:</label>
 								<input type="text" class="form-control" id="chatgpt-prompt" name="chatgpt-prompt" required>
 								<div class="prompt-validation" style="visibility: hidden">
-									<p class="text-danger">Please enter a prompt...</p>
+									<p class="text-danger">Please enter a question...</p>
 								</div>
 							</div>
 							<div class="form-group d-none">
