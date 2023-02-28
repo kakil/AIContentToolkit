@@ -856,6 +856,7 @@ function subscribe_link(){
 function my_enqueue_scripts() {
     wp_enqueue_style( 'bootstrap', 'https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css' );
     wp_enqueue_script( 'bootstrap', 'https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js', array( 'jquery' ), '', true );
+	wp_enqueue_script('bootstrap', 'https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js', array('jquery'), '', true);
 }
 add_action( 'wp_enqueue_scripts', 'my_enqueue_scripts' );
 
@@ -865,7 +866,7 @@ function chatgpt_button_shortcode() {
     ob_start();
 	
     ?>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#chatgpt-modal">Chat with GPT</button>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#chatgpt-modal" id="chatWithGPTButton">Chat with GPT</button>
     <div class="modal fade" id="chatgpt-modal" tabindex="-1" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="chatgpt-modal-label" aria-hidden="true">
 		<style>
 			.modal {position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); font:.5rem;}
@@ -887,10 +888,13 @@ function chatgpt_button_shortcode() {
 						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
 					<div class="modal-body">
-						<form id="chatgpt-form">
+						<form class="needs-validation" id="chatgpt-form" novalidate>
 							<div class="form-group">
-								<label for="chatgpt-prompt">Enter your prompt:</label>
-								<input type="text" class="form-control" id="chatgpt-prompt" name="prompt">
+								<label for="validationCustom09">Enter your prompt:</label>
+								<input type="text" class="form-control" id="chatgpt-prompt" name="chatgpt-prompt" required>
+								<div class="prompt-validation" style="visibility: hidden">
+									<p class="text-danger">Please enter a prompt...</p>
+								</div>
 							</div>
 							<div class="form-group d-none">
 								<label for="chatgpt-response" id="response-label">Response:</label>
@@ -903,7 +907,7 @@ function chatgpt_button_shortcode() {
 					</div>
 					<div class="modal-footer text-center">
 						<div>
-						<button type="button" class="btn btn-primary" id="chatgpt-submit">Submit
+						<button type="submit" class="btn btn-primary" id="chatgpt-submit">Submit
 							<span class="spinner-border spinner-border-sm" id="spinner-submit" role="status" aria-hidden="true" style="visibility: hidden"></span>
 						</button>
 						<div>
@@ -917,46 +921,105 @@ function chatgpt_button_shortcode() {
     </div>
     <script>
         jQuery( document ).ready( function() {
+			
+			jQuery('#chatgpt-modal').on('shown.bs.modal', function() {
 
-			jQuery('#copyButton').on('click', function() {
-				var value = jQuery('#chatgpt-response').val();
+				jQuery('#chatWithGPTButton').on('click', function() {
+					jQuery('#chatgpt-modal').appendTo("body").modal('show');
+				})
 
-				copyText(value);
-			})
+				jQuery('#copyButton').on('click', function() {
+					var value = jQuery('#chatgpt-response').val();
 
-			jQuery('#chatgpt-submit').click(function() {
-				//Show spinner
-				let spinner = document.getElementById("spinner-submit");
-         		spinner.style.visibility = 'visible';
-
-			});
+					copyText(value);
+				})
 
 			
-			jQuery('#chatgpt-response').change( function() {
-				alert('Stop Spinner');
-				let spinner = document.getElementById("#spinner-submit");
-				spinner.style.visibility = 'hidden';
-			});
+				jQuery('#chatgpt-response').change( function() {
+					//alert('Stop Spinner');
+					let spinner = document.getElementById("#spinner-submit");
+					spinner.style.visibility = 'hidden';
+				});
 
-            jQuery( '#chatgpt-submit' ).on( 'click', function() {
-				//alert('Button Pressed');
-                var prompt = jQuery( '#chatgpt-prompt' ).val();
-                jQuery.ajax( {
-                    type: 'POST',
-                    url: '<?php echo admin_url( "admin-ajax.php" ); ?>',
-                    data: {
-                        'action': 'chatgpt_submit',
-                        'prompt': prompt
-                    },
-                    success: function( data ) {
-                        jQuery( '#chatgpt-response' ).val( jQuery.trim(data) );
-						jQuery( '#spinner-submit').css("visibility", "hidden");
-						jQuery( '.form-group' ).removeClass("d-none");
-						jQuery( '.copyLink' ).removeClass("d-none");
+				jQuery( '#chatgpt-submit' ).on( 'click', function() {
+					//alert('Button Pressed');
+					console.log(jQuery('#chatgpt-prompt').val());
+					var prompt = jQuery('#chatgpt-prompt').val() == undefined ? '' : jQuery('#chatgpt-prompt').val().trim();
+					
+					if(!prompt){
+						console.log('prompt is null');
+						jQuery('.prompt-validation').css({"visibility":"visible"});
 						
-                    }
-                } );
-            } );
+					} else {
+						jQuery('.prompt-validation').css({"visibility":"hidden"});
+						let spinner = document.getElementById("spinner-submit");
+						spinner.style.visibility = 'visible';
+
+						var prompt = jQuery( '#chatgpt-prompt' ).val();
+						jQuery.ajax( {
+							type: 'POST',
+							url: '<?php echo admin_url( "admin-ajax.php" ); ?>',
+							data: {
+								'action': 'chatgpt_submit',
+								'prompt': prompt
+							},
+							success: function( data ) {
+								jQuery( '#chatgpt-response' ).val( jQuery.trim(data) );
+								jQuery( '#spinner-submit').css("visibility", "hidden");
+								jQuery( '#prompt-validation').css("visibility", "hidden");
+								jQuery( '.form-group' ).removeClass("d-none");
+								jQuery( '.copyLink' ).removeClass("d-none");
+								
+							}
+						} );
+					}
+
+					
+				} );
+
+				// Validations
+				// Example starter JavaScript for disabling form submissions if there are invalid fields
+				(function () {
+					'use strict'
+					
+					// Fetch all the forms we want to apply custom Bootstrap validation styles to
+					var forms = document.querySelectorAll('.needs-validation')
+			
+					// Loop over them and prevent submission
+					Array.prototype.slice.call(forms)
+					.forEach(function (form) {
+						form.addEventListener('submit', function (event) {
+						if (!form.checkValidity()) {
+							event.preventDefault()
+							event.stopPropagation()
+							//jQuery('#spinner-div').hide();
+							let spinner = document.getElementById("spinner-submit");
+							spinner.style.visibility = 'hidden';
+
+							let addBlogSpinner = document.getElementById("spinner-blog-submit");
+							if(addBlogSpinner) {
+								addBlogSpinner.style.visibility = 'hidden';
+							}
+
+							//  let imageInfoText = document.getElementById('imageInfoText');
+							//  imageInfoText.style.visibility = 'visible';
+							
+							console.log("Checked Validation");
+						}
+			
+						form.classList.add('was-validated')
+						}, false)
+					})
+				})();
+
+
+
+			});
+			
+			
+
+
+
         } );
 		
 		function copyText(text) {
