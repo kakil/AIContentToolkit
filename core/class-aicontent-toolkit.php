@@ -49,16 +49,6 @@ if ( ! class_exists( 'AI_Content_Toolkit' ) ) :
 		public $helpers;
 
 		/**
-		 * AICONTENTT helpers object.
-		 *
-		 * @access	public
-		 * @since	0.5.0
-		 * @var		object|AI_Content_Toolkit_Run
-		 */
-		public $run;
-
-
-		/**
 		 * AICONTENTT settings object.
 		 *
 		 * @access	public
@@ -109,7 +99,6 @@ if ( ! class_exists( 'AI_Content_Toolkit' ) ) :
 				self::$instance->includes();
 				self::$instance->helpers		= new AI_Content_Toolkit_Helpers();
 				self::$instance->settings		= new AI_Content_Toolkit_Settings();
-				self::$instance->run			= new AI_Content_Toolkit_Run();
 
 				//Fire the plugin logic
 				new AI_Content_Toolkit_Run();
