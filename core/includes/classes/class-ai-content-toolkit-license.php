@@ -3,7 +3,6 @@
     // Exit if accessed directly.
     if ( ! defined( 'ABSPATH' ) ) exit;
 
-
 /**
  * HELPER COMMENT START
  * 
@@ -34,7 +33,7 @@
  * @since		0.7.0
  */
 
- lass AI_Content_Toolkit_License {
+ class AI_Content_Toolkit_License {
 
 	/**
 	 * The plugin name
@@ -54,6 +53,15 @@
 
 		$this->plugin_name = AICONTENTT_NAME;
 	}
+
+    /**
+	 * The api key
+	 *
+	 * @var		string
+	 * @since   0.7.0
+	 */
+	private $apiKey = '588e6bf7b14c8b63114fb0f147afc5c3';
+
 
 	/**
 	 * ######################
@@ -89,12 +97,45 @@
 	 */
 
      function verify_license_key($license_key) {
-        // Perform a check to determine if the license key is valid
-        if ($valid) {
-            return true;
+
+        // Define the API endpoint URL
+        $apiURL = 'https://app.productdyno.com/api/v1/licenses/get';
+
+        // Define the API key and license key parameters
+        $params = array(
+            '_api_key' => $apiKey,
+            'license_key' => $licenseKey
+        );
+
+        // Initialize a cURL session
+        $ch = curl_init();
+
+        // Set the cURL options
+        curl_setopt($ch, CURLOPT_URL, $apiURL . '?' . http_build_query($params));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        // Execute the cURL request
+        $response = curl_exec($ch);
+
+        // Check if there was an error with the cURL request
+        if (curl_errno($ch)) {
+            echo 'Error: ' . curl_error($ch);
         } else {
-            return false;
+            // Parse the JSON response
+            $json = json_decode($response, true);
+            
+            // Check if the license key is valid
+            if ($json && isset($json['license_key'])) {
+                // The license key is valid
+                echo 'License key is valid for product ID ' . $json['product_id'];
+            } else {
+                // The license key is not valid
+                echo 'Invalid license key';
+            }
         }
+
+        // Close the cURL session
+        curl_close($ch);
     }
 	
 
@@ -132,13 +173,48 @@
 	 */
 
      function activate_plugin() {
-        $license_key = $_POST['license_key'];
-        if (verify_license_key($license_key)) {
-            update_option('license_key', $license_key);
+        // Define the API endpoint URL
+        $url = 'https://app.productdyno.com/api/v1/licenses/get';
+
+        // Define the API key and license key parameters
+        $params = array(
+            '_api_key' => 'YOUR_API_KEY',
+            'license_key' => 'USER_LICENSE_KEY'
+        );
+
+        // Initialize a cURL session
+        $ch = curl_init();
+
+        // Set the cURL options
+        curl_setopt($ch, CURLOPT_URL, $url . '?' . http_build_query($params));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        // Execute the cURL request
+        $response = curl_exec($ch);
+
+        // Check if there was an error with the cURL request
+        if (curl_errno($ch)) {
+            echo 'Error: ' . curl_error($ch);
         } else {
-            // Display an error message to the user
-            echo 'Invalid license key';
+            // Parse the JSON response
+            $json = json_decode($response, true);
+            
+            // Check if the license key is valid
+            if ($json && isset($json['license_key'])) {
+                // The license key is valid
+                echo 'License key is valid for product ID ' . $json['product_id'];
+                
+                // Save the license key to the WordPress options table
+                update_option('license_key', 'USER_LICENSE_KEY');
+            } else {
+                // The license key is not valid
+                echo 'Invalid license key';
+            }
         }
+
+        // Close the cURL session
+        curl_close($ch);
+
     }
 
 
@@ -156,14 +232,116 @@
 
 
      function plugin_loaded() {
+        // Retrieve the license key from the WordPress options table
         $license_key = get_option('license_key');
-        if (!verify_license_key($license_key)) {
-            // Disable the plugin or display a warning message
-            echo 'Your license key is invalid';
-            exit;
+
+        // Define the API endpoint URL
+        $url = 'https://app.productdyno.com/api/v1/licenses/get';
+
+        // Define the API key and license key parameters
+        $params = array(
+            '_api_key' => 'YOUR_API_KEY',
+            'license_key' => $license_key
+        );
+
+        // Initialize a cURL session
+        $ch = curl_init();
+
+        // Set the cURL options
+        curl_setopt($ch, CURLOPT_URL, $url . '?' . http_build_query($params));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        // Execute the cURL request
+        $response = curl_exec($ch);
+
+        // Check if there was an error with the cURL request
+        if (curl_errno($ch)) {
+            echo 'Error: ' . curl_error($ch);
+        } else {
+            // Parse the JSON response
+            $json = json_decode($response, true);
+
+            // Check if the license key is valid
+            if ($json && isset($json['license_key'])) {
+                // The license key is valid
+                echo 'License key is valid for product ID ' . $json['product_id'];
+            } else {
+                // The license key is not valid
+                echo 'Invalid license key';
+            }
         }
+
+        // Close the cURL session
+        curl_close($ch);
     }
 
+    // Hook the verify_license function to the WordPress init action
+    add_action('init', 'verify_license');
+
+    /**
+	 * Connect to server
+	 *
+     * Connect to the licensing server
+     * 
+     * 
+	 * @access	public
+	 * @since	0.7.0
+	 * @return	void
+	 */
+
+     function connect_to_server_post($apiURL, $apiKey, $licenseKey, $guid) {
+
+        $curl = curl_init();
+		curl_setopt_array( $curl, array(
+			CURLOPT_URL => $apiURL,
+			CURLOPT_POST => true,
+			CURLOPT_POSTFIELDS => json_encode( $request_data ),
+			CURLOPT_HTTPHEADER => $request_headers,
+			CURLOPT_RETURNTRANSFER => true
+		) );
+		
+     }
+
+     function connect_to_server_get($apiURL, $apiKey, $licenseKey, $memberId) {
+
+        // Define the API key and license key parameters
+        $params = array(
+            '_api_key' => $apiKey,
+            'license_key' => $licenseKey
+        );
+
+        // Initialize a cURL session
+        $ch = curl_init();
+
+        // Set the cURL options
+        curl_setopt($ch, CURLOPT_URL, $apiURL . '?' . http_build_query($params));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        // Execute the cURL request
+        $response = curl_exec($ch);
+
+        // Check if there was an error with the cURL request
+        if (curl_errno($ch)) {
+            echo 'Error: ' . curl_error($ch);
+        } else {
+            // Parse the JSON response
+            $json = json_decode($response, true);
+            
+            // Check if the license key is valid
+            if ($json && isset($json['license_key'])) {
+                // The license key is valid
+                echo 'License key is valid for product ID ' . $json['product_id'];
+            } else {
+                // The license key is not valid
+                echo 'Invalid license key';
+            }
+        }
+
+        // Close the cURL session
+        curl_close($ch);
+
+
+     }
 
 
 }
