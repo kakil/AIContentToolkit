@@ -291,6 +291,32 @@ jQuery(document).ready(function() {
       
   });
 
+
+  //license activation
+  jQuery( '#activate_license_btn' ).on( "click", function() {
+        alert('Button Pressed');
+        // Get the license key from the textfield
+        var license_key = $('#license_key').val();
+
+        jQuery.ajax( {
+            type: 'POST',
+            url: ajaxurl,
+            data: {
+                'action': 'activate_license',
+                'prompt': license_key
+            },
+            success: function( response ) {
+                // Handle the response from the server
+                console.log(response);
+    
+            },
+            error: function(xhr, status, error) {
+              // Handle any errors
+              console.log('Error: ' + error);
+            }
+        } );
+  });
+
 });
 
 

@@ -85,6 +85,9 @@ class AI_Content_Toolkit_Run{
 		add_action( 'wp_ajax_chatgpt_submit', 'chatgpt_submit' );
 		add_action( 'wp_ajax_nopriv_chatgpt_submit', 'chatgpt_submit' );
 
+		//Register license code
+		add_action('wp_ajax_activate_license', 'activate_license_ajax_handler');
+
 		//add_shortcode( 'chatgpt', array( $this, 'chatgpt_shortcode', 10 ) );
 		add_shortcode('subscribe', 'subscribe_link');
 		
@@ -143,6 +146,36 @@ class AI_Content_Toolkit_Run{
 		wp_enqueue_media();
 
 		//wp_footer();
+	}
+
+
+	/**
+	 * Enqueue the backend related scripts and styles for this plugin.
+	 * All of the added scripts and styles will be available on every page within the backend.
+	 *
+	 * @access	public
+	 * @since	0.7.0
+	 *
+	 * @return	void
+	 */
+	public function activate_license_ajax_handler() {
+		// Include the license class file
+		//require_once(AICONTENTT_PLUGIN_DIR . 'class-ai-content-toolkit-license.php');
+	
+		// Get the license key from the AJAX request data
+		$license_key = $_POST['license_key'];
+	
+		// Create a new instance of the license class
+		//$license = new AI_Content_Toolkit_License();
+	
+		// Activate the plugin using the license key
+		$activation_result = AICONTENTT()->$license->activate_plugin($license_key);
+	
+		// Return the activation result as a JSON-encoded string
+		echo json_encode($activation_result);
+	
+		// Always exit after handling AJAX requests
+		wp_die();
 	}
 
 
@@ -892,9 +925,6 @@ function chatgpt_button_shortcode() {
 					<div class="modal-body">
 						<form id="chatgpt-form">
 							<div class="form-group">
-								<label for="chatgpt-prompt">Enter your prompt:</label>
-								<input type="text" class="form-control" id="chatgpt-prompt" name="prompt">
-							</div>
 								<label for="validationCustom09">Enter your question:</label>
 								<input type="text" class="form-control" id="chatgpt-prompt" name="chatgpt-prompt" required>
 								<div class="prompt-validation" style="visibility: hidden">

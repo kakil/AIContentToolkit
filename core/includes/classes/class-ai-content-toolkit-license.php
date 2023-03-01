@@ -172,14 +172,14 @@
 	 * @return	void
 	 */
 
-     function activate_plugin() {
+     function activate_plugin($license_key) {
         // Define the API endpoint URL
         $url = 'https://app.productdyno.com/api/v1/licenses/get';
-
+        alert('license key: ' . $license_key);
         // Define the API key and license key parameters
         $params = array(
             '_api_key' => 'YOUR_API_KEY',
-            'license_key' => 'USER_LICENSE_KEY'
+            'license_key' => $license_key
         );
 
         // Initialize a cURL session

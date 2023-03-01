@@ -2,6 +2,8 @@
 error_reporting(0);
 include "header.php";
 
+//require_once AICONTENTT_PLUGIN_DIR . "/includes/classes/class-ai-content-toolkit-license.php";
+
 global $wpdb;
 $tablename = $wpdb->prefix.'ai_content_tool';
 
@@ -82,6 +84,11 @@ if(isset($_POST["submit"])){
 <div class="container-fluid w-50 m-3 bg-light border border-3 shadow p-3 rounded-4"> 
   <h1 class="display-3 mt-3 mb-3">AI Settings</h1>
   <form method="post">
+    <div class="mb-5">
+      <label class="form-label"><b>License Key</label>
+      <input type="text" id="license_key" name="license_key" value="<?php echo get_option('license_key'); ?>" />
+      <button type="button" id="activate_license_btn" name="activate_license_btn" class="btn btn-primary mb-5"><?php echo $lang["activateLicense"]; ?></button>
+    <div>
     <div class="mb-5">
       <label class="form-label"><b>ChatGPT API Token (sk-xxxxx):</label>
       <input type="text" id="apiToken" name="apiToken" class="form-control" value="<?php echo $getApiToken; ?>" placeholder="sk-"/>

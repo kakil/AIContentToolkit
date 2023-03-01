@@ -57,6 +57,16 @@ if ( ! class_exists( 'AI_Content_Toolkit' ) ) :
 		 */
 		public $settings;
 
+
+		/**
+		 * AICONTENTT license object.
+		 *
+		 * @access	public
+		 * @since	0.7.0
+		 * @var		object|AI_Content_Toolkit_License
+		 */
+		public $license;
+
 		/**
 		 * Throw error on object clone.
 		 *
@@ -99,6 +109,7 @@ if ( ! class_exists( 'AI_Content_Toolkit' ) ) :
 				self::$instance->includes();
 				self::$instance->helpers		= new AI_Content_Toolkit_Helpers();
 				self::$instance->settings		= new AI_Content_Toolkit_Settings();
+				self::$instance->license		= new AI_Content_Toolkit_License();
 
 				//Fire the plugin logic
 				new AI_Content_Toolkit_Run();
@@ -125,6 +136,7 @@ if ( ! class_exists( 'AI_Content_Toolkit' ) ) :
 			require_once AICONTENTT_PLUGIN_DIR . 'core/includes/classes/class-ai-content-toolkit-settings.php';
 
 			require_once AICONTENTT_PLUGIN_DIR . 'core/includes/classes/class-ai-content-toolkit-run.php';
+			require_once AICONTENTT_PLUGIN_DIR . 'core/includes/classes/class-ai-content-toolkit-license.php';
 		}
 
 		/**
