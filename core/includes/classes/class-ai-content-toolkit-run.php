@@ -91,7 +91,6 @@ class AI_Content_Toolkit_Run{
 		// Register the shortcode
 		add_shortcode( 'my_modal', 'my_modal_shortcode' );
 
-
 		register_activation_hook(AICONTENTT_PLUGIN_FILE, array( $this, 'create_table_ai_content_tool') );
 		
 	}
@@ -133,6 +132,8 @@ class AI_Content_Toolkit_Run{
 	 * @return	void
 	 */
 	public function enqueue_backend_scripts_and_styles() {
+
+		wp_enqueue_script('jquery');
 		wp_enqueue_style( 'aicontentt-backend-styles', AICONTENTT_PLUGIN_URL . 'core/includes/assets/css/backend-styles.css', array(), AICONTENTT_VERSION, 'all' );
 		wp_enqueue_script( 'aicontentt-backend-scripts', AICONTENTT_PLUGIN_URL . 'core/includes/assets/js/backend-scripts.js', array(), AICONTENTT_VERSION, false );
 		wp_localize_script( 'aicontentt-backend-scripts', 'aicontentt', array(
@@ -141,7 +142,7 @@ class AI_Content_Toolkit_Run{
 
 		wp_enqueue_media();
 
-		wp_footer();
+		//wp_footer();
 	}
 
 
@@ -854,8 +855,13 @@ function subscribe_link(){
 
 // Register and enqueue Bootstrap CSS and JS
 function my_enqueue_scripts() {
-    wp_enqueue_style( 'bootstrap', 'https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css' );
+    wp_enqueue_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js', array('jquery'), '', true);
+	wp_enqueue_style( 'bootstrap', 'https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css' );
     wp_enqueue_script( 'bootstrap', 'https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js', array( 'jquery' ), '', true );
+<<<<<<< HEAD
+=======
+	
+>>>>>>> 28fa466 (Updated to remove jQuery errors.)
 }
 add_action( 'wp_enqueue_scripts', 'my_enqueue_scripts' );
 
@@ -885,7 +891,7 @@ function chatgpt_button_shortcode() {
 						<img src="<?php echo AICONTENTT_PLUGIN_URL . 'core/includes/assets/images/AI_Content_Toolkit_Small_Logo_60x60.png'; ?>" >
 						<h5 class="modal-title ms-2" id="chatgpt-modal-label">Chat with GPT</h5>
 						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-					</div>
+					</div>  <!-- modal header end -->
 					<div class="modal-body">
 						<form id="chatgpt-form">
 							<div class="form-group">
@@ -895,37 +901,139 @@ function chatgpt_button_shortcode() {
 								<label for="validationCustom09">Enter your question:</label>
 								<input type="text" class="form-control" id="chatgpt-prompt" name="chatgpt-prompt" required>
 								<div class="prompt-validation" style="visibility: hidden">
-									<p class="text-danger">Please enter a question...</p>
+										<p class="text-danger">Please enter a question...</p>
 								</div>
-							</div>
+							</div> <!-- form group end -->
+							
 							<div class="form-group d-none">
 								<label for="chatgpt-response" id="response-label">Response:</label>
 								<textarea class="form-control" id="chatgpt-response" name="chatgpt-response" rows="3" readonly></textarea>
 							</div>
-						</form>
+						</form> <!-- form end -->
 						<div class="copyLink d-none text-center">
 							<button class="btn btn-link" id="copyButton" style="font-size: medium">Copy To Clipboard</button>
-						</div>
-					</div>
-					<div class="modal-footer text-center">
+						</div> <!-- copy button end -->
 						<div>
+<<<<<<< HEAD
+=======
+							<div class="homeLink mt-2 text-center">
+								<a href="http://toolkitsforsuccess.com" style="font-size: small">Made By ToolkitsForSuccess.com in Florida</a>
+							</div>
+						</div>
+					</div> <!-- modal body end -->
+					<div class="modal-footer text-center">
+>>>>>>> 28fa466 (Updated to remove jQuery errors.)
 						<button type="button" class="btn btn-primary" id="chatgpt-submit">Submit
 							<span class="spinner-border spinner-border-sm" id="spinner-submit" role="status" aria-hidden="true" style="visibility: hidden"></span>
 						</button>
-						<div>
-						<div class="homeLink mt-2">
-							<a href="http://toolkitsforsuccess.com" style="font-size: small">Made By ToolkitsForSuccess.com in Florida</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-    </div>
+					</div> <!-- modal-footer end -->
+				</div>  <!-- modal-content end -->
+			</div>  <!-- modal-dialog end -->
+		</div> <!-- vertical-alignment-helper end -->
+	</div>  <!-- modal end -->
+
+
     <script>
         jQuery( document ).ready( function() {
+<<<<<<< HEAD
 
 			jQuery('#copyButton').on('click', function() {
 				var value = jQuery('#chatgpt-response').val();
+=======
+
+			jQuery('#chatgpt-modal').on('shown.bs.modal', function() {
+
+				jQuery('#chatWithGPTButton').on('click', function() {
+					console.log('Modal Button Pressed');
+					jQuery('#chatgpt-modal').appendTo("body").modal('show');
+				})
+
+				jQuery('#copyButton').on('click', function() {
+					var value = jQuery('#chatgpt-response').val();
+					jQuery(this).html("Copied!");
+					//jQuery(this).addClass('green');
+
+					copyText(value);
+				})
+
+				
+				jQuery('#chatgpt-response').change( function() {
+					//alert('Stop Spinner');
+					let spinner = document.getElementById("#spinner-submit");
+					spinner.style.visibility = 'hidden';
+				});
+
+				jQuery( '#chatgpt-submit' ).on( 'click', function() {
+					//alert('Button Pressed');
+					console.log(jQuery('#chatgpt-prompt').val());
+						var prompt = jQuery('#chatgpt-prompt').val() == undefined ? '' : jQuery('#chatgpt-prompt').val().trim();
+						
+						if(!prompt){
+							console.log('prompt is null');
+							jQuery('.prompt-validation').css({"visibility":"visible"});
+							
+						} else {
+							jQuery('#copyButton').html("Copy To Clipboard");
+							jQuery('.prompt-validation').css({"visibility":"hidden"});
+							let spinner = document.getElementById("spinner-submit");
+							spinner.style.visibility = 'visible';
+							var prompt = jQuery( '#chatgpt-prompt' ).val();
+							jQuery.ajax( {
+								type: 'POST',
+								url: '<?php echo admin_url( "admin-ajax.php" ); ?>',
+								data: {
+									'action': 'chatgpt_submit',
+									'prompt': prompt
+								},
+								success: function( data ) {
+									jQuery( '#chatgpt-response' ).val( jQuery.trim(data) );
+									jQuery( '#spinner-submit').css("visibility", "hidden");
+									jQuery( '#prompt-validation').css("visibility", "hidden");
+									jQuery( '.form-group' ).removeClass("d-none");
+									jQuery( '.copyLink' ).removeClass("d-none");
+							
+								}
+							});
+						}
+
+
+				});
+
+				// Validations
+				// Example starter JavaScript for disabling form submissions if there are invalid fields
+				(function () {
+					'use strict'
+					
+					// Fetch all the forms we want to apply custom Bootstrap validation styles to
+					var forms = document.querySelectorAll('.needs-validation')
+			
+					// Loop over them and prevent submission
+					Array.prototype.slice.call(forms)
+					.forEach(function (form) {
+						form.addEventListener('submit', function (event) {
+						if (!form.checkValidity()) {
+							event.preventDefault()
+							event.stopPropagation()
+							//jQuery('#spinner-div').hide();
+							let spinner = document.getElementById("spinner-submit");
+							spinner.style.visibility = 'hidden';
+
+							let addBlogSpinner = document.getElementById("spinner-blog-submit");
+							if(addBlogSpinner) {
+								addBlogSpinner.style.visibility = 'hidden';
+							}
+
+							//  let imageInfoText = document.getElementById('imageInfoText');
+							//  imageInfoText.style.visibility = 'visible';
+							
+							console.log("Checked Validation");
+						}
+			
+						form.classList.add('was-validated')
+						}, false)
+					})
+				})();
+>>>>>>> 28fa466 (Updated to remove jQuery errors.)
 
 				copyText(value);
 			})
@@ -938,11 +1046,14 @@ function chatgpt_button_shortcode() {
 			});
 
 			
+<<<<<<< HEAD
 			jQuery('#chatgpt-response').change( function() {
 				alert('Stop Spinner');
 				let spinner = document.getElementById("#spinner-submit");
 				spinner.style.visibility = 'hidden';
 			});
+=======
+>>>>>>> 28fa466 (Updated to remove jQuery errors.)
 
             jQuery( '#chatgpt-submit' ).on( 'click', function() {
 				//alert('Button Pressed');
