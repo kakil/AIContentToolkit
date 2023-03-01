@@ -858,10 +858,7 @@ function my_enqueue_scripts() {
     wp_enqueue_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js', array('jquery'), '', true);
 	wp_enqueue_style( 'bootstrap', 'https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css' );
     wp_enqueue_script( 'bootstrap', 'https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js', array( 'jquery' ), '', true );
-<<<<<<< HEAD
-=======
 	
->>>>>>> 28fa466 (Updated to remove jQuery errors.)
 }
 add_action( 'wp_enqueue_scripts', 'my_enqueue_scripts' );
 
@@ -914,15 +911,12 @@ function chatgpt_button_shortcode() {
 							<button class="btn btn-link" id="copyButton" style="font-size: medium">Copy To Clipboard</button>
 						</div> <!-- copy button end -->
 						<div>
-<<<<<<< HEAD
-=======
 							<div class="homeLink mt-2 text-center">
 								<a href="http://toolkitsforsuccess.com" style="font-size: small">Made By ToolkitsForSuccess.com in Florida</a>
 							</div>
 						</div>
 					</div> <!-- modal body end -->
 					<div class="modal-footer text-center">
->>>>>>> 28fa466 (Updated to remove jQuery errors.)
 						<button type="button" class="btn btn-primary" id="chatgpt-submit">Submit
 							<span class="spinner-border spinner-border-sm" id="spinner-submit" role="status" aria-hidden="true" style="visibility: hidden"></span>
 						</button>
@@ -935,11 +929,6 @@ function chatgpt_button_shortcode() {
 
     <script>
         jQuery( document ).ready( function() {
-<<<<<<< HEAD
-
-			jQuery('#copyButton').on('click', function() {
-				var value = jQuery('#chatgpt-response').val();
-=======
 
 			jQuery('#chatgpt-modal').on('shown.bs.modal', function() {
 
@@ -1033,7 +1022,6 @@ function chatgpt_button_shortcode() {
 						}, false)
 					})
 				})();
->>>>>>> 28fa466 (Updated to remove jQuery errors.)
 
 				copyText(value);
 			})
@@ -1046,14 +1034,6 @@ function chatgpt_button_shortcode() {
 			});
 
 			
-<<<<<<< HEAD
-			jQuery('#chatgpt-response').change( function() {
-				alert('Stop Spinner');
-				let spinner = document.getElementById("#spinner-submit");
-				spinner.style.visibility = 'hidden';
-			});
-=======
->>>>>>> 28fa466 (Updated to remove jQuery errors.)
 
             jQuery( '#chatgpt-submit' ).on( 'click', function() {
 				//alert('Button Pressed');
