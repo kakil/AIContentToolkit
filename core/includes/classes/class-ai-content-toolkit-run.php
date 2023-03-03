@@ -76,6 +76,9 @@ class AI_Content_Toolkit_Run{
 	private function add_hooks(){
 	
 		
+		add_action('wp_ajax_verify_license', 'verify_license');
+		add_action('wp_ajax_nopriv_verify_license', 'verify_license');
+
 		add_action( 'plugin_action_links_' . AICONTENTT_PLUGIN_BASE, array( $this, 'add_plugin_action_link' ), 20 );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_backend_scripts_and_styles' ), 20 );
 		//add_action( 'admin_bar_menu', array( $this, 'add_admin_bar_menu_items' ), 100, 1 );
@@ -148,35 +151,6 @@ class AI_Content_Toolkit_Run{
 		//wp_footer();
 	}
 
-
-	/**
-	 * Enqueue the backend related scripts and styles for this plugin.
-	 * All of the added scripts and styles will be available on every page within the backend.
-	 *
-	 * @access	public
-	 * @since	0.7.0
-	 *
-	 * @return	void
-	 */
-	public function activate_license_ajax_handler() {
-		// Include the license class file
-		//require_once(AICONTENTT_PLUGIN_DIR . 'class-ai-content-toolkit-license.php');
-	
-		// Get the license key from the AJAX request data
-		$license_key = $_POST['license_key'];
-	
-		// Create a new instance of the license class
-		//$license = new AI_Content_Toolkit_License();
-	
-		// Activate the plugin using the license key
-		$activation_result = AICONTENTT()->$license->activate_plugin($license_key);
-	
-		// Return the activation result as a JSON-encoded string
-		echo json_encode($activation_result);
-	
-		// Always exit after handling AJAX requests
-		wp_die();
-	}
 
 
 	/**
