@@ -292,36 +292,49 @@ jQuery(document).ready(function() {
   });
 
 
-  // //license activation
-  // jQuery( '#activate_license_btn' ).on( "click", function() {
-  //       alert('Button Pressed');
-  //       // Get the license key from the textfield
-  //       var license_key = $('#license_key').val();
+    //license code
 
-  //       jQuery.ajax( {
-  //           type: 'POST',
-  //           url: ajaxurl,
-  //           data: {
-  //               'action': 'activate_license',
-  //               'prompt': license_key
-  //           },
-  //           success: function( response ) {
-  //               // Handle the response from the server
-  //               console.log(response);
-    
-  //           },
-  //           error: function(xhr, status, error) {
-  //             // Handle any errors
-  //             console.log('Error: ' + error);
-  //           }
-  //       } );
-  // });
+    jQuery( document ).ready( function() {
 
+      jQuery('#activate_license_btn').on('click', function(event) {
+  
+        event.preventDefault();
+        
+        console.log('Button clicked');
+        var license_key = jQuery('#license_key').val() == undefined ? '' : jQuery('#license_key').val().trim();
+  
+        if(!license_key) {
+          console.log('license key is null');
+        } else {
+  
+          var ajaxurl = jQuery('#ajaxurl').val();
+  
+          // Get the license key from the input field
+          var license_key = jQuery('#license_key').val();
+  
+          // Set the API key and GUID parameters
+          var api_key = '588e6bf7b14c8b63114fb0f147afc5c3'
+          var guid = jQuery('#currenturl').val();
+          console.log('GUID: ' + guid);
+          console.log('license key: ' + license_key);
+          console.log('ajax url: ' + ajaxurl);
+  
+          jQuery.ajax({
+            type: 'POST',
+            url: ajaxurl,
+            data: {
+              'action': 'verify_license',
+              _api_key: api_key,
+              license_key: license_key,
+              guid: guid
+  
+            },
+            success: function(data) {
+              alert('data: ' + data);
+            }
+          });
+  
+        }
+      });
+    });
 });
-
-
-function insertTextIntoTitle( form, inputText) {
-
-    form.postTitle.value = inputText;
-}
-

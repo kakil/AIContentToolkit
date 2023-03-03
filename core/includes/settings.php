@@ -147,6 +147,13 @@ function console_log($output, $with_script_tags = true) {
 
 }
 
+//enqueue scripts
+function aicontent_script() {
+  wp_register_script('backend-scripts', AICONTENTT_PLUGIN_DIR . 'core/inlcudes/assets/js/backend-scripts.js');
+  wp_enqueue_script('backend-scripts');
+}
+add_action('wp_enqueue_scripts', 'aicontent_script');
+
 
 
 ?>
@@ -206,47 +213,49 @@ function updateTemperature() {
 }
 
 
-  //license code
+  // //license code
 
-  jQuery( document ).ready( function() {
+  // jQuery( document ).ready( function() {
 
-    jQuery('#activate_license_btn').on('click', function() {
+  //   jQuery('#activate_license_btn').on('click', function(event) {
 
-      console.log('Button clicked');
-      var license_key = jQuery('#license_key').val() == undefined ? '' : jQuery('#license_key').val().trim();
+  //     event.preventDefault();
 
-      if(!license_key) {
-        console.log('license key is null');
-      } else {
+  //     console.log('Button clicked');
+  //     var license_key = jQuery('#license_key').val() == undefined ? '' : jQuery('#license_key').val().trim();
 
-        var ajaxurl = jQuery('#ajaxurl').val();
+  //     if(!license_key) {
+  //       console.log('license key is null');
+  //     } else {
 
-        // Get the license key from the input field
-        var license_key = jQuery('#license_key').val();
+  //       var ajaxurl = jQuery('#ajaxurl').val();
 
-        // Set the API key and GUID parameters
-        var api_key = '588e6bf7b14c8b63114fb0f147afc5c3'
-        var guid = jQuery('#currenturl').val();
-        console.log('GUID: ' + guid);
-        console.log('license key: ' + license_key);
-        console.log('ajax url: ' + ajaxurl);
+  //       // Get the license key from the input field
+  //       var license_key = jQuery('#license_key').val();
 
-        jQuery.ajax({
-          type: 'POST',
-          url: ajaxurl,
-          data: {
-            'action': 'verify_license',
-            _api_key: api_key,
-            license_key: license_key,
-            guid: guid
+  //       // Set the API key and GUID parameters
+  //       var api_key = '588e6bf7b14c8b63114fb0f147afc5c3'
+  //       var guid = jQuery('#currenturl').val();
+  //       console.log('GUID: ' + guid);
+  //       console.log('license key: ' + license_key);
+  //       console.log('ajax url: ' + ajaxurl);
 
-          },
-          success: function(data) {
-            alert('data: ' + data);
-          }
-        });
+  //       jQuery.ajax({
+  //         type: 'POST',
+  //         url: ajaxurl,
+  //         data: {
+  //           'action': 'verify_license',
+  //           _api_key: api_key,
+  //           license_key: license_key,
+  //           guid: guid
 
-      }
-    });
-  });
+  //         },
+  //         success: function(data) {
+  //           alert('data: ' + data);
+  //         }
+  //       });
+
+  //     }
+  //   });
+  // });
 </script>
