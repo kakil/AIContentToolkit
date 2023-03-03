@@ -329,8 +329,11 @@ jQuery(document).ready(function() {
               guid: guid
   
             },
-            success: function(data) {
-              alert('data: ' + data);
+            success: function(obj, textStatus) {
+              alert('obj: ' + obj);
+            },
+            error: function(msg) {  //xhr, textStatus, errThrown
+              console.log(msg)
             }
           });
   
