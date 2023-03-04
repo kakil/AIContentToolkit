@@ -1128,17 +1128,18 @@ function verify_license() {
 
 	//echo 'In the Verify License function';
   
-	if( isset($_POST['license_key'])) {
-	  $license_key = $_POST['license_key'];
-	  $api_key = $_POST['_api_key'];
-	  $guid = $_POST['guid'];
-	}
+	$license_key = $_POST['license_key'];
+	$api_key = $_POST['_api_key'];
+	$guid = $_POST['guid'];
   
 	$api_url = 'https://app.productdyno.com/api/v1/licenses/activate';
 	$request_data = array(
 	  'license_key' => $license_key,
 	  '_api_key' => $api_key,
 	  'guid' => $guid
+		// 'license_key' => 'ZTYJ-IMO9-HQVE-UUD',
+		// '_api_key' => '588e6bf7b14c8b63114fb0f147afc5c3',
+	  	// 'guid' => 'takeactionreview.com'
 	);
   
 	$request_headers = array(
@@ -1161,11 +1162,11 @@ function verify_license() {
   
 	if( $response_info['http_code'] == 200 ) {
 	  $response_data = json_decode($response, true);
-	  echo 'ProductDyno Response: ' . $response_data['license_key'];
-	  return 'ProductDyno Response: ' . $response_data['license_key'];
+	  echo $response_data['product_id'];
+	  //return 'ProductDyno Response: ' . $response_data['license_key'];
 	} else {
-	  echo 'Error: ' . $curl_error;
-	  return $curl_error;
+	  echo $curl_error;
+	  //return $curl_error;
 	}
   
   wp_die();
