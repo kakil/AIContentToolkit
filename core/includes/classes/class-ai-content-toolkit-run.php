@@ -76,9 +76,6 @@ class AI_Content_Toolkit_Run{
 	private function add_hooks(){
 	
 		
-		add_action('wp_ajax_verify_license', 'verify_license');
-		add_action('wp_ajax_nopriv_verify_license', 'verify_license');
-
 		add_action( 'plugin_action_links_' . AICONTENTT_PLUGIN_BASE, array( $this, 'add_plugin_action_link' ), 20 );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_backend_scripts_and_styles' ), 20 );
 		//add_action( 'admin_bar_menu', array( $this, 'add_admin_bar_menu_items' ), 100, 1 );
@@ -1124,17 +1121,56 @@ function chatgpt_submit() {
 
 
 
+//license code
+//
+// Add an AJAX action for verifying the license key
+function verify_license() {
 
-
-	/*
-
-	add_menu_page( 
-	string $page_title, 
-	string $menu_title, 
-	string $capability, 
-	string $menu_slug, 
-	callable $callback = '', 
-	string $icon_url = '', 
-	int|float $position = null ): string
-
-*/
+	//echo 'In the Verify License function';
+  
+	if( isset($_POST['license_key'])) {
+	  $license_key = $_POST['license_key'];
+	  $api_key = $_POST['_api_key'];
+	  $guid = $_POST['guid'];
+	}
+  
+	$api_url = 'https://app.productdyno.com/api/v1/licenses/activate';
+	$request_data = array(
+	  'license_key' => $license_key,
+	  '_api_key' => $api_key,
+	  'guid' => $guid
+	);
+  
+	$request_headers = array(
+	  'Content-Type: application/json'
+	);
+  
+	$curl = curl_init();
+	curl_setopt_array( $curl, array(
+	  CURLOPT_URL => $api_url,
+		  CURLOPT_POST => true,
+		  CURLOPT_POSTFIELDS => json_encode( $request_data ),
+		  CURLOPT_HTTPHEADER => $request_headers,
+		  CURLOPT_RETURNTRANSFER => true
+	));
+  
+	$response = curl_exec( $curl );
+	$response_info = curl_getinfo( $curl );
+	$curl_error = curl_error( $curl );
+	curl_close( $curl );
+  
+	if( $response_info['http_code'] == 200 ) {
+	  $response_data = json_decode($response, true);
+	  echo 'ProductDyno Response: ' . $response_data['license_key'];
+	  return 'ProductDyno Response: ' . $response_data['license_key'];
+	} else {
+	  echo 'Error: ' . $curl_error;
+	  return $curl_error;
+	}
+  
+  wp_die();
+  
+}
+  
+add_action('wp_ajax_verify_license', 'verify_license');
+add_action('wp_ajax_nopriv_verify_license', 'verify_license');

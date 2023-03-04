@@ -72,67 +72,6 @@ if(isset($_POST["submit"])){
 }
 
 
-//license code
-//
-// Add an AJAX action for verifying the license key
-add_action('init', 'my_plugin_register_ajax_actions');
-function my_plugin_register_ajax_actions() {
-  add_action('wp_ajax_verify_license', 'verify_license');
-  add_action('wp_ajax_nopriv_verify_license', 'verify_license');
-
-}
-
-function verify_license() {
-
-  console_log('In the Verify License function');
-
-  if( isset($_POST['license_key'])) {
-    $license_key = $_POST['license_key'];
-    $api_key = $_POST['_api_key'];
-    $guid = $_POST['guid'];
-    console_log('license key = ' . $license_key);
-    console_log('api key = ' . $api_key);
-    console_log('GUID = ' . $guid);
-  }
-
-  $api_url = 'https://app.productdyno.com/api/v1/licenses/activate';
-  $request_data = array(
-    'license_key' => $license_key,
-    '_api_key' => $api_key,
-    'guid' => $guid
-  );
-
-  $request_headers = array(
-    'Content-Type: application/json'
-  );
-
-  $curl = curl_init();
-  curl_setopt_array( $curl, array(
-    CURLOPT_URL => $api_url,
-		CURLOPT_POST => true,
-		CURLOPT_POSTFIELDS => json_encode( $request_data ),
-		CURLOPT_HTTPHEADER => $request_headers,
-		CURLOPT_RETURNTRANSFER => true
-  ));
-
-  $response = curl_exec( $curl );
-  $response_info = curl_getinfo( $curl );
-  $curl_error = curl_error( $curl );
-  curl_close( $curl );
-
-  if( $response_info['http_code'] == 200 ) {
-    console_log('Data FROM PHP: ' . $response_info);
-    $response_data = json_decode($response, true);
-    return $response_data;
-  } else {
-    echo 'Error: ' . $curl_error;
-    return $curl_error;
-  }
-
-
-
-}
-
 
 //Log function
 //
@@ -148,11 +87,11 @@ function console_log($output, $with_script_tags = true) {
 }
 
 //enqueue scripts
-function aicontent_script() {
-  wp_register_script('backend-scripts', AICONTENTT_PLUGIN_DIR . 'core/inlcudes/assets/js/backend-scripts.js');
-  wp_enqueue_script('backend-scripts');
-}
-add_action('wp_enqueue_scripts', 'aicontent_script');
+// function aicontent_script() {
+//   wp_register_script('backend-scripts', AICONTENTT_PLUGIN_DIR . 'core/inlcudes/assets/js/backend-scripts.js');
+//   wp_enqueue_script('backend-scripts');
+// }
+// add_action('wp_enqueue_scripts', 'aicontent_script');
 
 
 

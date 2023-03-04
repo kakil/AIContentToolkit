@@ -17,6 +17,60 @@ Backend related javascript
 
 
 jQuery(document).ready(function() {
+
+
+  //license code
+
+  jQuery('#activate_license_btn').on('click', function(event) {
+  
+    event.preventDefault();
+    
+    console.log('Button clicked');
+    var license_key = jQuery('#license_key').val() == undefined ? '' : jQuery('#license_key').val().trim();
+
+    if(!license_key) {
+      console.log('license key is null');
+    } else {
+
+      var ajaxurl = jQuery('#ajaxurl').val();
+
+      // Get the license key from the input field
+      var license_key = jQuery('#license_key').val();
+
+      // Set the API key and GUID parameters
+      var api_key = '588e6bf7b14c8b63114fb0f147afc5c3'
+      var guid = jQuery('#currenturl').val();
+      console.log('GUID: ' + guid);
+      console.log('license key: ' + license_key);
+      console.log('ajax url: ' + ajaxurl);
+
+      jQuery.ajax({
+        type: 'POST',
+        url: ajaxurl,
+        data: {
+          'action': 'verify_license',
+          _api_key: api_key,
+          license_key: license_key,
+          guid: guid
+
+        },
+        success: function(obj, textStatus) {
+          alert('obj: ' + obj);
+        },
+        error: function(msg) {  //xhr, textStatus, errThrown
+          console.log(msg);
+        }
+      });
+
+    }
+  });
+
+
+
+  /**
+   * ********************************************************************************
+   * 
+   */
     jQuery("#btn-submit").click(function () {
 
         //alert(jQuery('#chatGptText').val());
@@ -291,53 +345,4 @@ jQuery(document).ready(function() {
       
   });
 
-
-    //license code
-
-    jQuery( document ).ready( function() {
-
-      jQuery('#activate_license_btn').on('click', function(event) {
-  
-        event.preventDefault();
-        
-        console.log('Button clicked');
-        var license_key = jQuery('#license_key').val() == undefined ? '' : jQuery('#license_key').val().trim();
-  
-        if(!license_key) {
-          console.log('license key is null');
-        } else {
-  
-          var ajaxurl = jQuery('#ajaxurl').val();
-  
-          // Get the license key from the input field
-          var license_key = jQuery('#license_key').val();
-  
-          // Set the API key and GUID parameters
-          var api_key = '588e6bf7b14c8b63114fb0f147afc5c3'
-          var guid = jQuery('#currenturl').val();
-          console.log('GUID: ' + guid);
-          console.log('license key: ' + license_key);
-          console.log('ajax url: ' + ajaxurl);
-  
-          jQuery.ajax({
-            type: 'POST',
-            url: ajaxurl,
-            data: {
-              'action': 'verify_license',
-              _api_key: api_key,
-              license_key: license_key,
-              guid: guid
-  
-            },
-            success: function(obj, textStatus) {
-              alert('obj: ' + obj);
-            },
-            error: function(msg) {  //xhr, textStatus, errThrown
-              console.log(msg)
-            }
-          });
-  
-        }
-      });
-    });
 });
