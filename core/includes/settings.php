@@ -104,45 +104,69 @@ function console_log($output, $with_script_tags = true) {
   </div>
 </nav>
 
+<!-- <div class="container px-5 my-5"> -->
+<div class="container w-50 float-start px-5 my-5 bg-light border border-3 shadow p-3 rounded-4" id="settingsContainer"> 
 
-<div class="container-fluid w-50 m-3 bg-light border border-3 shadow p-3 rounded-4"> 
+  <!-- Heading -->
   <h1 class="display-3 mt-3 mb-3">AI Settings</h1>
-  <form method="post">
-    <div class="mb-5">
+
+  <!-- License Key Form -->
+  <form id="licenseForm" method="post">
+
+    <div class="mb-3">
       <label class="form-label" id="license_key_label"><b>License Key</label>
-      <input type="text" id="license_key" name="license_key" value="<?php echo get_option('license_key'); ?>" />
+      <input class="form-control" type="text" id="license_key" name="license_key" value="<?php echo get_option('license_key'); ?>" placeholder="License Key" data-sb-validations="required" />
+      <div class="invalid-feedback" data-sb-feedback="licenseKey:required">License Key is required.</div>
+    </div>
+    <div class="d-none" id="submitSuccessMessage">
+      <div class="text-center mb-3">
+          <div class="fw-bolder">License Key Active!</div>
+      </div>
+    </div>
+    <div class="d-none" id="submitErrorMessage">
+        <div class="text-center text-danger mb-3">Error activating license!</div>
+    </div>
+        
+    <div class="d-grid mb-5">
       <button type="button" id="activate_license_btn" name="activate_license_btn" class="btn btn-primary "><?php echo $lang["activateLicense"]; ?></button>
+    </div>
+    <div class="d-none">
       <input type="hidden" id="ajaxurl" value="<?php echo esc_js(admin_url('admin-ajax.php')); ?>">
       <input type="hidden" id="currenturl" value="<?php echo home_url(add_query_arg(array(),$wp->request)); ?>">
-    <div>
-    <div class="mb-5">
-      <label class="form-label"><b>ChatGPT API Token (sk-xxxxx):</label>
-      <input type="text" id="apiToken" name="apiToken" class="form-control" value="<?php echo $getApiToken; ?>" placeholder="sk-"/>
+    </div>
+  </form>  
+
+  <!-- Settings Form -->
+  <form id="settingsForm" method="post">
+    <!-- API Token -->
+    <div class="mb-3">
+      <label class="form-label"><b>ChatGPT API Token (sk-xxxxx):</b></label>
+      <input class="form-control" type="text" id="apiToken" name="apiToken" value="<?php echo $getApiToken; ?>" placeholder="sk-"/>
       <a href="https://openai.com/api/" target="_blank" rel="noopener noreferrer"><btn btn-link class="mt-2">Get API Token</btn></a>
     </div>
     
-    <div class="mb-5">
-    <label class="form-label"><?php echo $lang["temperature"]; ?><b id="temperatureTextValue"><?php echo $getTemperature; ?></b></label><br>
-    <input onchange="updateTemperature();" type="range" class="form-range" min="0" max="1" step="0.1" id="temperatureValue" name="temperatureValue" value="<?php echo $getTemperature; ?>">
-    <small><?php echo $lang["temperatureText"]; ?></small>
+    <div class="mb-3">
+      <label class="form-label" id="temperatureTextValue"><b><?php echo $lang["temperature"]; ?><?php echo $getTemperature; ?></b></label><br>
+      <input class="form-range" onchange="updateTemperature();" type="range" min="0" max="1" step="0.1" id="temperatureValue" name="temperatureValue" value="<?php echo $getTemperature; ?>">
+      <p class=".5rem"><?php echo $lang["temperatureText"]; ?></p>
+    </div>
 
-  </div>
-
-    <div class="mb-5">
-      <label class="form-label"><?php echo $lang["maxTokens"]; ?> (Maximum: 4000)</label>
-      <input type="number" id="maxTokens" name="maxTokens" class="form-control" value="<?php echo $getMaxTokens; ?>"/>
-      <small><?php echo $lang["maxTokensText"]; ?></small>
+    <div class="mb-3">
+      <label class="form-label"><b><?php echo $lang["maxTokens"]; ?> (Maximum: 4000)</b></label>
+      <input class="form-control" type="number" id="maxTokens" name="maxTokens" value="<?php echo $getMaxTokens; ?>"/>
+      <p class=".5rem"><?php echo $lang["maxTokensText"]; ?></p>
     </div>
    
-    <div class="mb-5">
-      <label class="form-label"><?php echo $lang["selectLanguage"]; ?></label>
-      <select name="selectLanguage" id="selectLanguage" class="form-select">
+    <div class="mb-3">
+      <label class="form-label"><b><?php echo $lang["selectLanguage"]; ?></b></label>
+      <select class="form-select" name="selectLanguage" id="selectLanguage">
         <option value="en">English</option>
         <!-- <option value="tr">Türkçe</option> -->
       </select>
     </div>
-    
-    <button type="submit" name="submit" class="btn btn-primary mb-5"><?php echo $lang["saveSettings"]; ?></button>
+    <div class="d-grid mb-5">
+      <button class="btn btn-primary mb-5" type="submit" name="submit" ><?php echo $lang["saveSettings"]; ?></button>
+    </div>
   </form>
 </div>
 

@@ -54,8 +54,13 @@ jQuery(document).ready(function() {
           guid: guid
 
         },
-        success: function(obj, textStatus) {
-          alert('obj: ' + obj);
+        success: function(data, textStatus) {
+          alert('data: ' + data);
+          if(data > 100) {
+            jQuery('#activate_license_btn').addClass('disabled');
+          } else {
+
+          }
         },
         error: function(msg) {  //xhr, textStatus, errThrown
           console.log(msg);

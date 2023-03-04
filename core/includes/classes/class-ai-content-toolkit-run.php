@@ -1162,7 +1162,7 @@ function verify_license() {
   
 	if( $response_info['http_code'] == 200 ) {
 	  $response_data = json_decode($response, true);
-	  echo $response_data['product_id'];
+	  echo (int)$response_data['product_id'];
 	  //return 'ProductDyno Response: ' . $response_data['license_key'];
 	} else {
 	  echo $curl_error;
