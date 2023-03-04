@@ -23,7 +23,7 @@ jQuery(document).ready(function() {
 
   jQuery('#activate_license_btn').on('click', function(event) {
   
-    event.preventDefault();
+    //event.preventDefault();
     
     console.log('Button clicked');
     var license_key = jQuery('#license_key').val() == undefined ? '' : jQuery('#license_key').val().trim();
@@ -293,7 +293,7 @@ jQuery(document).ready(function() {
      // Example starter JavaScript for disabling form submissions if there are invalid fields
      (function () {
         'use strict'
-          
+          console.log('validation check');
         // Fetch all the forms we want to apply custom Bootstrap validation styles to
         var forms = document.querySelectorAll('.needs-validation')
   
@@ -324,23 +324,6 @@ jQuery(document).ready(function() {
           })
     })();
 
-    // jQuery('#temperatureValue').on('slide', function(event,ui) {
-    //   console.log("Slider: " + ui.value );
-    //   document.getElementById("temperatureTextValue").innerText = ui.value;
-    // });
-    
-    
-    //t34-chatgpt-modal.php
-
-    // jQuery('#blogPostForm').on('submit', function() {
-    //   jQuery('#myModal').on('hide.bs.modal', function(e) {
-    //     e.preventDefault();
-    //   })
-    // });
-
-    // jQuery("#blogPostForm").submit(function(event) {
-    //   event.preventDefault();
-    // });
 
     jQuery('#btn-submit-modal').click(function (e) {
       let spinner = document.getElementById("spinner-blog-submit");

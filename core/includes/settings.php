@@ -111,12 +111,12 @@ function console_log($output, $with_script_tags = true) {
   <h1 class="display-3 mt-3 mb-3">AI Settings</h1>
 
   <!-- License Key Form -->
-  <form id="licenseForm" method="post">
+  <form class="needs-validation" id="licenseForm" method="post" novalidate>
 
     <div class="mb-3">
-      <label class="form-label" id="license_key_label"><b>License Key</label>
-      <input class="form-control" type="text" id="license_key" name="license_key" value="<?php echo get_option('license_key'); ?>" placeholder="License Key" data-sb-validations="required" />
-      <div class="invalid-feedback" data-sb-feedback="licenseKey:required">License Key is required.</div>
+      <label for="validationCustom01" class="form-label" id="license_key_label"><b>License Key</label>
+      <input class="form-control" type="text" id="validationCustom01" name="license_key" value="<?php echo get_option('license_key'); ?>" placeholder="License Key" required/>
+      <div class="invalid-feedback">License Key is required.</div>
     </div>
     <div class="d-none" id="submitSuccessMessage">
       <div class="text-center mb-3">
@@ -128,7 +128,9 @@ function console_log($output, $with_script_tags = true) {
     </div>
         
     <div class="d-grid mb-5">
-      <button type="button" id="activate_license_btn" name="activate_license_btn" class="btn btn-primary "><?php echo $lang["activateLicense"]; ?></button>
+      <button type="submit" id="activate_license_btn" name="activate_license_btn" class="btn btn-primary "><?php echo $lang["activateLicense"]; ?>
+      <span class="spinner-border spinner-border-sm" id="spinner-submit" role="status" aria-hidden="true" style="visibility: hidden"></span>
+      </button>
     </div>
     <div class="d-none">
       <input type="hidden" id="ajaxurl" value="<?php echo esc_js(admin_url('admin-ajax.php')); ?>">
@@ -172,7 +174,7 @@ function console_log($output, $with_script_tags = true) {
 
 <script>
 function updateTemperature() {
-  document.getElementById("temperatureTextValue").innerText = document.getElementById("temperatureValue").value
+  document.getElementById("temperatureTextValue").innerText = 'Temperature: ' + document.getElementById("temperatureValue").value
 }
 
 </script>
