@@ -674,8 +674,50 @@ class AI_Content_Toolkit_Helpers{
 	
 	}
 	  
-	  
- 
+	 
+	/**
+	 * Options Database
+	 * 
+	 */
+	
+	 function ai_content_add_option() {
+		add_option('license_key', '');
+	 }
+
+	 function ai_content_update_option($license_key) {
+		update_option('license_key', $license_key);
+	 }
+
+	 function ai_content_get_option() {
+		$license_key = get_option('license_key');
+		return $license_key;
+	 }
+
+	 function ai_content_license_is_valid() {
+		$license_key = get_option('license_key');
+
+		if($license_key) {
+			return true;
+		} else {
+			return false;
+		}
+	 }
+
+	 function ai_content_add_deactivation_option() {
+		add_option('deactivated_at', '');
+	 }
+
+	 function ai_content_deactivation_update_option($deactivated_at) {
+		update_option('deactivated_at', $deactivated_at);
+	 }
+
+	 function ai_content_deactivation_get_option() {
+		$deactivated_at = get_option('deactivated_at');
+		return $deactivated_at;
+	 }
+
+
+
 	 /**
 	  * HELPER COMMENT END
 	  */

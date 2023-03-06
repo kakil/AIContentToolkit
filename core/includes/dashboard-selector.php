@@ -2,6 +2,16 @@
 
 include "header.php";
 
+$deactivated = AICONTENTT()->helpers->ai_content_deactivation_get_option();
+$license_key = AICONTENTT()->helpers->ai_content_get_option();
+
+$new_deactivated = str_replace(' ', '', $deactivated);
+$new_license_key = str_replace(' ', '', $license_key);
+
+If($new_deactivated != '' || $new_license_key == '') {
+	$verified = 'false';
+}
+
 ?>
 
 <nav class="navbar navbar-expand-lg bg-light">
@@ -23,7 +33,7 @@ include "header.php";
 					<div class="card-body">
 						<h5 class="card-title">Blog Post Tool</h5>
 						<p class="card-text">This template will help you create a blog post.</p><br/>
-						<a href="<?php menu_page_url( 'ai-content-tool-blog-post' ); ?>" title="<?php echo __( 'AI Blog Post', 'toolkit' ) ?>" class="btn btn-primary">Create Blog Post</a>
+						<a href="<?php menu_page_url( 'ai-content-tool-blog-post' ); ?>" title="<?php echo __( 'AI Blog Post', 'toolkit' ) ?>" class="btn btn-primary" id="createBlogButton">Create Blog Post</a>
 					</div>
 				</div>
 			</div>
@@ -177,5 +187,8 @@ include "header.php";
 				</div>
 			</div>
 		</div>
+	</div>
+	<div>
+	<input type="hidden" id="verified" value="<?php echo $verified; ?>">
 	</div>
 

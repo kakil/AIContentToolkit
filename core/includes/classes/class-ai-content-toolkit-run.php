@@ -95,6 +95,8 @@ class AI_Content_Toolkit_Run{
 		add_shortcode( 'my_modal', 'my_modal_shortcode' );
 
 		register_activation_hook(AICONTENTT_PLUGIN_FILE, array( $this, 'create_table_ai_content_tool') );
+
+		AICONTENTT()->helpers->ai_content_add_option();
 		
 	}
 
@@ -871,6 +873,11 @@ add_action( 'wp_enqueue_scripts', 'my_enqueue_scripts' );
 function chatgpt_button_shortcode() {
     ob_start();
 	
+	//Check for valid license
+	if(!AICONTENTT()->helpers->ai_content_license_is_valid()) {
+		return '';
+	}
+
     ?>
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#chatgpt-modal">Chat with GPT</button>
     <div class="modal fade" id="chatgpt-modal" tabindex="-1" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="chatgpt-modal-label" aria-hidden="true">
@@ -1162,10 +1169,14 @@ function verify_license() {
   
 	if( $response_info['http_code'] == 200 ) {
 	  $response_data = json_decode($response, true);
-	  echo (int)$response_data['product_id'];
+	  AICONTENTT()->helpers->ai_content_update_option($license_key);
+	  AICONTENTT()->helpers->ai_content_deactivation_update_option('');
+	  echo $response_data['license_key'];
+	  //update_option('license_key', $response_data['license_key']);
 	  //return 'ProductDyno Response: ' . $response_data['license_key'];
 	} else {
 	  echo $curl_error;
+	  AICONTENTT()->helpers->ai_content_update_option('');
 	  //return $curl_error;
 	}
   
@@ -1175,3 +1186,84 @@ function verify_license() {
   
 add_action('wp_ajax_verify_license', 'verify_license');
 add_action('wp_ajax_nopriv_verify_license', 'verify_license');
+
+
+//Verify license for admin pages
+function verify_license_on_admin_pages() {
+	if (is_admin() && !AICONTENTT()->helpers->ai_content_license_is_valid()) {
+		add_action('admin_notices', 'show_license_notice');
+	}
+}
+
+function show_license_notice() {
+	if (AICONTENTT()->helpers->ai_content_license_is_valid()) {
+		remove_action('admin_notices', 'show_license_notice');
+		return;
+	}
+	
+	?>
+	<div class="notice notice-error">
+	<p>Your AI Content Tool license key is not valid. Please enter a valid license key in the plugin settings to continue using this plugin.</p>
+	</div>
+	<?php
+}
+
+add_action('current_screen', 'verify_license_on_admin_pages');
+
+
+//Deactivate license 
+
+function deactivate_license() {
+
+	//echo 'In the Verify License function';
+  
+	$license_key = $_POST['license_key'];
+	$api_key = $_POST['_api_key'];
+	//$guid = $_POST['guid'];
+  
+	$api_url = 'https://app.productdyno.com/api/v1/licenses/deactivate';
+	$request_data = array(
+	  'license_key' => $license_key,
+	  '_api_key' => $api_key,
+		// 'license_key' => 'ZTYJ-IMO9-HQVE-UUD',
+		// '_api_key' => '588e6bf7b14c8b63114fb0f147afc5c3',
+	  	// 'guid' => 'takeactionreview.com'
+	);
+  
+	$request_headers = array(
+	  'Content-Type: application/json'
+	);
+  
+	$curl = curl_init();
+	curl_setopt_array( $curl, array(
+	  CURLOPT_URL => $api_url,
+		  CURLOPT_POST => true,
+		  CURLOPT_POSTFIELDS => json_encode( $request_data ),
+		  CURLOPT_HTTPHEADER => $request_headers,
+		  CURLOPT_RETURNTRANSFER => true
+	));
+  
+	$response = curl_exec( $curl );
+	$response_info = curl_getinfo( $curl );
+	$curl_error = curl_error( $curl );
+	curl_close( $curl );
+  
+	if( $response_info['http_code'] == 200 ) {
+	  $response_data = json_decode($response, true);
+	  $deactivated_at = $response_data['deactivated_at'];
+	  AICONTENTT()->helpers->ai_content_deactivation_update_option($deactivated_at);
+	  AICONTENTT()->helpers->ai_content_update_option('');
+	  echo $deactivated_at;
+	  
+	} else {
+	  echo $curl_error;
+	  AICONTENTT()->helpers->ai_content_deactivation_update_option('');
+	  //return $curl_error;
+	}
+  
+  wp_die();
+  
+}
+  
+add_action('wp_ajax_deactivate_license', 'deactivate_license');
+add_action('wp_ajax_nopriv_deactivate_license', 'deactivate_license');

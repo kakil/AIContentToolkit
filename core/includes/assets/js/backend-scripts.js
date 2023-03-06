@@ -16,26 +16,104 @@ Backend related javascript
  */
 
 
+//This code runs after all asynchonous operations have completed
+window.onload = function() {
+  if(jQuery('#license_key').val() === "" || jQuery('#license').val() === null ) {
+    console.log('license key is null');
+    jQuery('#activate_license_btn').removeClass('d-none');    // no license key - show activate btn
+    jQuery('#deactivate_license_btn').addClass('d-none');     // no license key - hide deactivate btn
+    jQuery('#license_key').prop('disabled', false);
+  } else {
+
+    var license_key = "ZTYJ-IMO9-HQVE-UUDH";
+    var pattern = /^[A-Z\d]{4}-[A-Z\d]{4}-[A-Z\d]{4}-[A-Z\d]{4}$/;
+    var verified = pattern.test(license_key);
+
+    if (verified) {
+      console.log("License key is valid.");
+      jQuery('#activate_license_btn').addClass('d-none');       // license key - hide activate btn
+      jQuery('#deactivate_license_btn').removeClass('d-none');  // license key - show deactivate btn
+      jQuery('#license_key').prop('disabled', true);
+    } else {
+      console.log("License key is invalid.");
+      jQuery('#activate_license_btn').removeClass('d-none');    // no license key - show activate btn
+      jQuery('#deactivate_license_btn').addClass('d-none');     // no license key - hide deactivate btn
+      jQuery('#license_key').val('');
+      jQuery('#license_key').prop('disabled', false);
+    }
+    
+  }
+
+  console.log("verified: " + jQuery('#verified').val());
+  if(jQuery('#verified').val() === 'false') {
+    jQuery('#createBlogButton').addClass('disabled');
+  }
+
+};
+
+
 jQuery(document).ready(function() {
 
 
+  // Validations
+     // Example starter JavaScript for disabling form submissions if there are invalid fields
+     (function () {
+      'use strict'
+        
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.querySelectorAll('.needs-validation')
+
+      // Loop over them and prevent submission
+      Array.prototype.slice.call(forms)
+        .forEach(function (form) {
+          form.addEventListener('submit', function (event) {
+            if (!form.checkValidity()) {
+              event.preventDefault()
+              event.stopPropagation()
+              //jQuery('#spinner-div').hide();
+              let spinner = document.getElementById("spinner-submit");
+               spinner.style.visibility = 'hidden';
+
+               let addBlogSpinner = document.getElementById("spinner-blog-submit");
+               if(addBlogSpinner) {
+                  addBlogSpinner.style.visibility = 'hidden';
+               }
+
+              //  let imageInfoText = document.getElementById('imageInfoText');
+              //  imageInfoText.style.visibility = 'visible';
+               
+               console.log("Checked Validation");
+            }
+
+            form.classList.add('was-validated')
+          }, false)
+        })
+  })();
+
+
+
   //license code
-
+  // Activate License
   jQuery('#activate_license_btn').on('click', function(event) {
-  
-    //event.preventDefault();
-    
-    console.log('Button clicked');
-    var license_key = jQuery('#license_key').val() == undefined ? '' : jQuery('#license_key').val().trim();
 
-    if(!license_key) {
-      console.log('license key is null');
-    } else {
+    console.log('Button clicked');
+    
+    event.preventDefault();
+
+    let spinner = document.getElementById("spinner-submit");
+    spinner.style.visibility = 'visible'; 
+
+    //client-side license verification
+    //
+    
+    var license_key = jQuery('#license_key').val() == undefined ? '' : jQuery('#license_key').val().trim();
+    var pattern = /^[A-Z\d]{4}-[A-Z\d]{4}-[A-Z\d]{4}-[A-Z\d]{4}$/;
+    var verified = pattern.test(license_key);
+
+    if (verified) {
+      console.log("License key is valid.");
 
       var ajaxurl = jQuery('#ajaxurl').val();
-
-      // Get the license key from the input field
-      var license_key = jQuery('#license_key').val();
 
       // Set the API key and GUID parameters
       var api_key = '588e6bf7b14c8b63114fb0f147afc5c3'
@@ -54,21 +132,98 @@ jQuery(document).ready(function() {
           guid: guid
 
         },
-        success: function(data, textStatus) {
-          alert('data: ' + data);
-          if(data > 100) {
-            jQuery('#activate_license_btn').addClass('disabled');
-          } else {
+        success: function(obj, textStatus) {
+          //alert('obj: ' + obj);
+          spinner.style.visibility = 'hidden';
 
+          if(obj){
+            //alert(obj.text);
+            console.log('Success: ' + obj.text);
+            jQuery('#activate_license_btn').addClass('d-none');
+            jQuery('#deactivate_license_btn').removeClass('d-none');
+            jQuery('#submitSuccessMessage').removeClass('d-none');
+            jQuery('#submitSuccessMessage').text('License Activated');
+            jQuery('#submitErrorMessage').addClass('d-none');
+            jQuery('#license_key').prop('disabled', true);
+            
           }
         },
         error: function(msg) {  //xhr, textStatus, errThrown
-          console.log(msg);
+          console.log('error in success: ' + msg);
+          jQuery('#submitSuccessMessage').removeClass('d-none');
+          jQuery('#submitErrorMessage').addClass('d-none');
         }
       });
 
+    } else {
+      console.log("License key is invalid.");
+      spinner.style.visibility = 'hidden';
+      jQuery('#submitErrorMessage').removeClass('d-none');
+      jQuery('#submitSuccessMessage').addClass('d-none');
+      
     }
+    
   });
+
+
+  //Deactivate License
+
+
+  jQuery('body').on('click', '#deactivate_license_btn', function(event) {
+
+    console.log('Button clicked');
+    
+    event.preventDefault();
+
+    let spinner = document.getElementById("spinner-submit");
+    spinner.style.visibility = 'visible'; 
+
+    var ajaxurl = jQuery('#ajaxurl').val();
+    var license_key = jQuery('#license_key').val();
+
+
+      // Set the API key and GUID parameters
+      var api_key = '588e6bf7b14c8b63114fb0f147afc5c3'
+      //var guid = jQuery('#currenturl').val();
+      console.log('license key: ' + license_key);
+      console.log('ajax url: ' + ajaxurl);
+
+      jQuery.ajax({
+        type: 'POST',
+        url: ajaxurl,
+        data: {
+          'action': 'deactivate_license',
+          _api_key: api_key,
+          license_key: license_key,
+
+        },
+        success: function(obj, textStatus) {
+          //alert('obj: ' + obj);
+          spinner.style.visibility = 'hidden';
+
+          if(obj){
+            //alert(obj.text);
+            console.log('Success: ' + obj.text);
+            jQuery('#activate_license_btn').removeClass('d-none');
+            jQuery('#deactivate_license_btn').addClass('d-none');
+            jQuery('#submitSuccessMessage').removeClass('d-none');
+            jQuery('#submitSuccessMessage').text('License Deactivated');
+            jQuery('#submitErrorMessage').addClass('d-none');
+            jQuery('#license_key').prop('disabled', false);
+            jQuery('#license_key').val('');
+            
+          }
+        },
+        error: function(msg) {  //xhr, textStatus, errThrown
+          console.log('error in success: ' + msg);
+          jQuery('#submitSuccessMessage').removeClass('d-none');
+          jQuery('#submitErrorMessage').addClass('d-none');
+        }
+      });
+
+  });
+
+
 
 
 
@@ -289,41 +444,7 @@ jQuery(document).ready(function() {
       });
 
 
-     // Validations
-     // Example starter JavaScript for disabling form submissions if there are invalid fields
-     (function () {
-        'use strict'
-          console.log('validation check');
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        var forms = document.querySelectorAll('.needs-validation')
-  
-        // Loop over them and prevent submission
-        Array.prototype.slice.call(forms)
-          .forEach(function (form) {
-            form.addEventListener('submit', function (event) {
-              if (!form.checkValidity()) {
-                event.preventDefault()
-                event.stopPropagation()
-                //jQuery('#spinner-div').hide();
-                let spinner = document.getElementById("spinner-submit");
-                 spinner.style.visibility = 'hidden';
-
-                 let addBlogSpinner = document.getElementById("spinner-blog-submit");
-                 if(addBlogSpinner) {
-                    addBlogSpinner.style.visibility = 'hidden';
-                 }
-
-                //  let imageInfoText = document.getElementById('imageInfoText');
-                //  imageInfoText.style.visibility = 'visible';
-                 
-                 console.log("Checked Validation");
-              }
-  
-              form.classList.add('was-validated')
-            }, false)
-          })
-    })();
-
+     
 
     jQuery('#btn-submit-modal').click(function (e) {
       let spinner = document.getElementById("spinner-blog-submit");

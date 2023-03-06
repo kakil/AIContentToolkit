@@ -73,5 +73,6 @@
     $lang["faq"] = "FAQ:";
     $lang["modalPrompt"] = "Enter your request";
     $lang["activateLicense"] = "Activate License";
+    $lang["deactivateLicense"] = "Deactivate License";
 ?>
 

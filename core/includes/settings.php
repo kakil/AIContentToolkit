@@ -1,8 +1,22 @@
 <?php
 error_reporting(0);
 include "header.php";
+global $wp;
 
-include AICONTENTT_PLUGIN_DIR . "/core/includes/classes/class-ai-content-toolkit-license.php";
+//if license_key doesn't exist we create the option in the DB
+if(!get_option('license_key')) {
+  AICONTENTT()->helpers->ai_content_add_option();
+  
+} else {
+  $license_key = AICONTENTT()->helpers->ai_content_get_option();
+  $pattern = '/^[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}$/';
+  $verified = preg_match($pattern, $license_key);
+
+  if(!$verified) {
+    $license_key = '';
+  }
+
+}
 
 global $wpdb;
 $tablename = $wpdb->prefix.'ai_content_tool';
@@ -114,13 +128,12 @@ function console_log($output, $with_script_tags = true) {
   <form class="needs-validation" id="licenseForm" method="post" novalidate>
 
     <div class="mb-3">
-      <label for="validationCustom01" class="form-label" id="license_key_label"><b>License Key</label>
-      <input class="form-control" type="text" id="validationCustom01" name="license_key" value="<?php echo get_option('license_key'); ?>" placeholder="License Key" required/>
+      <label for="license_key" class="form-label" id="license_key_label"><b>License Key</b></label>
+      <input class="form-control" type="text" id="license_key" name="license_key" value="<?php echo $license_key; ?>" placeholder="License Key" required/>
       <div class="invalid-feedback">License Key is required.</div>
     </div>
-    <div class="d-none" id="submitSuccessMessage">
-      <div class="text-center mb-3">
-          <div class="fw-bolder">License Key Active!</div>
+    <div class="mb-2 d-none" id="submitSuccessMessage">
+      <div class="text-center text-success" class="form-label d-none" id="successLabel"><b>Enter License Key</b></label>
       </div>
     </div>
     <div class="d-none" id="submitErrorMessage">
@@ -129,12 +142,16 @@ function console_log($output, $with_script_tags = true) {
         
     <div class="d-grid mb-5">
       <button type="submit" id="activate_license_btn" name="activate_license_btn" class="btn btn-primary "><?php echo $lang["activateLicense"]; ?>
-      <span class="spinner-border spinner-border-sm" id="spinner-submit" role="status" aria-hidden="true" style="visibility: hidden"></span>
+        <span class="spinner-border spinner-border-sm" id="spinner-submit" role="status" aria-hidden="true" style="visibility: hidden"></span>
+      </button>
+      <button type="submit" id="deactivate_license_btn" name="deactivate_license_btn" class="btn btn-danger d-none"><?php echo $lang["deactivateLicense"]; ?>
+        <span class="spinner-border spinner-border-sm" id="spinner-submit" role="status" aria-hidden="true" style="visibility: hidden"></span>
       </button>
     </div>
     <div class="d-none">
       <input type="hidden" id="ajaxurl" value="<?php echo esc_js(admin_url('admin-ajax.php')); ?>">
       <input type="hidden" id="currenturl" value="<?php echo home_url(add_query_arg(array(),$wp->request)); ?>">
+      <input type="hidden" id="verified" value="<?php echo $verified; ?>">
     </div>
   </form>  
 
