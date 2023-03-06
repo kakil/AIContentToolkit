@@ -864,6 +864,7 @@ function my_enqueue_scripts() {
     wp_enqueue_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js', array('jquery'), '', true);
 	wp_enqueue_style( 'bootstrap', 'https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css' );
     wp_enqueue_script( 'bootstrap', 'https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js', array( 'jquery' ), '', true );
+	wp_enqueue_script( 'fontawesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css');
 	
 }
 add_action( 'wp_enqueue_scripts', 'my_enqueue_scripts' );
@@ -879,7 +880,18 @@ function chatgpt_button_shortcode() {
 	}
 
     ?>
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#chatgpt-modal">Chat with GPT</button>
+	<!-- Style Block with CSS Rules -->
+	<style>
+		button.btn-circle.btn-xl {
+			border-radius: 64px;
+			width: 128px;
+			height: 128px;
+			padding: 20px;
+			font-size: 36px;
+			line-height: 1.33;
+		}
+	</style>
+    <button type="button" class="btn btn-success btn-circle btn-xl" data-bs-toggle="modal" data-bs-target="#chatgpt-modal">Chat With GPT</button>
     <div class="modal fade" id="chatgpt-modal" tabindex="-1" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="chatgpt-modal-label" aria-hidden="true">
 		<style>
 			.modal {position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); font:.5rem;}
