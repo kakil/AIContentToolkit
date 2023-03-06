@@ -871,9 +871,51 @@ add_action( 'wp_enqueue_scripts', 'my_enqueue_scripts' );
 
 
 // Add shortcode to display button and popup
-function chatgpt_button_shortcode() {
+function chatgpt_button_shortcode($atts) {
     ob_start();
-	
+
+	// Define the shortcode attributes and their default values
+    $atts = shortcode_atts( array(
+        'position' => 'bottom-right', // default button position is bottom-right
+    ), $atts );
+
+	// Add CSS classes to the button based on the position attribute
+    $button_class = 'custom-button';
+    switch ( $atts['position'] ) {
+        case 'top-left':
+            $button_class .= ' top-left';
+            break;
+        case 'top-center':
+            $button_class .= ' top-center';
+            break;
+        case 'top-right':
+            $button_class .= ' top-right';
+            break;
+        case 'middle-left':
+            $button_class .= ' middle-left';
+            break;
+        case 'middle-center':
+            $button_class .= ' middle-center';
+            break;
+        case 'middle-right':
+            $button_class .= ' middle-right';
+            break;
+        case 'bottom-left':
+            $button_class .= ' bottom-left';
+            break;
+        case 'bottom-center':
+            $button_class .= ' bottom-center';
+            break;
+        default:
+            // default position is bottom-right
+            $button_class .= ' bottom-right';
+            break;
+    }
+
+	// Add position attribute to button class
+    $button_class .= ' position-' . $atts['position'];
+
+
 	//Check for valid license
 	if(!AICONTENTT()->helpers->ai_content_license_is_valid()) {
 		return '';
@@ -882,7 +924,7 @@ function chatgpt_button_shortcode() {
     ?>
 	<!-- Style Block with CSS Rules -->
 	<style>
-		button.btn-circle.btn-xl {
+		.btn-circle.btn-xl {
 			width: 128px;
 			height: 128px;
 			border-radius: 50%;
@@ -891,6 +933,12 @@ function chatgpt_button_shortcode() {
 			background-size: 96px 96px;
 			background-repeat: no-repeat;
 			background-position: center;
+			font-size: 24px;
+			line-height: 128px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			margin-bottom: 10px;
 		}
 
 		.text {
@@ -899,8 +947,62 @@ function chatgpt_button_shortcode() {
 			margin: 0;
 			padding: 0;
 		}
+
+		.custom-button {
+			position: fixed;
+		}
+
+		.custom-button.top-left {
+			top: 20px;
+			left: 20px;
+		}
+
+		.custom-button.top-center {
+			top: 20px;
+			left: 50%;
+			transform: translateX(-50%);
+		}
+
+		.custom-button.top-right {
+			top: 20px;
+			right: 20px;
+		}
+
+		.custom-button.middle-left {
+			top: 50%;
+			left: 20px;
+			transform: translateY(-50%);
+		}
+
+		.custom-button.middle-center {
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+
+		.custom-button.middle-right {
+			top: 50%;
+			right: 20px;
+			transform: translateY(-50%);
+		}
+
+		.custom-button.bottom-left {
+			bottom: 20px;
+			left: 20px;
+		}
+
+		.custom-button.bottom-center {
+			bottom: 20px;
+			left: 50%;
+			transform: translateX(-50%);
+		}
+
+		.custom-button.bottom-right {
+			bottom: 20px;
+			right: 20px;
+		}
 	</style>
-	<div class="container">
+	<div class="<?php echo $button_class ?>">
     	<button type="button" class="btn btn-success btn-circle btn-xl" data-bs-toggle="modal" data-bs-target="#chatgpt-modal"></button>
 		<p class="text">Chat With GPT</p>
 	</div>
