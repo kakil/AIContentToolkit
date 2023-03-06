@@ -883,15 +883,27 @@ function chatgpt_button_shortcode() {
 	<!-- Style Block with CSS Rules -->
 	<style>
 		button.btn-circle.btn-xl {
-			border-radius: 64px;
 			width: 128px;
 			height: 128px;
-			padding: 20px;
-			font-size: 36px;
-			line-height: 1.33;
+			border-radius: 50%;
+			background-color: #54AE58;
+			background-image: url('<?php echo AICONTENTT_PLUGIN_URL . 'core/includes/assets/images/AI_Content_Toolkit_Button_Image_96x96.png'; ?>');
+			background-size: 96px 96px;
+			background-repeat: no-repeat;
+			background-position: center;
+		}
+
+		.text {
+			font-size: 16px;
+			font-weight: bold;
+			margin: 0;
+			padding: 0;
 		}
 	</style>
-    <button type="button" class="btn btn-success btn-circle btn-xl" data-bs-toggle="modal" data-bs-target="#chatgpt-modal">Chat With GPT</button>
+	<div class="container">
+    	<button type="button" class="btn btn-success btn-circle btn-xl" data-bs-toggle="modal" data-bs-target="#chatgpt-modal"></button>
+		<p class="text">Chat With GPT</p>
+	</div>
     <div class="modal fade" id="chatgpt-modal" tabindex="-1" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="chatgpt-modal-label" aria-hidden="true">
 		<style>
 			.modal {position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); font:.5rem;}
