@@ -289,9 +289,9 @@ jQuery(document).ready(function() {
       //toggle button enabled on change of Image
       
       // for t11-longtailkeyword.php
-      jQuery('#validationCustom1102').change(function() {
-        jQuery('#question_hidden').val(('#validationCustom1102').find(':selected').text());
-      });
+      // jQuery('#validationCustom1102').change(function() {
+      //   jQuery('#question_hidden').val(('#validationCustom1102').find(':selected').text());
+      // });
   
       //This is not currently used.  Placing code here for later
       jQuery('#validationCustom1102').on( "change", function() {

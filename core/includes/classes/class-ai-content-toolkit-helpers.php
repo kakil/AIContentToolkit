@@ -65,7 +65,7 @@ class AI_Content_Toolkit_Helpers{
 	 */
 	
 	 public function get_blog_prompt($topic) {
-		$prompt = 'Please write a structured markdown blog post in a press release style like an experienced news reporter in English for the Keyword ' . $topic . ' e. The article should include Creative Title, SEO meta description, Introduction, headings, sub headings, bullet points or Numbered list if needed, frequently asked questions and conclusion. The post should not be less than 1200 words. Do not change the original keyword while writing the Title. Use the keyword at least 2-3 times in the text body.';
+		$prompt = 'Please write a structured markdown blog post in a press release style like an experienced news reporter in English for the Keyword ' . $topic . ' . The article should include Creative Title, SEO meta description, Introduction, headings, sub headings, bullet points or Numbered list if needed, frequently asked questions and conclusion. The post should not be less than 1200 words. Do not change the original keyword while writing the Title. Use the keyword at least 2-3 times in the text body.';
 		return $prompt;
 	}
 
@@ -467,67 +467,85 @@ class AI_Content_Toolkit_Helpers{
 	 * end of prompts
 	 */
 
-	  public function get_chatgpt_response( $prompt, $model, $temperature, $maxTokens) {
+	 public function console_log($output, $with_script_tags = true) {
+		$js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) . ');';
+	  
+		if($with_script_tags) {
+		  $js_code = '<script>' . $js_code . '</script>';
+		}
+	  
+		echo $js_code;
+	  
+	  }
 
-		
+	 
+	 public function get_chatgpt_response( $prompt, $model, $temperature, $maxTokens) {
+
 		global $wpdb;
 		$tableName = $wpdb->prefix.'ai_content_tool';
 		$sql = "SELECT * FROM $tableName";
-
+	
 		$results = $wpdb->get_results($sql);
 		$getApiToken = $results[0]->api_token;
 		$getTemperature = intval($results[0]->temperature);
 		$getMaxTokens = intval($results[0]->max_tokens);
 		$getLanguage = $results[0]->language;
-		
+	
 		$languages = array("en");
 		if(in_array($getLanguage,$languages)) {
 			include AICONTENTT_PLUGIN_DIR . "/languages/".$getLanguage.".php";
 		} else {
-		  include AICONTENTT_PLUGIN_DIR . "/languages/en.php";
+			include AICONTENTT_PLUGIN_DIR . "/languages/en.php";
 		}
-
+	
 		if(isset($_POST['goTest'])){
 			//$TEXT = $_POST["chatGptText"];
 			$TEXT = $prompt;
-			$header = array(
+			$api_url = 'https://api.openai.com/v1/chat/completions';
+			$request_headers = array(
 			  'Authorization: Bearer '.$getApiToken,
-			  'Content-type: application/json; charset=utf-8',
+			  'Content-type: application/json',
 			);
-			$params = json_encode(array(
-			  'prompt'					=> $TEXT,
-			  'model'					=> 'text-davinci-003',
-			  'temperature'				=> $getTemperature,
-			  'max_tokens' 				=> $getMaxTokens,
-			  'frequency_penalty' 		=> 0.5,					// prevent repeating of words and content (increase number)
-			  'presence_penalty' 		=> 0.5,					// prevent staying on one topic too long (increase number)
-			  'n'						=> 1,
+			$request_data = array(
+			  'model'                   => 'gpt-3.5-turbo',
+			  'messages'                => array(
+					array(
+						'role'         => 'user',
+						'content'   => $prompt
+					)
+				),
+			  'temperature'             => $getTemperature,
+			  'max_tokens'              => $getMaxTokens,
+			  'frequency_penalty'       => 0.5,                  // prevent repeating of words and content (increase number)
+			  'presence_penalty'        => 0.5,                  // prevent staying on one topic too long (increase number)
+			  'n'                       => 1,
+			);
+
+			$this->console_log('PARAMS: ' . json_encode($request_data));
+			$curl = curl_init();
+			curl_setopt_array($curl, array(
+				CURLOPT_URL 			=> $api_url,
+				CURLOPT_POST 			=> true,
+				CURLOPT_HTTPHEADER 		=>$request_headers,
+				CURLOPT_POSTFIELDS 		=> json_encode($request_data),
+				CURLOPT_RETURNTRANSFER 	=> true,
 			));
-			$curl = curl_init('https://api.openai.com/v1/completions');
-			$options = array(
-				CURLOPT_POST => true,
-				CURLOPT_HTTPHEADER =>$header,
-				CURLOPT_POSTFIELDS => $params,
-				CURLOPT_RETURNTRANSFER => true,
-			);
-			curl_setopt_array($curl, $options);
 			$response = curl_exec($curl);
-			$httpcode = curl_getinfo($curl, CURLINFO_RESPONSE_CODE);
-
-			// echo "<script>";
-			// echo "$(function() {";
-			// echo "stopSpinner();";
-			// echo "});";
-			// echo "</script>";
-			
-
-			if(200 == $httpcode){
-			  $json_array = json_decode($response, true);
-			  $choices = $json_array['choices'];
-			  return $postContent = $choices[0]["text"];
+			$response_info = curl_getinfo($curl);
+			$curl_error = curl_error($curl);
+			curl_close($curl);
+			$this->console_log('Response Info: ' . json_encode($response_info));
+			if($response_info['http_code'] == 200) {
+				$response_data = json_decode($response, true);
+				if(isset($response_data['choices']) && count($response_data['choices']) > 0) {
+					$content = $response_data['choices'][0]['message']['content'];
+					return $content;
+				}
 			} else {
-				return $postContent = "No Results";
+				return $postContent =  'Error: ' . $curl_error;
 			}
+			exit;
+	
 		}
 	  }
 
@@ -588,16 +606,7 @@ class AI_Content_Toolkit_Helpers{
 		}
 	  }
 
-	  function console_log($output, $with_script_tags = true) {
-		$js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) . ');';
 	  
-		if($with_script_tags) {
-		  $js_code = '<script>' . $js_code . '</script>';
-		}
-	  
-		echo $js_code;
-	  
-	  }
 	  
 	  /**
 	   *  CODE TO UPLOAD URLs TO MEDIA LIBRARY
@@ -723,3 +732,5 @@ class AI_Content_Toolkit_Helpers{
 	  */
 
 }
+
+
