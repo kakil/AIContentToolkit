@@ -1208,15 +1208,24 @@ function chatgpt_button_shortcode($atts) {
         } );
 		
 		function copyText(text) {
-			var textField = document.createElement('textarea');
-			textField.innerText = text;
-			document.body.appendChild(textField);
-			textField.select();
-			textField.focus(); //SET FOCUS on the TEXTFIELD
-			document.execCommand('copy');
-			textField.remove();
-			console.log('should have copied ' + text); 
-			document.getElementById('chatgpt-response').focus(); //SET FOCUS BACK to MODAL
+			if (!navigator.clipboard) {  // if Clipboard API is not available, fallback to the old method
+				var textField = document.createElement('textarea');
+				textField.innerText = text;
+				document.body.appendChild(textField);
+				textField.select();
+				textField.focus(); //SET FOCUS on the TEXTFIELD
+				document.execCommand('copy');
+				textField.remove();
+				console.log('should have copied ' + text); 
+				document.getElementById('chatgpt-response').focus(); //SET FOCUS BACK to MODAL
+			} else { // use Clipboard API
+				navigator.clipboard.writeText(text).then(() => {
+					console.log('should have copied ' + text);
+					document.getElementById('chatgpt-response').focus(); //SET FOCUS BACK to MODAL
+				}).catch(err => {
+					console.error('Could not copy text: ', err);
+				});
+			}
 		}
 
     </script>
