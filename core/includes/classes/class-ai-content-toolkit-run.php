@@ -1103,6 +1103,26 @@ function chatgpt_button_shortcode($atts) {
 					spinner.style.visibility = 'hidden';
 				});
 
+				// Listen for the keydown event on the input fields inside the modal
+				document.addEventListener('keydown', function(event) {
+					// Check if the key pressed is the "Enter" key
+					if (event.key === 'Enter') {
+						// Prevent the default behavior of the "Enter" key
+						event.preventDefault();
+						
+						// Trigger the button click event
+						var prompt = jQuery('#chatgpt-prompt').val() == undefined ? '' : jQuery('#chatgpt-prompt').val().trim();
+						
+						if(!prompt){							//validate prompt is not empty
+							console.log('prompt is null');
+							jQuery('.prompt-validation').css({"visibility":"visible"});
+							
+						} else {
+							jQuery('#chatgpt-submit').click();	// Trigger button click event
+						}
+					}
+				});
+
 				jQuery( '#chatgpt-submit' ).on( 'click', function() {
 					//alert('Button Pressed');
 					console.log(jQuery('#chatgpt-prompt').val());
