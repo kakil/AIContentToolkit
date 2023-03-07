@@ -864,7 +864,6 @@ function my_enqueue_scripts() {
     wp_enqueue_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js', array('jquery'), '', true);
 	wp_enqueue_style( 'bootstrap', 'https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css' );
     wp_enqueue_script( 'bootstrap', 'https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js', array( 'jquery' ), '', true );
-	wp_enqueue_script( 'fontawesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css');
 	
 }
 add_action( 'wp_enqueue_scripts', 'my_enqueue_scripts' );
@@ -1194,7 +1193,7 @@ function chatgpt_button_shortcode($atts) {
 					})
 				})();
 
-				copyText(value);
+				//copyText(value);
 			})
 
 			jQuery('#chatgpt-submit').click(function() {
@@ -1262,40 +1261,47 @@ function chatgpt_submit() {
         $prompt = $_POST['prompt'];
 
         // Generate response using OpenAI API (replace YOUR_API_KEY with your actual API key)
-		$api_url = 'https://api.openai.com/v1/completions';
-		$request_data = array(
-			'prompt' => $prompt,
-			'model' => 'text-davinci-003',
-			'max_tokens' => 2048,
-			'temperature' => 0.7,
-			'stop' => ['\n']
-		);
-		$request_headers = array(
-			'Content-Type: application/json',
-			'Authorization: Bearer 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'
-		);
-		$curl = curl_init();
-		curl_setopt_array( $curl, array(
-			CURLOPT_URL => $api_url,
-			CURLOPT_POST => true,
-			CURLOPT_POSTFIELDS => json_encode( $request_data ),
-			CURLOPT_HTTPHEADER => $request_headers,
-			CURLOPT_RETURNTRANSFER => true
-		) );
-		$response = curl_exec( $curl );
-		$response_info = curl_getinfo( $curl );
-		$curl_error = curl_error( $curl );
-		curl_close( $curl );
-		if ( $response_info['http_code'] == 200 ) {
-		$response_data = json_decode( $response, true );
-		if ( isset( $response_data['choices'] ) ) {
-			echo $response_data['choices'][0]['text'];
-		}
-		} else {
-			echo 'Error: ' . $curl_error;
-		}
-		exit;
-	}
+        $api_key = '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';
+        $api_url = 'https://api.openai.com/v1/chat/completions';
+        $request_data = array(
+            'model' => 'gpt-3.5-turbo',
+            'messages' => array(
+                array(
+                    'role' => 'user',
+                    'content' => $prompt
+                )
+            ),
+            'max_tokens' => 2048,
+            'temperature' => 0.7,
+            'stop' => ['\n']
+        );
+        $request_headers = array(
+            'Content-Type: application/json',
+            'Authorization: Bearer ' . $api_key
+        );
+        $curl = curl_init();
+        curl_setopt_array( $curl, array(
+            CURLOPT_URL => $api_url,
+            CURLOPT_POST => true,
+            CURLOPT_POSTFIELDS => json_encode( $request_data ),
+            CURLOPT_HTTPHEADER => $request_headers,
+            CURLOPT_RETURNTRANSFER => true
+        ) );
+        $response = curl_exec( $curl );
+        $response_info = curl_getinfo( $curl );
+        $curl_error = curl_error( $curl );
+        curl_close( $curl );
+        if ( $response_info['http_code'] == 200 ) {
+            $response_data = json_decode( $response, true );
+            if ( isset( $response_data['choices'] ) && count( $response_data['choices'] ) > 0 ) {
+                $content = $response_data['choices'][0]['message']['content'];
+                echo $content;
+            }
+        } else {
+            echo 'Error: ' . $curl_error;
+        }
+        exit;
+    }
 }
 
 
