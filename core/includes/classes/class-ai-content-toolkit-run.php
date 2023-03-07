@@ -1257,11 +1257,31 @@ add_shortcode( 'chatgpt_button', 'chatgpt_button_shortcode' );
 
 // Handle AJAX request to generate response
 function chatgpt_submit() {
+
+	//Retrieve settings from the database
+	global $wpdb;
+	$tableName = $wpdb->prefix.'ai_content_tool';
+	$sql = "SELECT * FROM $tableName";
+
+	$results = $wpdb->get_results($sql);
+	$getApiToken = $results[0]->api_token;
+	$getTemperature = intval($results[0]->temperature);
+	$getMaxTokens = intval($results[0]->max_tokens);
+	$getLanguage = $results[0]->language;
+	
+	//Select the language
+	$languages = array("en");
+	if(in_array($getLanguage,$languages)) {
+		include AICONTENTT_PLUGIN_DIR . "/languages/".$getLanguage.".php";
+	} else {
+		include AICONTENTT_PLUGIN_DIR . "/languages/en.php";
+	}
+
     if ( isset( $_POST['prompt'] ) ) {
         $prompt = $_POST['prompt'];
 
         // Generate response using OpenAI API (replace YOUR_API_KEY with your actual API key)
-        $api_key = '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';
+        $api_key = $getApiToken;
         $api_url = 'https://api.openai.com/v1/chat/completions';
         $request_data = array(
             'model' => 'gpt-3.5-turbo',
@@ -1271,8 +1291,8 @@ function chatgpt_submit() {
                     'content' => $prompt
                 )
             ),
-            'max_tokens' => 2048,
-            'temperature' => 0.7,
+            'max_tokens' => $getMaxTokens,
+            'temperature' => $getTemperature,
             'stop' => ['\n']
         );
         $request_headers = array(
