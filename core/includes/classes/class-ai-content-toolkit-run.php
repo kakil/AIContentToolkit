@@ -941,8 +941,25 @@ function chatgpt_button_shortcode($atts) {
 			margin-bottom: 10px;
 		}
 
+		.btn-circle {
+			width: 80px;
+			height: 80px;
+			border-radius: 50%;
+			background-color: #54AE58;
+			background-image: url('<?php echo AICONTENTT_PLUGIN_URL . 'core/includes/assets/images/AI_Content_Toolkit_Button_Image_56x56.png'; ?>');
+			background-size: 56px 56px;
+			background-repeat: no-repeat;
+			background-position: center;
+			font-size: 14px;
+			line-height: 80px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			margin-bottom: 10px;
+		}
+
 		.text {
-			font-size: 16px;
+			font-size: 12px;
 			font-weight: bold;
 			margin: 0;
 			padding: 0;
@@ -1003,7 +1020,7 @@ function chatgpt_button_shortcode($atts) {
 		}
 	</style>
 	<div class="<?php echo $button_class ?>">
-    	<button type="button" class="btn btn-success btn-circle btn-xl" data-bs-toggle="modal" data-bs-target="#chatgpt-modal"></button>
+    	<button type="button" class="btn btn-success btn-circle" data-bs-toggle="modal" data-bs-target="#chatgpt-modal"></button>
 		<p class="text">Chat With GPT</p>
 	</div>
     <div class="modal fade" id="chatgpt-modal" tabindex="-1" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="chatgpt-modal-label" aria-hidden="true">
