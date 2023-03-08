@@ -137,7 +137,7 @@ jQuery(document).ready(function() {
       var ajaxurl = jQuery('#ajaxurl').val();
 
       // Set the API key and GUID parameters
-      var api_key = '588e6bf7b14c8b63114fb0f147afc5c3'
+      var api_key = 'f3e5e21f4b56e07bcc0c1518e06f53db'
       var guid = jQuery('#currenturl').val();
       console.log('GUID: ' + guid);
       console.log('license key: ' + license_key);
