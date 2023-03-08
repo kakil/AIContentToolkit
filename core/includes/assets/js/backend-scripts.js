@@ -25,22 +25,27 @@ window.onload = function() {
     jQuery('#license_key').prop('disabled', false);
   } else {
 
-    var license_key = "ZTYJ-IMO9-HQVE-UUDH";
-    var pattern = /^[A-Z\d]{4}-[A-Z\d]{4}-[A-Z\d]{4}-[A-Z\d]{4}$/;
-    var verified = pattern.test(license_key);
+    jQuery('#license_key').prop('disabled', true);
+    jQuery('#activate_license_btn').addClass('d-none');       // license key - hide activate btn
+    jQuery('#deactivate_license_btn').removeClass('d-none');  // license key - show deactivate btn
+    jQuery('#license_key').prop('disabled', true);            // license key - textfield uneditable
 
-    if (verified) {
-      console.log("License key is valid.");
-      jQuery('#activate_license_btn').addClass('d-none');       // license key - hide activate btn
-      jQuery('#deactivate_license_btn').removeClass('d-none');  // license key - show deactivate btn
-      jQuery('#license_key').prop('disabled', true);
-    } else {
-      console.log("License key is invalid.");
-      jQuery('#activate_license_btn').removeClass('d-none');    // no license key - show activate btn
-      jQuery('#deactivate_license_btn').addClass('d-none');     // no license key - hide deactivate btn
-      jQuery('#license_key').val('');
-      jQuery('#license_key').prop('disabled', false);
-    }
+    // var license_key = "ZTYJ-IMO9-HQVE-UUDH";
+    // var pattern = /^[A-Z\d]{4}-[A-Z\d]{4}-[A-Z\d]{4}-[A-Z\d]{4}$/;
+    // var verified = pattern.test(license_key);
+
+    // if (jQuery('#verified').val() == 'true') {
+    //   console.log("License key is valid.");
+    //   jQuery('#activate_license_btn').addClass('d-none');       // license key - hide activate btn
+    //   jQuery('#deactivate_license_btn').removeClass('d-none');  // license key - show deactivate btn
+    //   jQuery('#license_key').prop('disabled', true);
+    // } else {
+    //   console.log("License key is invalid.");
+    //   jQuery('#activate_license_btn').removeClass('d-none');    // no license key - show activate btn
+    //   jQuery('#deactivate_license_btn').addClass('d-none');     // no license key - hide deactivate btn
+    //   jQuery('#license_key').val('');
+    //   jQuery('#license_key').prop('disabled', false);
+    // }
     
   }
 
@@ -97,6 +102,8 @@ jQuery(document).ready(function() {
   jQuery('#activate_license_btn').on('click', function(event) {
 
     console.log('Button clicked');
+    jQuery('#submitSuccessMessage').addClass('d-none');
+    jQuery('#submitErrorMessage').addClass('d-none');
     
     event.preventDefault();
 
@@ -132,35 +139,56 @@ jQuery(document).ready(function() {
           guid: guid
 
         },
-        success: function(obj, textStatus) {
+        success: function(response) {
           //alert('obj: ' + obj);
           spinner.style.visibility = 'hidden';
 
-          if(obj){
-            //alert(obj.text);
-            console.log('Success: ' + obj.text);
+          var data = JSON.parse(response);
+
+          if (data.success !== undefined && data.success === false) {
+            console.log('License not found');
+            jQuery('#submitSuccessMessage').addClass('d-none');
+            jQuery('#submitErrorMessage').removeClass('d-none');
+            jQuery('#activate_license_btn').removeClass('d-none');
+            jQuery('#submitSuccessMessage').text('License Activation Error - Try Again');
+            jQuery('#license_key').prop('disabled', false);
+          } else if (data.license_key !== undefined) {
+            console.log('License Key: ' + data.license_key);
+            console.log('Activated At: ' + data.activated_at);
             jQuery('#activate_license_btn').addClass('d-none');
             jQuery('#deactivate_license_btn').removeClass('d-none');
             jQuery('#submitSuccessMessage').removeClass('d-none');
             jQuery('#submitSuccessMessage').text('License Activated');
             jQuery('#submitErrorMessage').addClass('d-none');
             jQuery('#license_key').prop('disabled', true);
-            
+          } else {
+            console.log('Activation Response returned undefined');
+            jQuery('#submitSuccessMessage').addClass('d-none');
+            jQuery('#submitErrorMessage').removeClass('d-none');
+            jQuery('#activate_license_btn').removeClass('d-none');
+            jQuery('#submitSuccessMessage').text('License Activation Error - Try Again');
+            jQuery('#license_key').prop('disabled', false);
           }
+          
         },
         error: function(msg) {  //xhr, textStatus, errThrown
-          console.log('error in success: ' + msg);
-          jQuery('#submitSuccessMessage').removeClass('d-none');
-          jQuery('#submitErrorMessage').addClass('d-none');
+          console.log('Error during license activation: ' + msg);
+          jQuery('#submitSuccessMessage').addClass('d-none');
+          jQuery('#submitErrorMessage').removeClass('d-none');
+          jQuery('#activate_license_btn').removeClass('d-none');
+          jQuery('#submitSuccessMessage').text('License Activation Error - Try Again');
+          jQuery('#license_key').prop('disabled', false);
         }
       });
 
     } else {
       console.log("License key is invalid.");
       spinner.style.visibility = 'hidden';
-      jQuery('#submitErrorMessage').removeClass('d-none');
-      jQuery('#submitSuccessMessage').addClass('d-none');
-      
+      jQuery('#submitErrorMessage').removeClass('d-none');                  //make message visible
+      jQuery('#submitSuccessMessage').addClass('d-none');                   //make success message hidden
+      jQuery('#activate_license_btn').removeClass('d-none');                //make btn visible
+      jQuery('#submitSuccessMessage').text('License Activation Error - Try Again');
+      jQuery('#license_key').prop('disabled', false);                       //make textfield editable
     }
     
   });
@@ -197,25 +225,35 @@ jQuery(document).ready(function() {
           license_key: license_key,
 
         },
-        success: function(obj, textStatus) {
+        success: function(response) {
           //alert('obj: ' + obj);
           spinner.style.visibility = 'hidden';
 
-          if(obj){
-            //alert(obj.text);
-            console.log('Success: ' + obj.text);
-            jQuery('#activate_license_btn').removeClass('d-none');
-            jQuery('#deactivate_license_btn').addClass('d-none');
-            jQuery('#submitSuccessMessage').removeClass('d-none');
-            jQuery('#submitSuccessMessage').text('License Deactivated');
-            jQuery('#submitErrorMessage').addClass('d-none');
-            jQuery('#license_key').prop('disabled', false);
-            jQuery('#license_key').val('');
+          var data = JSON.parse(response);
+
+          if(typeof data.deactivated_at !== "undefined") {
+            console.log('License Key: ' + data.license_key);
+            console.log('Deactivated At: ' + data.deactivated_at);
+
+            jQuery('#activate_license_btn').removeClass('d-none');          //make btn visible
+            jQuery('#deactivate_license_btn').addClass('d-none');           //make btn hidden
+            jQuery('#submitSuccessMessage').removeClass('d-none');          //make success message visible
+            jQuery('#submitSuccessMessage').text('License Deactivated');    
+            jQuery('#submitErrorMessage').addClass('d-none');               //make error message hidden
+            jQuery('#license_key').prop('disabled', false);                 //make textfield editable
+            jQuery('#license_key').val('');                                 
+          } else {
+            console.log('Deactivation Response is undefined: ' + data);
+            jQuery('#submitSuccessMessage').addClass('d-none');             //make btn hidden
+            jQuery('#submitErrorMessage').removeClass('d-none');            //make btn visible 
+            jQuery('#submitErrorMessage').text('Error During License Deactivated - Try Again');    
+            jQuery('#license_key').prop('disabled', true);                 //make textfield editable
             
           }
+  
         },
         error: function(msg) {  //xhr, textStatus, errThrown
-          console.log('error in success: ' + msg);
+          console.log('error deactivating license: ' + msg);
           jQuery('#submitSuccessMessage').removeClass('d-none');
           jQuery('#submitErrorMessage').addClass('d-none');
         }

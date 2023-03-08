@@ -2,14 +2,17 @@
 
 include "header.php";
 
+$verified = 'false';
 $deactivated = AICONTENTT()->helpers->ai_content_deactivation_get_option();
 $license_key = AICONTENTT()->helpers->ai_content_get_option();
 
 $new_deactivated = str_replace(' ', '', $deactivated);
 $new_license_key = str_replace(' ', '', $license_key);
 
-If($new_deactivated != '' || $new_license_key == '') {
+If($new_deactivated != '' || empty($new_license_key)) {
 	$verified = 'false';
+} else {
+	$verified = 'true';
 }
 
 ?>

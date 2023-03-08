@@ -1360,18 +1360,34 @@ function verify_license() {
 		  CURLOPT_RETURNTRANSFER => true
 	));
   
-	$response = curl_exec( $curl );
-	$response_info = curl_getinfo( $curl );
+	$response = curl_exec( $curl );				//has the actual response from the API
+	$response_info = curl_getinfo( $curl );		// has the HTTP response code
 	$curl_error = curl_error( $curl );
 	curl_close( $curl );
   
+	/**
+	 *  Example Response:
+	 * 	{
+	 *		"license_key": "PW1V-FP0N-Q5IY-RRBZ",
+	 *		"activated_at": "2021-04-28 14:12:43",
+	 *		"product_id": 58
+	 *	}	
+	 */
+
 	if( $response_info['http_code'] == 200 ) {
-	  $response_data = json_decode($response, true);
-	  AICONTENTT()->helpers->ai_content_update_option($license_key);
-	  AICONTENTT()->helpers->ai_content_deactivation_update_option('');
-	  echo $response_data['license_key'];
-	  //update_option('license_key', $response_data['license_key']);
-	  //return 'ProductDyno Response: ' . $response_data['license_key'];
+
+	  	$response_data = json_decode($response, true);
+
+		$response_license_key = $response_data['license_key'];
+		$response_activated_at = $response_data['activated_at'];
+		$response_product_id = $response_data['product_id'];
+
+	  	AICONTENTT()->helpers->ai_content_update_option($response_license_key);
+	  	AICONTENTT()->helpers->ai_content_deactivation_update_option('');
+	  	echo json_encode($response_data);
+
+	  	//update_option('license_key', $response_data['license_key']);
+	  	//return 'ProductDyno Response: ' . $response_data['license_key'];
 	} else {
 	  echo $curl_error;
 	  AICONTENTT()->helpers->ai_content_update_option('');
@@ -1447,16 +1463,21 @@ function deactivate_license() {
 	curl_close( $curl );
   
 	if( $response_info['http_code'] == 200 ) {
-	  $response_data = json_decode($response, true);
-	  $deactivated_at = $response_data['deactivated_at'];
-	  AICONTENTT()->helpers->ai_content_deactivation_update_option($deactivated_at);
-	  AICONTENTT()->helpers->ai_content_update_option('');
-	  echo $deactivated_at;
+
+		$response_data = json_decode($response, true);
+
+		$deactivated_at = $response_data['deactivated_at'];
+		$response_license_key = $response_data['license_key'];
+
+		AICONTENTT()->helpers->ai_content_deactivation_update_option($deactivated_at);
+		AICONTENTT()->helpers->ai_content_update_option('');
+		
+		echo json_encode($response_data);
 	  
 	} else {
-	  echo $curl_error;
-	  AICONTENTT()->helpers->ai_content_deactivation_update_option('');
-	  //return $curl_error;
+	  echo $curl_error;			//simple strings do not need json_encode()
+	  //AICONTENTT()->helpers->ai_content_deactivation_update_option('');
+	  
 	}
   
   wp_die();
