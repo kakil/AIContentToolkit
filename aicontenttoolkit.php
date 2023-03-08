@@ -5,13 +5,13 @@
  * @package       AICONTENTT
  * @author        Kitwana Akil
  * @license       gplv3-or-later
- * @version       0.6.0
+ * @version       0.7.0
  *
  * @wordpress-plugin
  * Plugin Name:   AI Content ToolKit
  * Plugin URI:    https://toolkitsforsuccess.com/aicontenttoolkit
  * Description:   This WordPress plugin is a collection of tools that allows you to do a variety of different tasks using ChatGPT API.
- * Version:       0.6.0
+ * Version:       0.7.0
  * Author:        Kitwana Akil
  * Author URI:    https://toolkitsforsuccess.com
  * Text Domain:   aicontent-toolkit
@@ -47,7 +47,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 define( 'AICONTENTT_NAME',			'AI Content ToolKit' );
 
 // Plugin version
-define( 'AICONTENTT_VERSION',		'0.6.0' );
+define( 'AICONTENTT_VERSION',		'0.7.0' );
 
 // Plugin Root File
 define( 'AICONTENTT_PLUGIN_FILE',	__FILE__ );
