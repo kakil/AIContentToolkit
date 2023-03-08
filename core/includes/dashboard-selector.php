@@ -190,6 +190,50 @@ If($new_deactivated != '' || empty($new_license_key)) {
 				</div>
 			</div>
 		</div>
+
+
+		<!-- Row 5 -->
+
+		<div class="row gy-3 mb-5">
+
+			<!-- Card 31 -->
+			<div class="col-12 col-md-6 col-lg-4">
+				<div class="card h-100 shadow p-3 mb-5 bg-white rounded">
+					<img src="<?php echo AICONTENTT_PLUGIN_URL . 'core/includes/assets/images/AI_Toolkit_Plugin_Image_33.png'; ?>" alt="robot head exploded" class="card-img-top">
+					<div class="card-body">
+						<h5 class="card-title">Chat With GPT Button</h5>
+						<p class="card-text">This AI tool will allow you to place a ChatGPT Button anywhere on your website..</p><br/>
+						<a href="<?php menu_page_url( 'ai-content-tool-chat-with-gpt' ); ?>" title="<?php echo __( 'Chat With GPT', 'toolkit' ) ?>" class="btn btn-primary" id="Pro19">Create Chat Button</a>
+					</div>
+				</div>
+			</div>
+
+			<!-- Card 32 
+			<div class="col-12 col-md-6 col-lg-4">
+				<div class="card h-100 shadow p-3 mb-5 bg-white rounded">
+					<img src="<?php echo AICONTENTT_PLUGIN_URL . 'core/includes/assets/images/AI_Toolkit_Plugin_Image_29.png'; ?>" alt="robot idea" class="card-img-top">
+					<div class="card-body">
+						<h5 class="card-title">Prepositions Keyword Tool</h5>
+						<p class="card-text">This tool will help you generate prepositions keywords similar to AnswerThePublic.com.</p><br/>
+						<a href="<?php menu_page_url( 'ai-content-tool-prepositions' ); ?>" title="<?php echo __( 'AI Prepositions Tool', 'toolkit' ) ?>" class="btn btn-primary" id="Pro20">Create</a>
+					</div>
+				</div>
+			</div>
+
+			-- Card 33 --
+			<div class="col-12 col-md-6 col-lg-4">
+				<div class="card h-100 shadow p-3 mb-5 bg-white rounded">
+					<img src="<?php echo AICONTENTT_PLUGIN_URL . 'core/includes/assets/images/AI_Toolkit_Plugin_Image_30.png'; ?>" alt="robot thinking" class="card-img-top">
+					<div class="card-body">
+						<h5 class="card-title">Comparisons Keyword Tool</h5>
+						<p class="card-text">This tool will help generate comparison keywords similar to AnswerThePublic.com.</p><br/>
+						<a href="<?php menu_page_url( 'ai-content-tool-comparisons' ); ?>" title="<?php echo __( 'AI Comparisons Tool', 'toolkit' ) ?>" class="btn btn-primary" id="Pro21">Create</a>
+					</div>
+				</div>
+			</div>
+		</div> -->
+
+
 	</div>
 	<div>
 	<input type="hidden" id="verified" value="<?php echo $verified; ?>">
