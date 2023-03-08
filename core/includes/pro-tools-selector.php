@@ -285,7 +285,7 @@ If($new_deactivated != '' || empty($new_license_key)) {
 					<img src="<?php echo AICONTENTT_PLUGIN_URL . 'core/includes/assets/images/AI_Toolkit_Plugin_Image_28.png'; ?>" alt="robot head exploded" class="card-img-top">
 					<div class="card-body">
 						<h5 class="card-title">Alphabetical Keyword Tool</h5>
-						<p class="card-text">This AI tool will help you generate alphabetical keywords similar to AnswerThePublic.com.</p><br/>
+						<p class="card-text">This AI tool will help you generate alphabetical keywords similar to AnswerThePublic.com.</p><br/><br/>
 						<a href="<?php menu_page_url( 'ai-content-tool-alphabetical' ); ?>" title="<?php echo __( 'AI Alphabetical Keyword Tool', 'toolkit' ) ?>" class="btn btn-primary" id="Pro19">Create</a>
 					</div>
 				</div>
@@ -309,13 +309,15 @@ If($new_deactivated != '' || empty($new_license_key)) {
 					<img src="<?php echo AICONTENTT_PLUGIN_URL . 'core/includes/assets/images/AI_Toolkit_Plugin_Image_30.png'; ?>" alt="robot thinking" class="card-img-top">
 					<div class="card-body">
 						<h5 class="card-title">Comparisons Keyword Tool</h5>
-						<p class="card-text">This tool will help generate comparison keywords similar to AnswerThePublic.com.</p><br/>
+						<p class="card-text">This tool will help generate comparison keywords similar to AnswerThePublic.com.</p><br/><br/>
 						<a href="<?php menu_page_url( 'ai-content-tool-comparisons' ); ?>" title="<?php echo __( 'AI Comparisons Tool', 'toolkit' ) ?>" class="btn btn-primary" id="Pro21">Create</a>
 					</div>
 				</div>
 			</div>
 		</div>
 
+
+		
 	</div>
 	<div>
 	<input type="hidden" id="verified" value="<?php echo $verified; ?>">
