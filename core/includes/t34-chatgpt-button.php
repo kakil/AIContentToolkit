@@ -117,12 +117,14 @@ if(isset($_POST["addBlog"])){
               <li>[chatgpt_button position="bottom-right"] </li>
               
             </ul>
-            <p><b>Examples:</b></p>
+            <p style="text-align: center;"><b>Chat With GPT Button - Lower Left:</b></p>
             <p style="text-align: center;"><img
                 src="<?php echo AICONTENTT_PLUGIN_URL . 'core/includes/assets/images/AI_Content_Toolkit_Plugin_Image_chatgpt-left-bottom.png'; ?>" class="img-fluid">
             </p>
-            <!-- <p><b>Methods:</b></p> -->
-           
+            <p style="text-align: center;" class="mt-3"><b>Chat With GPT Form Window:</b></p>
+            <p style="text-align: center;"><img
+                src="<?php echo AICONTENTT_PLUGIN_URL . 'core/includes/assets/images/AI_Content_Toolkit_chatgpt_modal.jpg'; ?>" class="img-fluid">
+            </p>
           </div>
   </form>
 </div>
