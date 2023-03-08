@@ -54,6 +54,9 @@ window.onload = function() {
     jQuery('#createBlogButton').addClass('disabled');
   }
 
+  //disable pro tools buttons
+  //jQuery('button[id^="#Pro"]').prop('disabled', true);
+
 };
 
 
