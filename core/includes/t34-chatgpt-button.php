@@ -97,7 +97,7 @@ if(isset($_POST["addBlog"])){
               
             </p>
             <p>
-              You get one shortcode that you can use to position your Chat With GPT button in any one of nine positions on your website.
+              You select one of the shortcodes below that you can use to position your Chat With GPT button in any one of nine positions on your website.
               
             </p>
             <p style="text-align: left;"><b><u>List of Chat With GPT Shortcodes</u></b></p>
