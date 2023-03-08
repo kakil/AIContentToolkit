@@ -1384,6 +1384,7 @@ function verify_license() {
 
 	  	AICONTENTT()->helpers->ai_content_update_option($response_license_key);
 	  	AICONTENTT()->helpers->ai_content_deactivation_update_option('');
+		verify_license_on_admin_pages();
 	  	echo json_encode($response_data);
 
 	  	//update_option('license_key', $response_data['license_key']);
@@ -1471,7 +1472,7 @@ function deactivate_license() {
 
 		AICONTENTT()->helpers->ai_content_deactivation_update_option($deactivated_at);
 		AICONTENTT()->helpers->ai_content_update_option('');
-		
+		verify_license_on_admin_pages();
 		echo json_encode($response_data);
 	  
 	} else {
