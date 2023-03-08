@@ -63,6 +63,30 @@ window.onload = function() {
     jQuery('#createscript').addClass('disabled');
     jQuery('#createkeywordlist').addClass('disabled');
     jQuery('#generateimages').addClass('disabled');
+
+    //Pro Tools
+    jQuery('#Pro1').addClass('disabled');
+    jQuery('#Pro2').addClass('disabled');
+    jQuery('#Pro3').addClass('disabled');
+    jQuery('#Pro4').addClass('disabled');
+    jQuery('#Pro5').addClass('disabled');
+    jQuery('#Pro6').addClass('disabled');
+    jQuery('#Pro7').addClass('disabled');
+    jQuery('#Pro8').addClass('disabled');
+    jQuery('#Pro9').addClass('disabled');
+    jQuery('#Pro10').addClass('disabled');
+    jQuery('#Pro11').addClass('disabled');
+    jQuery('#Pro12').addClass('disabled');
+    jQuery('#Pro13').addClass('disabled');
+    jQuery('#Pro14').addClass('disabled');
+    jQuery('#Pro15').addClass('disabled');
+    jQuery('#Pro16').addClass('disabled');
+    jQuery('#Pro17').addClass('disabled');
+    jQuery('#Pro18').addClass('disabled');
+    jQuery('#Pro19').addClass('disabled');
+    jQuery('#Pro20').addClass('disabled');
+    jQuery('#Pro21').addClass('disabled');
+    
   }
 
   //disable pro tools buttons
