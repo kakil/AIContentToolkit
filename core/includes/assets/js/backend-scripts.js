@@ -52,6 +52,17 @@ window.onload = function() {
   console.log("verified: " + jQuery('#verified').val());
   if(jQuery('#verified').val() === 'false') {
     jQuery('#createBlogButton').addClass('disabled');
+    jQuery('#createBlogPostOutline').addClass('disabled');
+    jQuery('#brainstorm').addClass('disabled');
+    jQuery('#mindmap').addClass('disabled');
+    jQuery('#advancedpost').addClass('disabled');
+    jQuery('#findkeywords').addClass('disabled');
+    jQuery('#createarticle').addClass('disabled');
+    jQuery('#createlistpost').addClass('disabled');
+    jQuery('#astrologyreading').addClass('disabled');
+    jQuery('#createscript').addClass('disabled');
+    jQuery('#createkeywordlist').addClass('disabled');
+    jQuery('#generateimages').addClass('disabled');
   }
 
   //disable pro tools buttons

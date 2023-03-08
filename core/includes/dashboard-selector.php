@@ -48,7 +48,7 @@ If($new_deactivated != '' || empty($new_license_key)) {
 					<div class="card-body">
 						<h5 class="card-title">Blog Post Outline Tool</h5>
 						<p class="card-text">This template will create an outline for your blog post or article.</p>
-						<a href="<?php menu_page_url( 'ai-content-tool-blog-post-outline' ); ?>" title="<?php echo __( 'AI Blog Post Outline', 'toolkit' ) ?>" class="btn btn-primary">Create Blog Post Outline</a>
+						<a href="<?php menu_page_url( 'ai-content-tool-blog-post-outline' ); ?>" title="<?php echo __( 'AI Blog Post Outline', 'toolkit' ) ?>" class="btn btn-primary" id="createBlogPostOutline">Create Blog Post Outline</a>
 					</div>
 				</div>
 			</div>
@@ -60,7 +60,7 @@ If($new_deactivated != '' || empty($new_license_key)) {
 					<div class="card-body">
 						<h5 class="card-title">Brainstorming Tool</h5>
 						<p class="card-text">This tool will help you brainstorm topics.</p><br/>
-						<a href="<?php menu_page_url( 'ai-content-tool-brainstorming' ); ?>" title="<?php echo __( 'AI Brainstorming', 'toolkit' ) ?>" class="btn btn-primary">Brainstorm A Topic</a>
+						<a href="<?php menu_page_url( 'ai-content-tool-brainstorming' ); ?>" title="<?php echo __( 'AI Brainstorming', 'toolkit' ) ?>" class="btn btn-primary" id="brainstorm">Brainstorm A Topic</a>
 					</div>
 				</div>
 			</div>
@@ -78,7 +78,7 @@ If($new_deactivated != '' || empty($new_license_key)) {
 					<div class="card-body">
 						<h5 class="card-title">Mind Map Tool</h5>
 						<p class="card-text">This AI tool will help you create content for a mindmap.</p><br/>
-						<a href="<?php menu_page_url( 'ai-content-tool-mindmap' ); ?>" title="<?php echo __( 'AI Mind Map', 'toolkit' ) ?>" class="btn btn-primary">Create Mind Map</a>
+						<a href="<?php menu_page_url( 'ai-content-tool-mindmap' ); ?>" title="<?php echo __( 'AI Mind Map', 'toolkit' ) ?>" class="btn btn-primary" id="mindmap">Create Mind Map</a>
 					</div>
 				</div>
 			</div>
@@ -90,7 +90,7 @@ If($new_deactivated != '' || empty($new_license_key)) {
 					<div class="card-body">
 						<h5 class="card-title">Advanced Blog Post Tool</h5>
 						<p class="card-text">This template will create an outline for your blog post or article.</p>
-						<a href="<?php menu_page_url( 'ai-content-tool-advanced-blog-post' ); ?>" title="<?php echo __( 'AI Advanced Blog Post Tool', 'toolkit' ) ?>" class="btn btn-primary">Create Advanced Post</a>
+						<a href="<?php menu_page_url( 'ai-content-tool-advanced-blog-post' ); ?>" title="<?php echo __( 'AI Advanced Blog Post Tool', 'toolkit' ) ?>" class="btn btn-primary" id="advancedpost">Create Advanced Post</a>
 					</div>
 				</div>
 			</div>
@@ -102,7 +102,7 @@ If($new_deactivated != '' || empty($new_license_key)) {
 					<div class="card-body">
 						<h5 class="card-title">Keyword Tool</h5>
 						<p class="card-text">This tool will help you find keywords with intent.</p><br/>
-						<a href="<?php menu_page_url( 'ai-content-tool-keywords' ); ?>" title="<?php echo __( 'AI Keywords', 'toolkit' ) ?>" class="btn btn-primary">Find Keywords</a>
+						<a href="<?php menu_page_url( 'ai-content-tool-keywords' ); ?>" title="<?php echo __( 'AI Keywords', 'toolkit' ) ?>" class="btn btn-primary" id="findkeywords">Find Keywords</a>
 					</div>
 				</div>
 			</div>
@@ -120,7 +120,7 @@ If($new_deactivated != '' || empty($new_license_key)) {
 					<div class="card-body">
 						<h5 class="card-title">How To Article Tool</h5>
 						<p class="card-text">This AI tool will help you create a How To... Article.</p>
-						<a href="<?php menu_page_url( 'ai-content-tool-how-to-article' ); ?>" title="<?php echo __( 'AI Article Tool - How To', 'toolkit' ) ?>" class="btn btn-primary">Create Article</a>
+						<a href="<?php menu_page_url( 'ai-content-tool-how-to-article' ); ?>" title="<?php echo __( 'AI Article Tool - How To', 'toolkit' ) ?>" class="btn btn-primary" id="createarticle">Create Article</a>
 					</div>
 				</div>
 			</div>
@@ -132,7 +132,7 @@ If($new_deactivated != '' || empty($new_license_key)) {
 					<div class="card-body">
 						<h5 class="card-title">List Blog Post Tool</h5>
 						<p class="card-text">This template will create a list blog post or article.</p>
-						<a href="<?php menu_page_url( 'ai-content-tool-list-article' ); ?>" title="<?php echo __( 'AI List Blog Post Tool', 'toolkit' ) ?>" class="btn btn-primary">Create List Post</a>
+						<a href="<?php menu_page_url( 'ai-content-tool-list-article' ); ?>" title="<?php echo __( 'AI List Blog Post Tool', 'toolkit' ) ?>" class="btn btn-primary" id="createlistpost">Create List Post</a>
 					</div>
 				</div>
 			</div>
@@ -144,7 +144,7 @@ If($new_deactivated != '' || empty($new_license_key)) {
 					<div class="card-body">
 						<h5 class="card-title">Astrology Tool</h5>
 						<p class="card-text">This tool will help you give an astrology reading.</p>
-						<a href="<?php menu_page_url( 'ai-content-tool-astrology' ); ?>" title="<?php echo __( 'AI Astrology Tool', 'toolkit' ) ?>" class="btn btn-primary">Astrology Reading</a>
+						<a href="<?php menu_page_url( 'ai-content-tool-astrology' ); ?>" title="<?php echo __( 'AI Astrology Tool', 'toolkit' ) ?>" class="btn btn-primary" id="astrologyreading">Astrology Reading</a>
 					</div>
 				</div>
 			</div>
@@ -161,7 +161,7 @@ If($new_deactivated != '' || empty($new_license_key)) {
 					<div class="card-body">
 						<h5 class="card-title">Video Script Tool</h5>
 						<p class="card-text">This AI tool will help you generate video scripts.</p>
-						<a href="<?php menu_page_url( 'ai-content-tool-video-script' ); ?>" title="<?php echo __( 'AI Video Script Tool', 'toolkit' ) ?>" class="btn btn-primary">Create Script</a>
+						<a href="<?php menu_page_url( 'ai-content-tool-video-script' ); ?>" title="<?php echo __( 'AI Video Script Tool', 'toolkit' ) ?>" class="btn btn-primary" id="createscript">Create Script</a>
 					</div>
 				</div>
 			</div>
@@ -173,7 +173,7 @@ If($new_deactivated != '' || empty($new_license_key)) {
 					<div class="card-body">
 						<h5 class="card-title">Answer The Public Keyword Tool</h5>
 						<p class="card-text">This template will create a list of long tail keywords.</p>
-						<a href="<?php menu_page_url( 'ai-content-tool-long-tail-keywords' ); ?>" title="<?php echo __( 'AI Long Tail Keyword Tool', 'toolkit' ) ?>" class="btn btn-primary">Create Keyword List</a>
+						<a href="<?php menu_page_url( 'ai-content-tool-long-tail-keywords' ); ?>" title="<?php echo __( 'AI Long Tail Keyword Tool', 'toolkit' ) ?>" class="btn btn-primary" id="createkeywordlist">Create Keyword List</a>
 					</div>
 				</div>
 			</div>
@@ -185,7 +185,7 @@ If($new_deactivated != '' || empty($new_license_key)) {
 					<div class="card-body">
 						<h5 class="card-title">Image Generator Tool</h5>
 						<p class="card-text">This tool will help generate AI Images.</p>
-						<a href="<?php menu_page_url( 'ai-content-tool-image-generator' ); ?>" title="<?php echo __( 'AI Image Generator Tool', 'toolkit' ) ?>" class="btn btn-primary">Generate Images</a>
+						<a href="<?php menu_page_url( 'ai-content-tool-image-generator' ); ?>" title="<?php echo __( 'AI Image Generator Tool', 'toolkit' ) ?>" class="btn btn-primary" id="generateimages">Generate Images</a>
 					</div>
 				</div>
 			</div>
