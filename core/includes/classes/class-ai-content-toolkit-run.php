@@ -588,6 +588,16 @@ class AI_Content_Toolkit_Run{
 			175
 		);
 
+		add_submenu_page(
+			null,
+			'Chat With GPT',
+			'Chat With GPT',
+			'manage_options',
+			'ai-content-tool-chat-with-gpt',
+			array( $this, 'ai_content_tool_chat_with_gpt'),
+			180
+		);
+
 
 	 }
 
@@ -745,6 +755,10 @@ class AI_Content_Toolkit_Run{
 
 	 function ai_content_tool_comparisons() {
 		include AICONTENTT_PLUGIN_DIR . "core/includes/t33-comparisons.php";
+	 }
+
+	 function ai_content_tool_chat_with_gpt() {
+		include AICONTENTT_PLUGIN_DIR . "core/includes/t34-chatgpt-button.php";
 	 }
 
 	 
@@ -949,7 +963,7 @@ function chatgpt_button_shortcode($atts) {
 			background-size: 56px 56px;
 			background-repeat: no-repeat;
 			background-position: center;
-			font-size: 14px;
+			font-size: 10px;
 			line-height: 80px;
 			text-align: center;
 			text-decoration: none;
@@ -1020,14 +1034,15 @@ function chatgpt_button_shortcode($atts) {
 	</style>
 	<div class="<?php echo $button_class ?>">
     	<button type="button" class="btn btn-success btn-circle" data-bs-toggle="modal" data-bs-target="#chatgpt-modal"></button>
-		<p class="text">Chat With GPT</p>
+		<p class="text"><small>Chat With GPT</small></p>
 	</div>
     <div class="modal fade" id="chatgpt-modal" tabindex="-1" role="dialog" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="chatgpt-modal-label" aria-hidden="true">
 		<style>
-			.modal {position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); font:.5rem;}
+			.modal {position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); font:.5rem; background: rgba(0,0,0,0.5);}
 			.vertical-alignment-helper{display:table; height: 100%; width: 100%; pointer-events:none;}
 			.vertical-align-center{display: table-cell; vertical-align: middle; pointer-events:none;}
-			.modal-content{width:inherit; max-width:inherit; height:inherit; margin:0 auto; pointer-events:all;}
+			.modal-content{width:inherit; max-width:inherit; height:inherit; margin:0 auto; pointer-events:all; z-index: 1100 !important;}
+			.modal-backdrop { display: none; }
 			.response-label {display:none;}
 			.chatgpt-response {display:none;}
 			.text-center {
