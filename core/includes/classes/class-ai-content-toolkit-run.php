@@ -1389,9 +1389,10 @@ function verify_license() {
 	 *	}	
 	 */
 
-	if( $response_info['http_code'] == 200 ) {
+	 $response_data = json_decode($response, true);
 
-	  	$response_data = json_decode($response, true);
+
+	if( $response_info['http_code'] == 200 && $response_data['product_id'] == '22007') {
 
 		$response_license_key = $response_data['license_key'];
 		$response_activated_at = $response_data['activated_at'];
@@ -1405,8 +1406,12 @@ function verify_license() {
 	  	//update_option('license_key', $response_data['license_key']);
 	  	//return 'ProductDyno Response: ' . $response_data['license_key'];
 	} else {
-	  echo $curl_error;
+	  //echo $curl_error;
 	  AICONTENTT()->helpers->ai_content_update_option('');
+	  $error_response = array(
+		"success" => false
+	  );
+	  echo json_encode($error_response);
 	  //return $curl_error;
 	}
   
