@@ -123,7 +123,9 @@ function console_log($output, $with_script_tags = true) {
 
   <!-- Heading -->
   <h1 class="display-3 mt-3 mb-3">AI Settings</h1>
-
+  <div class="mt-3">
+			<p><a href="https://www.toolkitsforsuccess.com/aicontenttoolkit" target="_blank" rel="noopener noreferrer"><b>CLICK HERE TO BUY THE PRO VERSION AND GET ACCESS TO 21 MORE TOOLS!</b></a></p>
+	</div>
   <!-- License Key Form -->
   <form class="needs-validation" id="licenseForm" method="post" novalidate>
 

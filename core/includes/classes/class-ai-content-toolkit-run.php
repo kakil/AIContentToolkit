@@ -1389,9 +1389,10 @@ function verify_license() {
 	 *	}	
 	 */
 
-	if( $response_info['http_code'] == 200 ) {
+	 $response_data = json_decode($response, true);
 
-	  	$response_data = json_decode($response, true);
+
+	if( $response_info['http_code'] == 200 && $response_data['product_id'] == '22007') {
 
 		$response_license_key = $response_data['license_key'];
 		$response_activated_at = $response_data['activated_at'];

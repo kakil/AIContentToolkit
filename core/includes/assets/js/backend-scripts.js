@@ -169,6 +169,7 @@ jQuery(document).ready(function() {
           } else if (data.license_key !== undefined) {
             console.log('License Key: ' + data.license_key);
             console.log('Activated At: ' + data.activated_at);
+            console.log('Product ID: ' + data.product_id);
             jQuery('#activate_license_btn').addClass('d-none');
             jQuery('#deactivate_license_btn').removeClass('d-none');
             jQuery('#submitSuccessMessage').removeClass('d-none');

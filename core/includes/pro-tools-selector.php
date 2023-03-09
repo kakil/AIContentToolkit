@@ -28,6 +28,9 @@ If($new_deactivated != '' || empty($new_license_key)) {
 <div class="container-fluid w-75 m-0 gap-3 p-4">
 		<h1 class="mt-5 mb-5">AI Pro Toolkit</h1>
 
+		<div>
+			<p><a href="https://www.toolkitsforsuccess.com/aicontenttoolkit" target="_blank" rel="noopener noreferrer"><b>CLICK HERE TO BUY THE PRO VERSION AND GET ACCESS TO 21 MORE TOOLS!</b></a></p>
+		</div>
 		<!-- Top Row -->
 		<div class="row gy-3 mb-5">
 
