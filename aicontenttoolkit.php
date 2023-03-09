@@ -8,7 +8,7 @@
  * @version       0.7.0
  *
  * @wordpress-plugin
- * Plugin Name:   AI Content ToolKit
+ * Plugin Name:   AI Content ToolKit Pro
  * Plugin URI:    https://toolkitsforsuccess.com/aicontenttoolkit
  * Description:   This WordPress plugin is a collection of tools that allows you to do a variety of different tasks using ChatGPT API.
  * Version:       0.7.0
