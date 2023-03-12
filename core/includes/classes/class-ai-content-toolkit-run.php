@@ -1526,6 +1526,7 @@ function rudr_upload_file_by_url_callback() {
 		require_once( ABSPATH . 'wp-admin/includes/file.php' );
 		require_once( ABSPATH . 'wp-admin/includes/media.php' );
 		
+
 		/**
 		 * This line is a temp fix for the error:  
 		 * SIDELOAD ERROR = Sorry, you are not allowed to upload this file type.
@@ -1541,7 +1542,6 @@ function rudr_upload_file_by_url_callback() {
 		} //else {
 		// 	echo 'download_url returned a file name: ' . $temp_file;
 		// }
-
 
 	
 		// move the temp file into the uploads directory
@@ -1567,6 +1567,8 @@ function rudr_upload_file_by_url_callback() {
 			//return false;
 		}
 
+
+		
 		// it is time to add our uploaded image into WordPress media library
 		$attachment_id = wp_insert_attachment(
 			array(
@@ -1586,7 +1588,8 @@ function rudr_upload_file_by_url_callback() {
 			//return false;
 		}
 
-		// update medatata, regenerate image sizes
+		
+		// // update medatata, regenerate image sizes
 		require_once( ABSPATH . 'wp-admin/includes/image.php' );
 	
 		wp_update_attachment_metadata(
@@ -1594,18 +1597,22 @@ function rudr_upload_file_by_url_callback() {
 			wp_generate_attachment_metadata( $attachment_id, $sideload[ 'file' ] )
 		);
 		$image_url = NULL;
-		//echo json_encode($attachment_id);
+		echo json_encode($attachment_id);
 		
 		//return $attachment_id;
 	
 
+		/**
+		 * This is the test code for the various stages of the
+		 * upload code.
+		 */
 		//$attachment_id = 'true';
-		if ( $attachment_id ) {
-            //echo 'Attachment ID: ' . $attachment_id; // return the attachment ID to the Ajax request
-			echo json_encode($attachment_id);
-        } else {
-            echo 'false'; // return false if there was an error
-        }
+		// if ( $attachment_id ) {
+        //     //echo 'Attachment ID: ' . $attachment_id; // return the attachment ID to the Ajax request
+		// 	echo json_encode($attachment_id);
+        // } else {
+        //     echo 'false'; // return false if there was an error
+        // }
 
     }
 

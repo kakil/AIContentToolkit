@@ -306,7 +306,7 @@ function console_log($output, $with_script_tags = true) {
         <a href="<?php echo $imageTwo; ?>" target="_blank">
           <img src="<?php echo $imageTwo; ?>" class="img-thumbnail mb-3" alt="Image 2">
         </a>
-        <input type="hidden" name="imageURL2" value="<?php echo $imageTwo; ?>"/>
+        <input type="hidden" name="imageURL2" id="imageURL2" value="<?php echo $imageTwo; ?>"/>
         <div class="text-center">
           <button type="submit" name="addToLibrary2" class="btn btn-primary mb-3" id="addToLibrary2"><?php echo $lang["addToMediaLibrary"]; ?>
             <span class="spinner-border spinner-border-sm" id="spinner2" role="status" aria-hidden="true" style="visibility: hidden"></span>
@@ -319,7 +319,7 @@ function console_log($output, $with_script_tags = true) {
         <a href="<?php echo $imageThree; ?>" target="_blank">
           <img src="<?php echo $imageThree; ?>" class="img-thumbnail mb-3" alt="Image 3">
         </a>
-        <input type="hidden" name="imageURL3" value="<?php echo $imageThree; ?>"/>
+        <input type="hidden" name="imageURL3" id="imageURL3" value="<?php echo $imageThree; ?>"/>
         <div class="text-center">
           <button type="submit" name="addToLibrary3" class="btn btn-primary mb-3" id="addToLibrary3"><?php echo $lang["addToMediaLibrary"]; ?>
             <span class="spinner-border spinner-border-sm" id="spinner3" role="status" aria-hidden="true" style="visibility: hidden"></span>

@@ -539,12 +539,18 @@ jQuery(document).ready(function() {
  * 
  */
 
-  jQuery('#addToLibrary1').on('click', function() {
+  jQuery('#addToLibrary1, #addToLibrary2, #addToLibrary3').on('click', function() {
+
+    var id = this.id;
+    var num = id.replace(/[^0-9]/g, '');
+    var imageURLString = '#imageURL' + num;
+    var image_url = jQuery(imageURLString).val();
+    //var image_url = jQuery(this).closest('.mb-3').find('img').prop('src'); 
 
     console.log('Add To Library 1 Button Clicked');
 
     var ajaxurl = jQuery('#ajaxurl').val();
-    var image_url = jQuery('#imageURL1').val();
+    //var image_url = jQuery('#imageURL1').val();
     //var image_name = jQuery('#imageURL1').prop('id');
     const imageBaseStr = 'dalle';
     var image_name = addRandomChars(imageBaseStr);
@@ -554,7 +560,7 @@ jQuery(document).ready(function() {
     var spinner = button.find('.spinner-border');
     spinner.css('visibility', 'visible'); // show the spinner
 
-
+    console.log('Image URL String: ' + imageURLString);
     console.log('Image URL: ' + image_url);
     console.log('Image Name: ' + image_name);
 
