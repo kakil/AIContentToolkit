@@ -98,48 +98,48 @@ if(isset($_POST["addBlog"])){
   wp_insert_post( $my_post );
 }
 
-if(isset($_POST["addToLibrary"])) {
+// if(isset($_POST["addToLibrary"])) {
 
 
-  console_log($imageOne);
-  $imageOne = $_POST["imageURL"];
-  $imageTwo = $_POST["imageURL2"];
-  $imageThree = $_POST["imageURL3"];
+//   console_log($imageOne);
+//   $imageOne = $_POST["imageURL"];
+//   $imageTwo = $_POST["imageURL2"];
+//   $imageThree = $_POST["imageURL3"];
 
-  //console_log($_POST["imageURL"]);
-  $attachment_id = AICONTENTT()->helpers->rudr_upload_file_by_url($_POST["imageURL"], $imageName1);
+//   //console_log($_POST["imageURL"]);
+//   $attachment_id = AICONTENTT()->helpers->rudr_upload_file_by_url($_POST["imageURL"], $imageName1);
   
-  $_POST[$imageOne];
-  $_POST[$imageTwo];
-  $_POST[$imageThree];
+//   $_POST[$imageOne];
+//   $_POST[$imageTwo];
+//   $_POST[$imageThree];
   
-  console_log($attachment_id);
-}
+//   console_log($attachment_id);
+// }
 
-if(isset($_POST["addToLibrary2"])) {
-  $imageOne = $_POST["imageURL"];
-  $imageTwo = $_POST["imageURL2"];
-  $imageThree = $_POST["imageURL3"];
+// if(isset($_POST["addToLibrary2"])) {
+//   $imageOne = $_POST["imageURL"];
+//   $imageTwo = $_POST["imageURL2"];
+//   $imageThree = $_POST["imageURL3"];
 
-  $attachment_id2 = AICONTENTT()->helpers->rudr_upload_file_by_url($_POST["imageURL2"], $imageName2);
+//   $attachment_id2 = AICONTENTT()->helpers->rudr_upload_file_by_url($_POST["imageURL2"], $imageName2);
 
-  $_POST[$imageOne];
-  $_POST[$imageTwo];
-  $_POST[$imageThree];
+//   $_POST[$imageOne];
+//   $_POST[$imageTwo];
+//   $_POST[$imageThree];
   
-}
+// }
 
-if(isset($_POST["addToLibrary3"])) {
-  $imageOne = $_POST["imageURL"];
-  $imageTwo = $_POST["imageURL2"];
-  $imageThree = $_POST["imageURL3"];
+// if(isset($_POST["addToLibrary3"])) {
+//   $imageOne = $_POST["imageURL"];
+//   $imageTwo = $_POST["imageURL2"];
+//   $imageThree = $_POST["imageURL3"];
 
-  $attachment_id3 = AICONTENTT()->helpers->rudr_upload_file_by_url($_POST["imageURL3"], $imageName3);
+//   $attachment_id3 = AICONTENTT()->helpers->rudr_upload_file_by_url($_POST["imageURL3"], $imageName3);
 
-  $_POST[$imageOne];
-  $_POST[$imageTwo];
-  $_POST[$imageThree];
-}
+//   $_POST[$imageOne];
+//   $_POST[$imageTwo];
+//   $_POST[$imageThree];
+// }
 
 // This function allows us to log a variable to the console - converting php to js
 function console_log($output, $with_script_tags = true) {
@@ -293,9 +293,9 @@ function console_log($output, $with_script_tags = true) {
         <a href="<?php echo $imageOne; ?>" target="_blank">
           <img src="<?php echo $imageOne; ?>" class="img-thumbnail mb-3" id="imageId1" alt="">
         </a>
-        <input type="hidden" name="imageURL" id="imageURL" value="<?php echo $imageOne; ?>"/>
+        <input type="hidden" name="imageURL1" id="imageURL1" value="<?php echo $imageOne; ?>"/>
         <div class="text-center">
-          <button type="submit" name="addToLibrary" class="btn btn-primary mb-3" id="addToLibrary"><?php echo $lang["addToMediaLibrary"]; ?>
+          <button type="button" name="addToLibrary1" class="btn btn-primary mb-3" id="addToLibrary1"><?php echo $lang["addToMediaLibrary"]; ?>
             <span class="spinner-border spinner-border-sm" id="spinner" role="status" aria-hidden="true" style="visibility: hidden"></span>
           </button>
         </div>
@@ -333,7 +333,9 @@ function console_log($output, $with_script_tags = true) {
     <div class="imageInfoText" style="visibility: visible" id="imageInfoText">
       <p><small><i>Click the image to download</i></small></p>
     </div>
-   
+    <div>
+      <input type="hidden" id="ajaxurl" value="<?php echo esc_js(admin_url('admin-ajax.php')); ?>">
+    </div>
   </form>
 </div>
 

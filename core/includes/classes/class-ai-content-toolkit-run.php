@@ -3,6 +3,8 @@
 // Exit if accessed directly.
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+include_once( AICONTENTT_PLUGIN_DIR . 'core/includes/classes/class-ai-content-toolkit-helpers.php');
+
 
 /**
  * HELPER COMMENT START
@@ -1507,3 +1509,105 @@ function deactivate_license() {
   
 add_action('wp_ajax_deactivate_license', 'deactivate_license');
 add_action('wp_ajax_nopriv_deactivate_license', 'deactivate_license');
+
+
+
+add_action( 'wp_ajax_rudr_upload_file_by_url_callback', 'rudr_upload_file_by_url_callback' );
+add_action( 'wp_ajax_nopriv_rudr_upload_file_by_url_callback', 'rudr_upload_file_by_url_callback' );
+
+function rudr_upload_file_by_url_callback() {
+    if ( isset( $_POST['image_url'] ) ) {
+		//$attachment_id = 'true';
+		$image_url = $_POST['image_url'];
+		$imageName = $_POST['imageName'];
+        
+
+		// it allows us to use download_url() and wp_handle_sideload() functions
+		require_once( ABSPATH . 'wp-admin/includes/file.php' );
+		require_once( ABSPATH . 'wp-admin/includes/media.php' );
+		
+		/**
+		 * This line is a temp fix for the error:  
+		 * SIDELOAD ERROR = Sorry, you are not allowed to upload this file type.
+		 */
+		define('ALLOW_UNFILTERED_UPLOADS', true);
+
+		// download to temp dir
+		$temp_file = download_url( $image_url );
+	
+		if( is_wp_error( $temp_file ) ) {
+			console_log('TEMP FILE ERROR');
+		echo 'download_url did not return a file name';
+		} //else {
+		// 	echo 'download_url returned a file name: ' . $temp_file;
+		// }
+
+
+	
+		// move the temp file into the uploads directory
+		$file = array(
+			'name'     => basename( $imageName ),
+			'type'     => mime_content_type( $temp_file ),
+			'tmp_name' => $temp_file,
+			'size'     => filesize( $temp_file ),
+		);
+
+		$sideload = wp_handle_sideload(
+			$file,
+			array(
+				'test_form'   => false // no needs to check 'action' parameter
+			)
+		);
+	
+		if( ! empty( $sideload[ 'error' ] ) ) {
+			// you may return error message if you want
+			console_log('SIDELOAD ERROR = ' . $sideload[ 'error' ]);
+
+			echo 'false';
+			//return false;
+		}
+
+		// it is time to add our uploaded image into WordPress media library
+		$attachment_id = wp_insert_attachment(
+			array(
+				'guid'           => $sideload[ 'url' ],
+				'post_mime_type' => $sideload[ 'type' ],
+				'post_title'     => basename( $sideload[ 'file' ]),
+				'post_content'   => '',
+				'post_status'    => 'inherit',
+			),
+			$sideload[ 'file' ]
+		);
+	
+		if( is_wp_error( $attachment_id ) || ! $attachment_id ) {
+			console_log('ATTACHMENT ERROR: ' . $attachment_id);
+			
+			echo 'false';
+			//return false;
+		}
+
+		// update medatata, regenerate image sizes
+		require_once( ABSPATH . 'wp-admin/includes/image.php' );
+	
+		wp_update_attachment_metadata(
+			$attachment_id,
+			wp_generate_attachment_metadata( $attachment_id, $sideload[ 'file' ] )
+		);
+		$image_url = NULL;
+		//echo json_encode($attachment_id);
+		
+		//return $attachment_id;
+	
+
+		//$attachment_id = 'true';
+		if ( $attachment_id ) {
+            //echo 'Attachment ID: ' . $attachment_id; // return the attachment ID to the Ajax request
+			echo json_encode($attachment_id);
+        } else {
+            echo 'false'; // return false if there was an error
+        }
+
+    }
+
+    wp_die();
+}

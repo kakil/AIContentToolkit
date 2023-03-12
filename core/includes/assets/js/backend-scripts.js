@@ -234,8 +234,8 @@ jQuery(document).ready(function() {
 
   //Deactivate License
 
-
-  jQuery('body').on('click', '#deactivate_license_btn', function(event) {
+  
+  jQuery('#deactivate_license_btn').on('click', function(event) {
 
     console.log('Button clicked');
     
@@ -343,11 +343,11 @@ jQuery(document).ready(function() {
      //
      //Spinners
     // Toggle spinner visible
-     jQuery('#addToLibrary').on('click', function() {
-        console.log('Button Clicked');
-        let spinner = document.getElementById("spinner");
-        spinner.style.visibility = 'visible';
-      });
+    //  jQuery('#addToLibrary').on('click', function() {
+    //     console.log('Button Clicked');
+    //     let spinner = document.getElementById("spinner");
+    //     spinner.style.visibility = 'visible';
+    //   });
   
       jQuery('#addToLibrary2').on('click', function() {
         console.log('Button Clicked');
@@ -529,5 +529,71 @@ jQuery(document).ready(function() {
       jQuery('#myModal').preventDefault();
       
   });
+
+
+
+/**
+ * 
+ * Image Upload to Media Library
+ * 
+ * 
+ */
+
+  jQuery('#addToLibrary1').on('click', function() {
+
+    console.log('Add To Library 1 Button Clicked');
+
+    var ajaxurl = jQuery('#ajaxurl').val();
+    var image_url = jQuery('#imageURL1').val();
+    //var image_name = jQuery('#imageURL1').prop('id');
+    const imageBaseStr = 'dalle';
+    var image_name = addRandomChars(imageBaseStr);
+
+    var button = $(this);
+    button.prop('disabled', true); // disable the button to prevent multiple clicks
+    var spinner = button.find('.spinner-border');
+    spinner.css('visibility', 'visible'); // show the spinner
+
+
+    console.log('Image URL: ' + image_url);
+    console.log('Image Name: ' + image_name);
+
+
+    // make an Ajax request to the server
+    jQuery.ajax({
+      type: 'POST',
+      url: ajaxurl, // ajaxurl is a global variable that points to admin-ajax.php
+      data: {
+        action: 'rudr_upload_file_by_url_callback',
+        image_url: image_url,
+        imageName: image_name,
+      },
+      success: function(response) {
+        if (response !== 'false') {
+          console.log(response); // log the response to the console
+          button.prop('disabled', true); // disable the button after the image has been added
+          spinner.css('visibility', 'hidden'); // hide the spinner
+        } else {
+          console.log('Error uploading image');
+          button.prop('disabled', false); // enable the button in case of error
+          spinner.css('visibility', 'hidden'); // hide the spinner
+          button.prop('disabled', false);
+        }
+      },
+    });
+  });
+
+
+
+  function addRandomChars(str) {
+    // generate 2 random alphanumeric characters
+    const randomChars1 = Math.random().toString(26).slice(2, 4);
+    // generate 4 random alphanumeric or numeric characters
+    const randomChars2 = Math.random().toString(36).substr(2, 4);
+    // combine the strings
+    return str + '-' + randomChars1 + randomChars2 + '.png';
+  }
+
+
 
 });
