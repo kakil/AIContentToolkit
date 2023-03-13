@@ -30,60 +30,6 @@ if(in_array($getLanguage,$languages)) {
   include AICONTENTT_PLUGIN_DIR . "/languages/en.php";
 }
 
-/**
- * Prompt inspiration:
- * https://ed.codes/blog/chatgpt-for-blogging-seo-best-prompts-process
- */
-// if(isset($_POST["chatGptText"])){
-
-//   $prompt = $_POST["chatGptText"];
-//   //$postTitle = $_POST['chatGptText'];   //adding prompt to Blog Title field
-//   //$postKeywords = $_POST['blogKeywordText'];  //adding prompt to Blog Keyword field
-
-//   $promptNumber = $_POST["starterPromtValue"];
-//   //$prompt = AICONTENTT()->helpers->get_images_prompt( $_POST["chatGptText"], $promptNumber);
-//   //console_log($_POST["numberOfImages"]);
-
-//   if(isset($_POST["numberOfImages"])) {
-
-//     if($_POST['numberOfImages'] != 'Select # of Images') {
-//       $numberOfImages = $_POST['numberOfImages'];
-//     };
-    
-//   }
-
-//   if(isset($_POST["sizeOfImages"])) {
-//     if($_POST["sizeOfImages"] == 2) {
-//       $sizeOfImages = "512x512";
-//     } else if ($_POST["sizeOfImages"] == 3) {
-//       $sizeOfImages = "1024x1024";
-//     }
-
-//     //else $sizeOfImages = 1 > the default
-//   }
-
-//   console_log('Number of Images: ' . $numberOfImages);
-//   $imageData = AICONTENTT()->helpers->get_chatgpt_image_response( $prompt, $numberOfImages, $sizeOfImages);
-//   console_log('Image Data: ' . $imageData[0]["url"]);
-  
-//   if(!empty($imageData[0]["url"])) {
-//     $imageOne = $imageData[0]["url"];
-//     //$imageOneUpload = $imageData[0]["url"];
-//   }
-
-//   if(!empty($imageData[1]["url"])) {
-//     $imageTwo = $imageData[1]["url"];
-//     //$imageTwoUpload = $imageData[1]["url"];
-//   } 
-
-//   if(!empty($imageData[2]["url"])) {
-//     $imageThree = $imageData[2]["url"];
-//     //$imageThreeUpload = $imageData[2]["url"];
-//   } 
-
-//   $_POST["chatGptText"];
- 
-// }
 
 if(isset($_POST["addBlog"])){
   $my_post = array();
@@ -97,49 +43,6 @@ if(isset($_POST["addBlog"])){
   // Insert the post into the database
   wp_insert_post( $my_post );
 }
-
-// if(isset($_POST["addToLibrary"])) {
-
-
-//   console_log($imageOne);
-//   $imageOne = $_POST["imageURL"];
-//   $imageTwo = $_POST["imageURL2"];
-//   $imageThree = $_POST["imageURL3"];
-
-//   //console_log($_POST["imageURL"]);
-//   $attachment_id = AICONTENTT()->helpers->rudr_upload_file_by_url($_POST["imageURL"], $imageName1);
-  
-//   $_POST[$imageOne];
-//   $_POST[$imageTwo];
-//   $_POST[$imageThree];
-  
-//   console_log($attachment_id);
-// }
-
-// if(isset($_POST["addToLibrary2"])) {
-//   $imageOne = $_POST["imageURL"];
-//   $imageTwo = $_POST["imageURL2"];
-//   $imageThree = $_POST["imageURL3"];
-
-//   $attachment_id2 = AICONTENTT()->helpers->rudr_upload_file_by_url($_POST["imageURL2"], $imageName2);
-
-//   $_POST[$imageOne];
-//   $_POST[$imageTwo];
-//   $_POST[$imageThree];
-  
-// }
-
-// if(isset($_POST["addToLibrary3"])) {
-//   $imageOne = $_POST["imageURL"];
-//   $imageTwo = $_POST["imageURL2"];
-//   $imageThree = $_POST["imageURL3"];
-
-//   $attachment_id3 = AICONTENTT()->helpers->rudr_upload_file_by_url($_POST["imageURL3"], $imageName3);
-
-//   $_POST[$imageOne];
-//   $_POST[$imageTwo];
-//   $_POST[$imageThree];
-// }
 
 // This function allows us to log a variable to the console - converting php to js
 function console_log($output, $with_script_tags = true) {
