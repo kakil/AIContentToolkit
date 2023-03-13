@@ -30,60 +30,6 @@ if(in_array($getLanguage,$languages)) {
   include AICONTENTT_PLUGIN_DIR . "/languages/en.php";
 }
 
-/**
- * Prompt inspiration:
- * https://ed.codes/blog/chatgpt-for-blogging-seo-best-prompts-process
- */
-if(isset($_POST["chatGptText"])){
-
-  $prompt = $_POST["chatGptText"];
-  //$postTitle = $_POST['chatGptText'];   //adding prompt to Blog Title field
-  //$postKeywords = $_POST['blogKeywordText'];  //adding prompt to Blog Keyword field
-
-  $promptNumber = $_POST["starterPromtValue"];
-  //$prompt = AICONTENTT()->helpers->get_images_prompt( $_POST["chatGptText"], $promptNumber);
-  //console_log($_POST["numberOfImages"]);
-
-  if(isset($_POST["numberOfImages"])) {
-
-    if($_POST['numberOfImages'] != 'Select # of Images') {
-      $numberOfImages = $_POST['numberOfImages'];
-    };
-    
-  }
-
-  if(isset($_POST["sizeOfImages"])) {
-    if($_POST["sizeOfImages"] == 2) {
-      $sizeOfImages = "512x512";
-    } else if ($_POST["sizeOfImages"] == 3) {
-      $sizeOfImages = "1024x1024";
-    }
-
-    //else $sizeOfImages = 1 > the default
-  }
-
-  console_log('Number of Images: ' . $numberOfImages);
-  $imageData = AICONTENTT()->helpers->get_chatgpt_image_response( $prompt, $numberOfImages, $sizeOfImages);
-  console_log('Image Data: ' . $imageData[0]["url"]);
-  
-  if(!empty($imageData[0]["url"])) {
-    $imageOne = $imageData[0]["url"];
-    //$imageOneUpload = $imageData[0]["url"];
-  }
-
-  if(!empty($imageData[1]["url"])) {
-    $imageTwo = $imageData[1]["url"];
-    //$imageTwoUpload = $imageData[1]["url"];
-  } 
-
-  if(!empty($imageData[2]["url"])) {
-    $imageThree = $imageData[2]["url"];
-    //$imageThreeUpload = $imageData[2]["url"];
-  } 
-
-  $_POST["chatGptText"];
- 
-}
 
 if(isset($_POST["addBlog"])){
   $my_post = array();
@@ -96,49 +42,6 @@ if(isset($_POST["addBlog"])){
   //console_log($my_post);
   // Insert the post into the database
   wp_insert_post( $my_post );
-}
-
-if(isset($_POST["addToLibrary"])) {
-
-
-  console_log($imageOne);
-  $imageOne = $_POST["imageURL"];
-  $imageTwo = $_POST["imageURL2"];
-  $imageThree = $_POST["imageURL3"];
-
-  //console_log($_POST["imageURL"]);
-  $attachment_id = AICONTENTT()->helpers->rudr_upload_file_by_url($_POST["imageURL"], $imageName1);
-  
-  $_POST[$imageOne];
-  $_POST[$imageTwo];
-  $_POST[$imageThree];
-  
-  console_log($attachment_id);
-}
-
-if(isset($_POST["addToLibrary2"])) {
-  $imageOne = $_POST["imageURL"];
-  $imageTwo = $_POST["imageURL2"];
-  $imageThree = $_POST["imageURL3"];
-
-  $attachment_id2 = AICONTENTT()->helpers->rudr_upload_file_by_url($_POST["imageURL2"], $imageName2);
-
-  $_POST[$imageOne];
-  $_POST[$imageTwo];
-  $_POST[$imageThree];
-  
-}
-
-if(isset($_POST["addToLibrary3"])) {
-  $imageOne = $_POST["imageURL"];
-  $imageTwo = $_POST["imageURL2"];
-  $imageThree = $_POST["imageURL3"];
-
-  $attachment_id3 = AICONTENTT()->helpers->rudr_upload_file_by_url($_POST["imageURL3"], $imageName3);
-
-  $_POST[$imageOne];
-  $_POST[$imageTwo];
-  $_POST[$imageThree];
 }
 
 // This function allows us to log a variable to the console - converting php to js
@@ -275,7 +178,7 @@ function console_log($output, $with_script_tags = true) {
     <!-- Submit Content to OpenAPI -->
     <div class="row mb-5">
       <div class="col-sm-9">
-        <button type="submit" name="goTest" class="btn btn-primary mb-3" id="btn-submit" ><?php echo $lang["imageButton"]; ?>
+        <button type="button" name="btn-submit-image-generation" class="btn btn-primary mb-3" id="btn-submit-image-generation" ><?php echo $lang["imageButton"]; ?>
           <span class="spinner-border spinner-border-sm" id="spinner-submit" role="status" aria-hidden="true" style="visibility: hidden"></span>
         </button>
         <button type="reset" value="Reset" class="btn btn-danger ms-2 mb-3" id="reset-submit-info">Reset</button>
@@ -293,9 +196,9 @@ function console_log($output, $with_script_tags = true) {
         <a href="<?php echo $imageOne; ?>" target="_blank">
           <img src="<?php echo $imageOne; ?>" class="img-thumbnail mb-3" id="imageId1" alt="">
         </a>
-        <input type="hidden" name="imageURL" id="imageURL" value="<?php echo $imageOne; ?>"/>
+        <input type="hidden" name="imageURL1" id="imageURL1" value="<?php echo $imageOne; ?>"/>
         <div class="text-center">
-          <button type="submit" name="addToLibrary" class="btn btn-primary mb-3" id="addToLibrary"><?php echo $lang["addToMediaLibrary"]; ?>
+          <button type="button" name="addToLibrary1" class="btn btn-primary mb-3" id="addToLibrary1"><?php echo $lang["addToMediaLibrary"]; ?>
             <span class="spinner-border spinner-border-sm" id="spinner" role="status" aria-hidden="true" style="visibility: hidden"></span>
           </button>
         </div>
@@ -304,9 +207,9 @@ function console_log($output, $with_script_tags = true) {
       <!-- Image 2 -->
       <div class="col-12 col-md-6 col-lg-4 mb-3">
         <a href="<?php echo $imageTwo; ?>" target="_blank">
-          <img src="<?php echo $imageTwo; ?>" class="img-thumbnail mb-3" alt="Image 2">
+          <img src="<?php echo $imageTwo; ?>" class="img-thumbnail mb-3" id="imageId2" alt="Image 2">
         </a>
-        <input type="hidden" name="imageURL2" value="<?php echo $imageTwo; ?>"/>
+        <input type="hidden" name="imageURL2" id="imageURL2" value="<?php echo $imageTwo; ?>"/>
         <div class="text-center">
           <button type="submit" name="addToLibrary2" class="btn btn-primary mb-3" id="addToLibrary2"><?php echo $lang["addToMediaLibrary"]; ?>
             <span class="spinner-border spinner-border-sm" id="spinner2" role="status" aria-hidden="true" style="visibility: hidden"></span>
@@ -317,9 +220,9 @@ function console_log($output, $with_script_tags = true) {
       <!-- Image 3 -->
       <div class="col-12 col-md-6 col-lg-4 mb-3">
         <a href="<?php echo $imageThree; ?>" target="_blank">
-          <img src="<?php echo $imageThree; ?>" class="img-thumbnail mb-3" alt="Image 3">
+          <img src="<?php echo $imageThree; ?>" class="img-thumbnail mb-3" id="imageId3" alt="Image 3">
         </a>
-        <input type="hidden" name="imageURL3" value="<?php echo $imageThree; ?>"/>
+        <input type="hidden" name="imageURL3" id="imageURL3" value="<?php echo $imageThree; ?>"/>
         <div class="text-center">
           <button type="submit" name="addToLibrary3" class="btn btn-primary mb-3" id="addToLibrary3"><?php echo $lang["addToMediaLibrary"]; ?>
             <span class="spinner-border spinner-border-sm" id="spinner3" role="status" aria-hidden="true" style="visibility: hidden"></span>
@@ -329,11 +232,24 @@ function console_log($output, $with_script_tags = true) {
     </div>
     
     <!-- Images Row 2 -->
-
+    <div class="row mb-3">
+      <div class="mb-2 d-none" id="submitSuccessMessage">
+        <div class="text-center text-success" class="form-label d-none" id="successLabel"><b><i>Image Upload To Media Library Complete!</i></b></label>
+        </div>
+      </div>
+      <div class="d-none" id="submitErrorMessage">
+          <div class="text-center text-danger mb-3"><b><i>Error Uploading To Media Library!</i></b></div>
+      </div>
+    </div>
     <div class="imageInfoText" style="visibility: visible" id="imageInfoText">
       <p><small><i>Click the image to download</i></small></p>
     </div>
-   
+    <!-- Images Row 3 -->
+    
+    <div>
+      <input type="hidden" id="ajaxurl" value="<?php echo esc_js(admin_url('admin-ajax.php')); ?>">
+      <input type="hidden" id="tempPlaceholder" value="<?php echo AICONTENTT_PLUGIN_URL . 'core/includes/assets/images/image_placeholder.png'; ?>">
+    </div>
   </form>
 </div>
 
