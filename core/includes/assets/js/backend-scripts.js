@@ -623,7 +623,12 @@ jQuery(document).ready(function() {
     var image1 = jQuery('#imageId1');
     var image2 = jQuery('#imageId2');
     var image3 = jQuery('#imageId3');
-
+    
+    //reset success and error messages
+    jQuery('#submitSuccessMessage').addClass('d-none');
+    jQuery('#submitErrorMessage').addClass('d-none');
+    
+    //reset image placeholders
     image1.attr('src', jQuery('#tempPlaceholder').val());
     image2.attr('src', jQuery('#tempPlaceholder').val());
     image3.attr('src', jQuery('#tempPlaceholder').val());
