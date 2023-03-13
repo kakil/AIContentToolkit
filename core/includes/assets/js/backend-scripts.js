@@ -541,10 +541,15 @@ jQuery(document).ready(function() {
 
   jQuery('#addToLibrary1, #addToLibrary2, #addToLibrary3').on('click', function() {
 
+    //reset success and error messages
+    jQuery('#submitSuccessMessage').addClass('d-none');
+    jQuery('#submitErrorMessage').addClass('d-none');
+            
+
     var id = this.id;
     var num = id.replace(/[^0-9]/g, '');
-    var imageURLString = '#imageURL' + num;
-    var image_url = jQuery(imageURLString).val();
+    var imageURLString = '#imageId' + num;
+    var image_url = jQuery(imageURLString).prop('src');
     //var image_url = jQuery(this).closest('.mb-3').find('img').prop('src'); 
 
     console.log('Add To Library 1 Button Clicked');
@@ -579,11 +584,17 @@ jQuery(document).ready(function() {
           console.log(response); // log the response to the console
           button.prop('disabled', true); // disable the button after the image has been added
           spinner.css('visibility', 'hidden'); // hide the spinner
+          jQuery('#submitSuccessMessage').removeClass('d-none');
+          jQuery('#submitErrorMessage').addClass('d-none');
+            
         } else {
           console.log('Error uploading image');
           button.prop('disabled', false); // enable the button in case of error
           spinner.css('visibility', 'hidden'); // hide the spinner
           button.prop('disabled', false);
+          jQuery('#submitSuccessMessage').addClass('d-none');
+          jQuery('#submitErrorMessage').removeClass('d-none');
+            
         }
       },
     });
@@ -601,5 +612,115 @@ jQuery(document).ready(function() {
   }
 
 
+  /**
+   * Generate Images
+   * 
+   */
+
+  jQuery('#btn-submit-image-generation').on('click', function() {
+
+    //reset image buttons
+    var image1 = jQuery('#imageId1');
+    var image2 = jQuery('#imageId2');
+    var image3 = jQuery('#imageId3');
+
+    image1.attr('src', jQuery('#tempPlaceholder').val());
+    image2.attr('src', jQuery('#tempPlaceholder').val());
+    image3.attr('src', jQuery('#tempPlaceholder').val());
+
+    //reset addd to library buttons
+    jQuery('#addToLibrary1').prop('disabled', false);
+    jQuery('#addToLibrary2').prop('disabled', false);
+    jQuery('#addToLibrary3').prop('disabled', false);
+
+    var numberOfImagesSelection = jQuery('#validationCustom1202').val();
+    var sizeOfImagesSelection = jQuery('#validationCustom1204').val();
+    var prompt = jQuery('#validationCustom1201').val();
+    var ajaxurl = jQuery('#ajaxurl').val();
+    var numberOfImages = 1;
+    var sizeOfImages = '512x512';
+
+    console.log('Size of Images Selection: ' + sizeOfImagesSelection);
+    if (numberOfImagesSelection == 'Select # of Images') {
+      numberOfImages = 1;
+    } else {
+      numberOfImages = numberOfImagesSelection;
+    }
+
+    if (sizeOfImagesSelection == 'Select Size of Images' || sizeOfImagesSelection == '1') {
+      sizeOfImages = '256x256';
+    } else if (sizeOfImagesSelection == '2') {
+      sizeOfImages = '512x512';
+    } else {
+      sizeOfImages = '1024x1024';
+    }
+
+    console.log('Number of Images: ' + numberOfImages);
+    console.log('Size of Images: ' + sizeOfImages);
+    console.log('Prompt: ' + prompt);
+
+    //show spinner
+    var button = $(this);
+    button.prop('disabled', true); // disable the button to prevent multiple clicks
+    var spinner = button.find('.spinner-border');
+    spinner.css('visibility', 'visible'); // show the spinner
+
+
+    //disable button
+    jQuery(this).prop('disabled', true);
+
+    //make ajax request to server
+    jQuery.ajax({
+
+      type: 'POST',
+      url: ajaxurl,
+      dataType: 'json',
+      data: {
+        action: 'get_chatgpt_image_response',
+        chatGptText: prompt,
+        numberOfImages: numberOfImages,
+        sizeOfImages: sizeOfImages,
+      },
+      success: function(response) {
+        if(response !== 'false') {
+          //console.log(response);
+          console.log('Success: ' + response[0].url);
+          button.prop('disabled', false);
+          // var image1 = jQuery('#imageId1');
+          // var image2 = jQuery('#imageId2');
+          // var image3 = jQuery('#imageId3');
+
+          if(response[0]) {
+            image1.attr('src', response[0].url);
+            image1.parent('a').prop("href", response[0].url);
+          }
+
+          if(response[1]) {
+            image2.attr('src', response[1].url);
+            image2.parent('a').prop("href", response[1].url);
+          }
+
+          if(response[2]) {
+            image3.attr('src', response[2].url);
+            image3.parent('a').prop("href", response[2].url);
+          }
+          
+          spinner.css('visibility', 'hidden');
+
+        } else {
+          console.log('Error generating images');
+          jQuery(this).prop('disabled', false);
+          spinner.css('visibility', 'hidden');
+
+        }
+      }
+    });
+
+    
+
+
+
+
+  });
 
 });

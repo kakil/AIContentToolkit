@@ -1618,3 +1618,75 @@ function rudr_upload_file_by_url_callback() {
 
     wp_die();
 }
+
+
+//ajax image response
+//
+
+function get_chatgpt_image_response() {
+
+	//get parameters
+	$prompt = $_POST['chatGptText'];
+	$numberOfImages = $_POST['numberOfImages'];
+	$sizeOfImages = $_POST['sizeOfImages'];
+	
+	global $wpdb;
+	$tableName = $wpdb->prefix.'ai_content_tool';
+	$sql = "SELECT * FROM $tableName";
+
+	$results = $wpdb->get_results($sql);
+	$getApiToken = $results[0]->api_token;
+
+	//echo 'Inside get_chatgpt_image_response';
+	//echo $getApiToken;
+	
+	//$TEXT = $_POST["chatGptText"];
+	//$TEXT = $prompt;
+	$header = array(
+	  'Authorization: Bearer '.$getApiToken,
+	  'Content-type: application/json',
+	);
+	$params = json_encode(array(
+	  'prompt'		=> $prompt,
+	  'n'			=> (int)$numberOfImages,
+	  'size'		=> $sizeOfImages,
+	  
+	));
+	$curl = curl_init('https://api.openai.com/v1/images/generations');
+	$options = array(
+		CURLOPT_POST => true,
+		CURLOPT_HTTPHEADER =>$header,
+		CURLOPT_POSTFIELDS => $params,
+		CURLOPT_RETURNTRANSFER => true,
+	);
+	curl_setopt_array($curl, $options);
+	$response = curl_exec($curl);
+	$httpcode = curl_getinfo($curl, CURLINFO_RESPONSE_CODE);
+
+	// echo "<script>";
+	// echo "$(function() {";
+	// echo "stopSpinner();";
+	// echo "});";
+	// echo "</script>";
+	
+	//console_log('Server Response: ' . $httpcode);
+	//echo $httpcode;
+	if(200 == $httpcode){
+		//echo 'RESPONSE: ' . $response;
+
+		//extract the data object from the response array
+		$json_array = json_decode(rtrim($response, "\0"), true);
+		$data = $json_array['data'];
+		//print_r($data);
+		echo json_encode($data);
+	} else {
+		echo 'false';
+		//return null;
+	}
+
+	wp_die();
+
+  }
+
+add_action('wp_ajax_get_chatgpt_image_response', 'get_chatgpt_image_response');
+add_action('wp_ajax_nopriv_get_chatgpt_image_response', 'get_chatgpt_image_response');

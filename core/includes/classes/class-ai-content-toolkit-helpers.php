@@ -554,57 +554,57 @@ class AI_Content_Toolkit_Helpers{
 	   * Get OpenAI Image Response
 	   */
 
-	  public function get_chatgpt_image_response( $prompt, $numberOfImages, $sizeOfImages) {
+	//   public function get_chatgpt_image_response( $prompt, $numberOfImages, $sizeOfImages) {
 
 		
-		global $wpdb;
-		$tableName = $wpdb->prefix.'ai_content_tool';
-		$sql = "SELECT * FROM $tableName";
+	// 	global $wpdb;
+	// 	$tableName = $wpdb->prefix.'ai_content_tool';
+	// 	$sql = "SELECT * FROM $tableName";
 
-		$results = $wpdb->get_results($sql);
-		$getApiToken = $results[0]->api_token;
+	// 	$results = $wpdb->get_results($sql);
+	// 	$getApiToken = $results[0]->api_token;
 		
-		if(isset($_POST['goTest'])){
-			//$TEXT = $_POST["chatGptText"];
-			$TEXT = $prompt;
-			$header = array(
-			  'Authorization: Bearer '.$getApiToken,
-			  'Content-type: application/json',
-			);
-			$params = json_encode(array(
-			  'prompt'		=> $prompt,
-			  'n'			=> (int)$numberOfImages,
-			  'size'		=> $sizeOfImages,
+	// 	if(isset($_POST['goTest'])){
+	// 		//$TEXT = $_POST["chatGptText"];
+	// 		$TEXT = $prompt;
+	// 		$header = array(
+	// 		  'Authorization: Bearer '.$getApiToken,
+	// 		  'Content-type: application/json',
+	// 		);
+	// 		$params = json_encode(array(
+	// 		  'prompt'		=> $prompt,
+	// 		  'n'			=> (int)$numberOfImages,
+	// 		  'size'		=> $sizeOfImages,
 			  
-			));
-			$curl = curl_init('https://api.openai.com/v1/images/generations');
-			$options = array(
-				CURLOPT_POST => true,
-				CURLOPT_HTTPHEADER =>$header,
-				CURLOPT_POSTFIELDS => $params,
-				CURLOPT_RETURNTRANSFER => true,
-			);
-			curl_setopt_array($curl, $options);
-			$response = curl_exec($curl);
-			$httpcode = curl_getinfo($curl, CURLINFO_RESPONSE_CODE);
+	// 		));
+	// 		$curl = curl_init('https://api.openai.com/v1/images/generations');
+	// 		$options = array(
+	// 			CURLOPT_POST => true,
+	// 			CURLOPT_HTTPHEADER =>$header,
+	// 			CURLOPT_POSTFIELDS => $params,
+	// 			CURLOPT_RETURNTRANSFER => true,
+	// 		);
+	// 		curl_setopt_array($curl, $options);
+	// 		$response = curl_exec($curl);
+	// 		$httpcode = curl_getinfo($curl, CURLINFO_RESPONSE_CODE);
 
-			// echo "<script>";
-			// echo "$(function() {";
-			// echo "stopSpinner();";
-			// echo "});";
-			// echo "</script>";
+	// 		// echo "<script>";
+	// 		// echo "$(function() {";
+	// 		// echo "stopSpinner();";
+	// 		// echo "});";
+	// 		// echo "</script>";
 			
-			//console_log('Server Response: ' . $httpcode);
-			if(200 == $httpcode){
-				//console_log('RESPONSE: ' . $response);
-			  $json_array = json_decode($response, true);
-			  $data_array = $json_array['data'];
-			  return $data_array;
-			} else {
-				return null;
-			}
-		}
-	  }
+	// 		//console_log('Server Response: ' . $httpcode);
+	// 		if(200 == $httpcode){
+	// 			//console_log('RESPONSE: ' . $response);
+	// 		  $json_array = json_decode($response, true);
+	// 		  $data_array = $json_array['data'];
+	// 		  return $data_array;
+	// 		} else {
+	// 			return null;
+	// 		}
+	// 	}
+	//   }
 
 	  
 	  
