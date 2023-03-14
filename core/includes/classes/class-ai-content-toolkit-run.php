@@ -1043,8 +1043,8 @@ function chatgpt_button_shortcode($atts) {
 			.modal {position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); font:.5rem; background: rgba(0,0,0,0.5);}
 			.vertical-alignment-helper{display:table; height: 100%; width: 100%; pointer-events:none;}
 			.vertical-align-center{display: table-cell; vertical-align: middle; pointer-events:none;}
-			.modal-content{width:inherit; max-width:inherit; height:inherit; margin:0 auto; pointer-events:all; z-index: 1100 !important;}
-			.modal-backdrop { display: none; }
+			.modal-content{width:inherit; max-width:inherit; height:inherit; margin:0 auto; pointer-events:all;}
+			.modal-backdrop { z-index: inherit;}
 			.response-label {display:none;}
 			.chatgpt-response {display:none;}
 			.text-center {
