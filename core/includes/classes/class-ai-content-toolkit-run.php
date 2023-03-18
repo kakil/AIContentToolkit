@@ -1033,6 +1033,10 @@ function chatgpt_button_shortcode($atts) {
 			bottom: 20px;
 			right: 20px;
 		}
+
+		textarea {
+			max-height: 200px;
+		}
 	</style>
 	<div class="<?php echo $button_class ?>">
     	<button type="button" class="btn btn-success btn-circle" data-bs-toggle="modal" data-bs-target="#chatgpt-modal"></button>
@@ -1117,63 +1121,44 @@ function chatgpt_button_shortcode($atts) {
 					//alert('Stop Spinner');
 					let spinner = document.getElementById("#spinner-submit");
 					spinner.style.visibility = 'hidden';
+					jQuery(this).height(this.scrollHeight);
 				});
 
-				// Listen for the keydown event on the input fields inside the modal
-				document.addEventListener('keydown', function(event) {
-					// Check if the key pressed is the "Enter" key
-					if (event.key === 'Enter') {
-						// Prevent the default behavior of the "Enter" key
-						event.preventDefault();
+				// jQuery( '#chatgpt-submit' ).on( 'click', function() {
+				// 	//alert('Button Pressed');
+				// 	console.log(jQuery('#chatgpt-prompt').val());
+				// 		var prompt = jQuery('#chatgpt-prompt').val() == undefined ? '' : jQuery('#chatgpt-prompt').val().trim();
 						
-						// Trigger the button click event
-						var prompt = jQuery('#chatgpt-prompt').val() == undefined ? '' : jQuery('#chatgpt-prompt').val().trim();
-						
-						if(!prompt){							//validate prompt is not empty
-							console.log('prompt is null');
-							jQuery('.prompt-validation').css({"visibility":"visible"});
+				// 		if(!prompt){
+				// 			console.log('prompt is null');
+				// 			jQuery('.prompt-validation').css({"visibility":"visible"});
 							
-						} else {
-							jQuery('#chatgpt-submit').click();	// Trigger button click event
-						}
-					}
-				});
-
-				jQuery( '#chatgpt-submit' ).on( 'click', function() {
-					//alert('Button Pressed');
-					console.log(jQuery('#chatgpt-prompt').val());
-						var prompt = jQuery('#chatgpt-prompt').val() == undefined ? '' : jQuery('#chatgpt-prompt').val().trim();
-						
-						if(!prompt){
-							console.log('prompt is null');
-							jQuery('.prompt-validation').css({"visibility":"visible"});
+				// 		} else {
+				// 			jQuery('#copyButton').html("Copy To Clipboard");
+				// 			jQuery('.prompt-validation').css({"visibility":"hidden"});
+				// 			let spinner = document.getElementById("spinner-submit");
+				// 			spinner.style.visibility = 'visible';
+				// 			var prompt = jQuery( '#chatgpt-prompt' ).val();
+				// 			jQuery.ajax( {
+				// 				type: 'POST',
+				// 				url: '',
+				// 				data: {
+				// 					'action': 'chatgpt_submit',
+				// 					'prompt': prompt
+				// 				},
+				// 				success: function( data ) {
+				// 					jQuery( '#chatgpt-response' ).val( jQuery.trim(data) );
+				// 					jQuery( '#spinner-submit').css("visibility", "hidden");
+				// 					jQuery( '#prompt-validation').css("visibility", "hidden");
+				// 					jQuery( '.form-group' ).removeClass("d-none");
+				// 					jQuery( '.copyLink' ).removeClass("d-none");
 							
-						} else {
-							jQuery('#copyButton').html("Copy To Clipboard");
-							jQuery('.prompt-validation').css({"visibility":"hidden"});
-							let spinner = document.getElementById("spinner-submit");
-							spinner.style.visibility = 'visible';
-							var prompt = jQuery( '#chatgpt-prompt' ).val();
-							jQuery.ajax( {
-								type: 'POST',
-								url: '<?php echo admin_url( "admin-ajax.php" ); ?>',
-								data: {
-									'action': 'chatgpt_submit',
-									'prompt': prompt
-								},
-								success: function( data ) {
-									jQuery( '#chatgpt-response' ).val( jQuery.trim(data) );
-									jQuery( '#spinner-submit').css("visibility", "hidden");
-									jQuery( '#prompt-validation').css("visibility", "hidden");
-									jQuery( '.form-group' ).removeClass("d-none");
-									jQuery( '.copyLink' ).removeClass("d-none");
-							
-								}
-							});
-						}
+				// 				}
+				// 			});
+				// 		}
 
 
-				});
+				// });
 
 				// Validations
 				// Example starter JavaScript for disabling form submissions if there are invalid fields
@@ -1222,25 +1207,6 @@ function chatgpt_button_shortcode($atts) {
 
 			
 
-            jQuery( '#chatgpt-submit' ).on( 'click', function() {
-				//alert('Button Pressed');
-                var prompt = jQuery( '#chatgpt-prompt' ).val();
-                jQuery.ajax( {
-                    type: 'POST',
-                    url: '<?php echo admin_url( "admin-ajax.php" ); ?>',
-                    data: {
-                        'action': 'chatgpt_submit',
-                        'prompt': prompt
-                    },
-                    success: function( data ) {
-                        jQuery( '#chatgpt-response' ).val( jQuery.trim(data) );
-						jQuery( '#spinner-submit').css("visibility", "hidden");
-						jQuery( '.form-group' ).removeClass("d-none");
-						jQuery( '.copyLink' ).removeClass("d-none");
-						
-                    }
-                } );
-            } );
         } );
 		
 		function copyText(text) {
@@ -1262,6 +1228,130 @@ function chatgpt_button_shortcode($atts) {
 					console.error('Could not copy text: ', err);
 				});
 			}
+		}
+
+
+		//New streaming functions
+		//
+		function chatGPT(input) {
+			const requestData = {
+				model: 'gpt-3.5-turbo',
+				messages: [
+				{
+					role: 'user',
+					content: input
+				}
+				],
+				max_tokens: 256,
+				temperature: 0.5
+			};
+
+			fetch('https://api.openai.com/v1/chat/completions', {
+				method: 'POST',
+				headers: {
+				'Content-Type': 'application/json',
+				'Authorization': 'Bearer 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',
+				},
+				body: JSON.stringify(requestData)
+			})
+			.then(response => {
+				const reader = response.body.getReader();
+				let partialResponse = '';
+				let fullResponse = '';
+				reader.read().then(function processResult(result) {
+				if (result.done) {
+					// Stream has finished, display the full response
+					console.log('Full Response = ' + fullResponse);
+					displayResponse(fullResponse);
+					return;
+				}
+				partialResponse += new TextDecoder().decode(result.value);
+				const lines = partialResponse.split('\n');
+				// Only display the last incomplete line if there is another line to follow
+				if (lines.length > 1) {
+					displayResponse(lines[0]);
+					console.log('Partial Response = ' + lines.pop())
+					partialResponse = lines.pop();
+				}
+				fullResponse += lines.join('\n');
+				return reader.read().then(processResult);
+				});
+			})
+			.catch(error => console.log('Error:', error));
+
+		}
+		
+		function displayResponse(response) {
+			console.log('DisplayResponse Called');
+			let spinner = document.getElementById("spinner-submit");
+			spinner.style.visibility = 'hidden';
+			var content = {};
+			if(response) {
+				content = JSON.parse(response).choices[0].message.content.substring(2);
+			} 
+			
+			console.log('Content = ' + content);
+			const textarea = document.getElementById('chatgpt-response');
+
+			if (textarea.value.trim() === '') {
+				
+			} else {
+				// Textarea is not empty, clear it and then display the response
+				textarea.innerHTML = "";
+				//displayResponse(response);
+			}
+
+			// Textarea is empty, display the response
+			let i = 0;
+			const interval = setInterval(() => {
+			if (i < content.length) {
+				//console.log('Display Response = ' + content.charAt(i));
+				jQuery('.form-group').removeClass('d-none');
+				textarea.innerHTML += content.charAt(i);
+				textarea.scrollTop = textarea.scrollHeight;
+				i++;
+				} else {
+					clearInterval(interval);
+				}
+			}, 50); // Adjust this number to change the delay between characters
+		}
+
+
+		var modal = document.getElementById("chatgpt-modal");
+		// //Listen for the keydown event on the input fields inside the modal
+		modal.addEventListener('keydown', function(event) {
+			// Check if the key pressed is the "Enter" key
+			if (event.key === 'Enter') {
+				// Prevent the default behavior of the "Enter" key
+				// Prevent the default behavior of the "Enter" key
+				event.preventDefault();
+
+				// if(jQuery('#chatgpt-response').val() != '') {
+				// 	jQuery('#chatgpt-response').val('');
+				// } 
+				jQuery('.prompt-validation').css({"visibility":"hidden"});
+				jQuery('#chatgpt-submit').click();
+			}
+		});
+		
+		// Add event listener to the button element
+		jQuery("#chatgpt-submit").on("click", function(event) {
+			console.log('Chat Button Clicked');
+			let spinner = document.getElementById("spinner-submit");
+			spinner.style.visibility = 'visible';
+			sendMessage();
+		});
+		
+		function sendMessage() {
+			var input = jQuery("#chatgpt-prompt").val();
+
+			if (input.trim() === "") {
+				jQuery('.prompt-validation').css({"visibility":"visible"});
+				return; // Don't send empty messages
+			}
+			jQuery("#conversation").append("<p>You: " + input + "</p>");
+			//jQuery("#chatgpt-response").val('');
+			chatGPT(input);
 		}
 
     </script>
