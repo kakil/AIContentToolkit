@@ -1403,6 +1403,7 @@ function verify_license() {
 	  	AICONTENTT()->helpers->ai_content_update_option($response_license_key);
 	  	AICONTENTT()->helpers->ai_content_deactivation_update_option('');
 		verify_license_on_admin_pages();
+		$response_data = convert_from_latin1_to_utf8_recursively($response_data);
 	  	echo json_encode($response_data);
 
 	  	//update_option('license_key', $response_data['license_key']);
@@ -1424,6 +1425,36 @@ function verify_license() {
 add_action('wp_ajax_verify_license', 'verify_license');
 add_action('wp_ajax_nopriv_verify_license', 'verify_license');
 
+
+
+ /**
+  * Encode array from latin1 to utf8 recursively
+  * @param $dat
+  * @return array|string
+  */
+  function convert_from_latin1_to_utf8_recursively($dat)
+  {
+	 if (is_string($dat)) {
+		return iconv('ISO-8859-1', 'UTF-8', $dat);
+	 } elseif (is_array($dat)) {
+		$ret = [];
+		foreach ($dat as $i => $d) {
+		   $ret[$i] = convert_from_latin1_to_utf8_recursively($d);
+		}
+		return $ret;
+	 } elseif (is_object($dat)) {
+		foreach ($dat as $i => $d) {
+		   $dat->$i = convert_from_latin1_to_utf8_recursively($d);
+		}
+		return $dat;
+	 } else {
+		return $dat;
+	 }
+  }
+  // Sample use
+  // Just pass your array or string and the UTF8 encode will be fixed
+  //$data = convert_from_latin1_to_utf8_recursively($data);
+  
 
 //Verify license for admin pages
 function verify_license_on_admin_pages() {
