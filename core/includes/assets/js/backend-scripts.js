@@ -182,7 +182,7 @@ jQuery(document).ready(function() {
           spinner.style.visibility = 'hidden';
 
           var data = JSON.parse(response);
-
+          console.log("Response: " + JSON.stringify(data, null, 2));
           if (data.success !== undefined && data.success === false) {
             console.log('License not found');
             jQuery('#submitSuccessMessage').addClass('d-none');
